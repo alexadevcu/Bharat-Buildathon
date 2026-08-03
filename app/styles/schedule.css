@@ -1,0 +1,142 @@
+/* Schedule Section Styles */
+.schedule-section {
+    background-color: var(--bg-color);
+    position: relative;
+    z-index: 10;
+    overflow: hidden;
+    height: 100vh; /* Full viewport height for pinning */
+    display: flex;
+    flex-direction: column;
+}
+
+.schedule-header-sticky {
+    text-align: center;
+    padding-top: 100px;
+    flex-shrink: 0;
+}
+
+.schedule-track-container {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.schedule-track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    padding: 0 50vw 0 10vw; /* padding to allow scrolling past the last item */
+}
+
+.timeline-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 350px;
+    height: 400px;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.timeline-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: var(--bg-color);
+    border: 8px solid var(--color-navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.timeline-time {
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--color-dark);
+    text-align: center;
+}
+
+.timeline-content {
+    padding: 20px;
+    text-align: center;
+    width: 300px;
+}
+
+.timeline-content h4 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    color: var(--color-navy);
+}
+
+.timeline-content p {
+    font-size: 0.95rem;
+    opacity: 0.8;
+}
+
+.timeline-time-full {
+    display: block;
+    margin-top: 10px;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+/* Winding logic */
+.timeline-node:nth-child(odd) .timeline-circle {
+    top: 40px; /* Circle is UP */
+}
+.timeline-node:nth-child(even) .timeline-circle {
+    bottom: 40px; /* Circle is DOWN */
+}
+
+.timeline-node:nth-child(odd) .timeline-content {
+    position: absolute;
+    top: 180px; /* Below the top circle */
+}
+.timeline-node:nth-child(even) .timeline-content {
+    position: absolute;
+    bottom: 180px; /* Above the bottom circle */
+}
+
+/* The curved connectors starting perfectly from circle centers */
+.timeline-node:nth-child(odd)::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 100px; /* Center of the top circle (40px top + 60px half-height) */
+    width: 350px;
+    height: 200px; /* 400 - 40 - 40 - 120 = 200px distance between centers */
+    background: url('data:image/svg+xml;utf8,<svg width="350" height="200" viewBox="0 0 350 200" xmlns="http://www.w3.org/2000/svg"><path d="M0 0 C 175 0, 175 200, 350 200" stroke="%231d2b45" stroke-width="6" fill="none"/></svg>') no-repeat;
+    z-index: 1; /* Below the circle which is z-index: 2 */
+}
+
+.timeline-node:nth-child(even)::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 100px; /* To connect to the next odd node's center */
+    width: 350px;
+    height: 200px;
+    background: url('data:image/svg+xml;utf8,<svg width="350" height="200" viewBox="0 0 350 200" xmlns="http://www.w3.org/2000/svg"><path d="M0 200 C 175 200, 175 0, 350 0" stroke="%231d2b45" stroke-width="6" fill="none"/></svg>') no-repeat;
+    z-index: 1;
+}
+
+.timeline-node:last-child::after {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .schedule-header-sticky {
+        padding-top: 80px;
+    }
+    .timeline-node {
+        transform: scale(0.85);
+        margin: 0 -20px;
+    }
+}

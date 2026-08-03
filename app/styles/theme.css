@@ -1,0 +1,66 @@
+/* Theme/Tracks Section Styles */
+.theme-section {
+    padding: 150px 5vw 100px 5vw;
+    background-color: var(--bg-color);
+    position: relative;
+    z-index: 10;
+}
+
+.theme-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.theme__header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.theme__title {
+    font-size: clamp(3rem, 6vw, 5rem);
+    margin-bottom: 10px;
+    color: var(--color-navy);
+}
+
+.theme__subtitle {
+    font-size: 1.25rem;
+    color: var(--color-dark);
+}
+
+.theme__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.theme-card {
+    background: var(--color-white);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+    border-top: 5px solid var(--card-bg, var(--color-saffron));
+}
+
+.theme-card:hover {
+    transform: translateY(-5px);
+}
+
+.theme-card__icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.theme-card__title {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: var(--color-dark);
+}
+
+.theme-card__desc {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: var(--color-dark);
+}
