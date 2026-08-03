@@ -1,57 +1,92 @@
-# Truus.co — Awwward-Winning Web Design Clone
+# 🇮🇳 Bharat Buildathon 2026 — Official Event Website
 
-A highly interactive, visually stunning recreation of the **Truus.co** website, rebuilt as a **Next.js + React** application. This project captures the bold aesthetics, playful interactivity, and smooth motion design characteristic of Awwward-winning websites — with every pixel and every frame of animation faithfully recreated.
+The official website for **Bharat Buildathon 2026**, an innovation-focused Ideathon that challenges participants to develop creative and practical solutions for real-world problems aligned with India's growth and development. Built with **Next.js 15**, **React 19**, and **GSAP** — featuring award-winning level animations and interactivity.
 
-<table>
-  <tr>
-    <td align="center"><b>Header Section</b><br/><img width="100%" alt="Header Section" src="https://github.com/user-attachments/assets/195d1543-3e28-4678-8545-567ca9b08767" /></td>
-    <td align="center"><b>MotionCard Section</b><br/><img width="100%" alt="MotionCard Section placeholder" src="https://github.com/user-attachments/assets/14d46fcf-f5d4-4b32-ac8e-e99eef1e964f" /></td>
-  </tr>
-  <tr>
-    <td align="center"><b>Service Card Section</b><br/><img width="100%" alt="Service Card Section" src="https://github.com/user-attachments/assets/cb80f406-998e-4853-9ea5-7dec87952117" /></td>
-    <td align="center"><b>Double Marquee Section</b><br/><img width="100%" alt="Double marquee section" src="https://github.com/user-attachments/assets/9ca5af12-5e0b-4b81-954c-1dcb484c671a" /></td>
-  </tr>
-  <tr>
-    <td align="center" colspan="2"><b>Footer Section</b><br/><img width="100%" alt="Footer section" src="https://github.com/user-attachments/assets/1f0c8b9c-50c7-452e-af4c-23cadcdb58c0" /></td>
-  </tr>
-</table>
-
+> **Ideate. Build. Pitch. Win.**
 
 ---
 
-## 🚀 Overview
+## 🚀 What is Bharat Buildathon?
 
-This project is a high-fidelity clone of the Truus advertising agency website. The codebase was originally built in vanilla HTML/CSS/JS and has been **fully transformed to Next.js 15 + React 19**, with all animations, interactions, and assets ported 1:1.
+Bharat Buildathon is a high-energy ideathon where teams compete across **two exciting rounds**:
 
-### ⚠️ Note on the Hero Video
-The original Truus.co website uses a privately-hosted Vimeo video. Due to **Vimeo's Domain-Level Privacy Settings**, the video is restricted to the `truus.co` domain. The hero component uses a standard HTML5 `<video>` element with the `src` commented out, rendering a solid dark background. Place your `.mp4` in `public/` and update the source in `VimeoHero.jsx`.
+1. **Round 1 — Device-Free Ideation**: No laptops, no phones, no smartwatches. Teams brainstorm and build their solutions on a physical Idea Canvas provided by the organizers. Pure ideas, no distractions.
+
+2. **Round 2 — Pitch & Present**: Shortlisted teams prepare a presentation and pitch their solution before a panel of expert judges.
+
+### 🎯 Ideathon Tracks
+
+Teams can choose from **5 impactful tracks**:
+
+| Track | Focus Area |
+|---|---|
+| 🏢 **Smart Cities** | Urban infrastructure, transportation, and public services |
+| 🩺 **Healthcare** | Accessible medical care, health tracking, biotechnology |
+| 📚 **EdTech** | Digital learning tools, accessibility, new methodologies |
+| 🌾 **AgriTech** | Smart agriculture, supply chain, sustainability |
+| ⚡ **Clean Energy** | Eco-friendly alternatives, waste management, renewables |
+
+### 🏆 Judging Criteria
+
+Teams are evaluated on **5 key dimensions**:
+
+- **Innovation** — Originality, creativity, novelty, out-of-the-box thinking
+- **Feasibility** — Technical viability, implementation plan, resource requirements
+- **Impact** — Social relevance, scalability, potential for positive change
+- **Scalability** — Growth potential, market readiness, business model viability
+- **Presentation** — Clarity of thought, storytelling, pitch delivery, Q&A handling
 
 ---
 
-## ✨ Key Features
+## 📅 Event Schedule
 
-### 🎭 Animations & Effects
+| Time | Event | Description |
+|---|---|---|
+| 9:30 AM – 10:15 AM | Registration | Arrival, team check-in, and networking |
+| 10:15 AM – 10:30 AM | Opening Ceremony | Welcome address & event kickoff |
+| 10:30 AM – 11:00 AM | Briefing | Rulebook, evaluation criteria & guidelines |
+| 11:00 AM – 11:45 AM | Round 1: Ideation | Device-free ideation & solution development |
+| 11:45 AM – 1:00 PM | Round 1 Evaluation | Q&A with judges |
+| 1:00 PM – 1:40 PM | Lunch Break | Recharge and refuel |
+| 1:40 PM – 1:55 PM | Announcement | Qualified teams & instructions for Round 2 |
+| 1:55 PM – 2:30 PM | Round 2 Preparation | PPT preparation & final pitch readiness |
+| 2:30 PM – 3:45 PM | Final Presentations | Round 2 pitches & jury evaluation |
+| 3:45 PM – 4:05 PM | Jury Evaluation | Final deliberation & audience interaction |
+| 4:05 PM – 4:30 PM | Closing Ceremony | Results, prize distribution, group photo |
 
-- **GSAP InertiaPlugin Fling** — Motion cards and floating labels track mouse velocity; on `mouseleave` they fling with physics-based inertia and snap back to position.
-- **Page Transition Scribble** — Full-screen GSAP-powered scribble mask that draws/undraws on logo click, with random color selection, logo wiggle, and auto-scroll to top.
-- **Elastic Card Interactions** — Service cards spread apart horizontally on hover with elastic bounce physics; hovered card scales up. On mobile, cards stack and reveal via scroll.
-- **Scroll-Triggered SVG Draws** — Hand-drawn underlines and paths animate in via `stroke-dasharray` as the user scrolls past.
-- **Footer Sticker Proximity Push** — Stickers react to fast cursor swipes nearby with strength proportional to speed, then spring back elastically.
-- **Wiggle System** — Configurable per-element rotation wiggle on hover, controlled from a single `WIGGLE_CONFIG` object.
-- **Custom Cursor Bubble** — GSAP-tracked blob that follows the cursor, pops in elastically over clickable elements with context-aware text.
-- **Mute Bubble** — Separate cursor-following blob on the video hero with mute/unmute states.
-- **Double Marquee** — Infinite scrolling brand logos with smart randomization (no adjacent duplicates for logos or colors, even at the loop seam).
-- **Credits Pop-out** — Footer credits box physically grows/shrinks with staggered text slide animations.
+---
+
+## ✨ Website Features
+
+### 🎭 Animations & Interactions
+
+- **GSAP InertiaPlugin Fling** — About section cards and floating labels track mouse velocity; on `mouseleave` they fling with physics-based inertia and snap back.
+- **Page Transition Scribble** — Full-screen GSAP-powered scribble mask with random color selection, logo wiggle, and auto-scroll to top.
+- **Elastic Judging Cards** — Criteria cards spread apart horizontally on hover with elastic bounce physics; hovered card scales up.
+- **Scroll-Triggered SVG Draws** — Hand-drawn underlines and paths animate in via `stroke-dasharray` as the user scrolls.
+- **Footer Sticker Proximity Push** — Stickers react to fast cursor swipes with strength proportional to speed, then spring back elastically.
+- **Custom Cursor Bubble** — GSAP-tracked blob that follows the cursor with context-aware text on interactive elements.
+- **Double Marquee** — Infinite scrolling sponsor/partner logos with smart randomization (no adjacent duplicates).
+- **Horizontal Words Scroll** — Scroll-driven horizontal text reveal with decorative SVG stickers.
 - **Lenis Smooth Scroll** — Buttery-smooth page scrolling synced with GSAP's ticker.
+- **Round Timeline Animation** — Animated timeline connector and staggered card reveals for the competition rounds.
+- **Theme Cards Pop-in** — Scale + bounce entrance animations for ideathon track cards on scroll.
 - **Tab Title Change** — Title becomes `"Hey, over here! 👋"` when the tab loses focus.
 
-### 🏗️ Architecture
+### 🏗️ Website Sections
 
-- **React Component Architecture** — Every section is a clean, isolated component.
-- **Modular CSS** — 11 partial stylesheets imported via a single `globals.css` entry point.
-- **External SVG Assets** — Decorative SVGs extracted to organized folders for clean, readable components.
-- **Centralized Data** — All static data (brands, cards, icons, configs) exported from `lib/data.js`.
-- **Self-Hosted Assets** — All fonts, brand logos, stickers, and SVGs stored locally — zero CDN dependency.
+| Section | Component | Description |
+|---|---|---|
+| Hero | `Hero.jsx` | Full-screen hero with "Bharat Buildathon 2026" title, tagline, and CTA buttons |
+| Horizontal Words | `HorizontalWords.jsx` | Scroll-driven text with decorative SVG stickers |
+| About | `About.jsx` | "What is Bharat Buildathon?" with motion cards and floating labels |
+| Ideathon Tracks | `Theme.jsx` | 5 themed tracks with animated card grid |
+| How It Works | `Rounds.jsx` | Two-round competition flow with animated timeline |
+| Schedule | `Schedule.jsx` | Full day-of event schedule |
+| Judging Criteria | `JudgingCriteria.jsx` | 5 evaluation criteria cards with elastic interactions |
+| FAQ | `FAQ.jsx` | Frequently asked questions accordion |
+| Sponsors | `DoubleMarquee.jsx` | Infinite scrolling sponsor/partner logos |
+| Footer | `Footer.jsx` | Contact info, socials, sticker interactions |
 
 ---
 
@@ -59,10 +94,10 @@ The original Truus.co website uses a privately-hosted Vimeo video. Due to **Vime
 
 | Technology | Purpose |
 |---|---|
-| **Next.js 15** | React framework, App Router, file-based routing |
+| **Next.js 15** | React framework with App Router |
 | **React 19** | Component-based UI architecture |
 | **Vanilla CSS** | Full design system via CSS Variables — zero Tailwind |
-| **GSAP + ScrollTrigger + InertiaPlugin** | All animations, scroll-driven effects, physics-based fling |
+| **GSAP + ScrollTrigger + InertiaPlugin** | All animations, scroll-driven effects, physics-based interactions |
 | **Lenis** | Ultra-smooth inertia scrolling |
 
 ---
@@ -70,159 +105,74 @@ The original Truus.co website uses a privately-hosted Vimeo video. Due to **Vime
 ## 📦 Project Structure
 
 ```text
-truus/
+Bharat-Buildathon/
 ├── app/
 │   ├── styles/                  # Modular CSS partials
-│   │   ├── base.css             # Fonts, CSS variables, reset, body/html
-│   │   ├── navbar.css           # Navbar, logos, header hero
-│   │   ├── hero.css             # Content section title + underline SVG
-│   │   ├── vimeo-hero.css       # Vimeo hero video player + headline
-│   │   ├── motion-cards.css     # MotionCard section (heading + cards + labels)
-│   │   ├── showreel.css         # Showreel section placeholder
-│   │   ├── cards.css            # Service cards, stickers
-│   │   ├── marquee.css          # Double marquee section + animations
-│   │   ├── footer.css           # Footer layout, credits, stickers
-│   │   ├── cursor.css           # Custom cursor bubble + scribble overlay
-│   │   └── responsive.css       # All media queries (tablet + mobile)
+│   │   ├── base.css             # Fonts, CSS variables, reset
+│   │   ├── navbar.css           # Navbar & header
+│   │   ├── hero.css             # Content section title + underline
+│   │   ├── vimeo-hero.css       # Full-screen hero layout
+│   │   ├── motion-cards.css     # About section cards + labels
+│   │   ├── showreel.css         # Showreel placeholder
+│   │   ├── cards.css            # Judging criteria cards
+│   │   ├── marquee.css          # Sponsor marquee + animations
+│   │   ├── footer.css           # Footer layout + stickers
+│   │   ├── cursor.css           # Custom cursor + scribble overlay
+│   │   ├── theme.css            # Ideathon tracks grid
+│   │   ├── rounds.css           # Competition rounds timeline
+│   │   ├── schedule.css         # Event schedule layout
+│   │   ├── faq.css              # FAQ accordion
+│   │   ├── horizontal-words.css # Horizontal scroll text
+│   │   └── responsive.css       # All media queries
 │   ├── globals.css              # Entry point — imports all partials
-│   ├── layout.jsx               # Root layout — <html>, metadata, favicon
+│   ├── layout.jsx               # Root layout with metadata
 │   └── page.jsx                 # Main page — assembles all components
 │
 ├── components/
-│   ├── CursorBubble.jsx         # Custom "click" cursor bubble with GSAP tracking
-│   ├── DoubleMarquee.jsx        # Randomised logo marquee + scroll-triggered SVGs
-│   ├── Footer.jsx               # Footer — credits, stickers, socials, wiggles
-│   ├── MotionCards.jsx          # Motion cards + floating labels + InertiaPlugin fling
-│   ├── Navbar.jsx               # Fixed navbar + scroll color logic + logo wiggle
-│   ├── ServiceCards.jsx         # "Call us if you need" + 5 service cards
-│   ├── Showreel.jsx             # Showreel section placeholder (coming soon)
-│   ├── SmoothScroll.jsx         # Lenis init + GSAP ticker sync (renders null)
-│   ├── SvgSymbols.jsx           # Hidden SVG <symbol> defs (bullet, card divider)
-│   ├── TransitionScribble.jsx   # Full-screen scribble mask on logo click
-│   └── VimeoHero.jsx            # Video hero — controls, mute bubble, headline
+│   ├── About.jsx                # "What is Bharat Buildathon?" section
+│   ├── CursorBubble.jsx         # Custom cursor with GSAP tracking
+│   ├── DoubleMarquee.jsx        # Sponsor/partner logo marquee
+│   ├── FAQ.jsx                  # Frequently asked questions
+│   ├── Footer.jsx               # Footer with socials & stickers
+│   ├── Hero.jsx                 # Full-screen hero with CTAs
+│   ├── HorizontalWords.jsx      # Horizontal scroll text section
+│   ├── JudgingCriteria.jsx      # 5 judging criteria cards
+│   ├── Navbar.jsx               # Fixed navbar with scroll effects
+│   ├── Rounds.jsx               # Two-round competition timeline
+│   ├── Schedule.jsx             # Event day schedule
+│   ├── SmoothScroll.jsx         # Lenis init + GSAP sync
+│   ├── SvgSymbols.jsx           # Hidden SVG symbol definitions
+│   ├── Theme.jsx                # Ideathon track cards
+│   └── TransitionScribble.jsx   # Page transition animation
 │
 ├── lib/
-│   └── data.js                  # All static data as ES module exports
+│   └── data.js                  # All static data (sponsors, judging criteria, schedule, etc.)
 │
 ├── public/
-│   ├── assets/
-│   │   ├── Brand Logos SVG/     # 8 self-hosted marquee brand logos
-│   │   ├── Card-Sticker SVG/    # Stickers overlaying service cards
-│   │   ├── Cursor SVG/          # Custom cursor SVG states
-│   │   ├── Footer-Sticker SVG/  # 6 decorative footer stickers
-│   │   ├── Marquee-blob SVG/    # Blob + hand in marquee section
-│   │   ├── MotionCard SVG/      # Motion card blob + underline
-│   │   ├── Navbar SVG/          # Navbar blob + work icon
-│   │   └── VimeoHero SVG/       # Smiley, star, oval underline, mute blob
-│   └── fonts/
-│       ├── DMSans-VariableFont_opsz,wght.ttf
-│       └── Epilogue-VariableFont_wght.ttf
+│   ├── assets/                  # SVGs, logos, stickers, decorative elements
+│   └── fonts/                   # Self-hosted DM Sans & Epilogue fonts
 │
 ├── .gitignore
-├── jsconfig.json                # @/ import alias configuration
-├── next.config.mjs              # Next.js config with webpack @/ alias
+├── jsconfig.json
+├── next.config.mjs
 ├── package.json
 └── README.md
 ```
 
 ---
 
-## 🎬 Animation Catalog
-
-| Animation | Component | Type |
-|---|---|---|
-| **Inertia fling (cards)** | MotionCards | GSAP InertiaPlugin |
-| **Inertia fling (labels)** | MotionCards | GSAP InertiaPlugin |
-| **Page transition scribble** | TransitionScribble | GSAP Timeline |
-| **Card fan-out on hover** | ServiceCards | GSAP Elastic |
-| **Mobile card scroll stack** | ServiceCards | GSAP ScrollTrigger |
-| **SVG underline draw** | ServiceCards | GSAP stroke animation |
-| **Marquee infinite scroll** | DoubleMarquee | CSS Keyframes |
-| **Marquee SVG reveal** | DoubleMarquee | GSAP ScrollTrigger |
-| **Sticker scroll pop-up** | Footer | GSAP ScrollTrigger + back.out |
-| **Sticker proximity push** | Footer | GSAP Elastic |
-| **Credits pop-out/collapse** | Footer | GSAP Timeline |
-| **Map link draw** | Footer | GSAP stroke animation |
-| **Cursor bubble follow** | CursorBubble | GSAP quickTo |
-| **Mute bubble follow** | VimeoHero | GSAP quickTo |
-| **Wiggle on hover** | Navbar, Footer | GSAP steps(1) yoyo |
-| **Lenis smooth scroll** | SmoothScroll | Lenis + GSAP ticker |
-| **Tab title change** | SmoothScroll | Visibility API |
-
----
-
-## 📊 `lib/data.js` — Centralized Data
-
-All static data lives in `lib/data.js` as named ES module exports:
-
-| Export | Purpose |
-|---|---|
-| `brands[]` | 8 brand objects `{ name, src }` pointing to `/public/assets/` |
-| `colors[]` | Background colour pool for the marquee |
-| `SOCIAL_ICONS[]` | LinkedIn, Instagram, TikTok — href + SVG markup |
-| `CARDS_DATA[]` | 5 service card definitions with color, sticker, title, services |
-| `WIGGLE_CONFIG` | Single source of truth for all hover-wiggle intensities |
-| `ANIMATION_CONFIG` | Scribble transition timing and stroke width settings |
-
-### `WIGGLE_CONFIG` — Tune all wiggles from one place
-
-```js
-export const WIGGLE_CONFIG = {
-    logoTruus:  4,  // The navbar Truus logo
-    socials:    5,  // LinkedIn / Instagram / TikTok icons
-    jobHeading: 1,  // "not hiring right now" heading
-    googleMap:  1,  // Google Maps link text
-    email:      1,  // hello@truus.co
-    whatsapp:   1,  // send us a whatsapp
-};
-```
-
-Higher number = more rotation (degrees). Set to `0` to disable for any element.
-
----
-
-## 🎲 Marquee Randomisation Logic
-
-The marquee uses two constraint-aware helpers in `components/DoubleMarquee.jsx`:
-
-- **`shuffleNoAdjacentSrc(brands)`** — Fisher-Yates shuffle + post-processing to ensure no two cards with the same logo appear next to each other, **including at the loop seam**.
-- **`assignColorsNoAdjacent(count, colors)`** — Assigns background colours one-by-one, always excluding the previous colour (and the first colour on the last item, to fix the seam).
-
----
-
-## 🎨 SVG Architecture
-
-All SVGs are handled using one of three strategies:
-
-| Strategy | Used For | Why |
-|---|---|---|
-| External `.svg` + `<img>` | Brand logos, stickers, blobs, decorative shapes | Clean components; best for large, non-reused shapes |
-| Inline `<symbol>` + `<use>` | Repeated icons (`bullet-icon`, `card-divider`) | Defined once in `SvgSymbols.jsx`, rendered many times; supports `currentColor` |
-| Inline `<svg>` | Animated paths (map link draw, control icons) | Required for `stroke-dasharray` animations and React state-driven rendering |
-
-### SVG Asset Folders
-
-| Folder | Contents |
-|---|---|
-| `Brand Logos SVG/` | 8 marquee brand logos |
-| `Card-Sticker SVG/` | 5 stickers for service cards |
-| `Cursor SVG/` | Custom cursor states |
-| `Footer-Sticker SVG/` | 6 decorative footer stickers |
-| `Marquee-blob SVG/` | Blob + pointing hand |
-| `MotionCard SVG/` | Blue blob + wavy underline |
-| `Navbar SVG/` | Navbar blob + work icon |
-| `VimeoHero SVG/` | Smiley face, pink star, oval underline, mute blob |
-
----
-
 ## ⚙️ Setup & Installation
 
-This project uses Next.js, so you need Node.js installed.
+### Prerequisites
+
+- **Node.js** 18+ installed
+
+### Quick Start
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/Thakuma07/Truus.co-Awwward-Website.git
-   cd truus
+   git clone https://github.com/Akshat-sinha-75/Bharat-Buildathon-.git
+   cd Bharat-Buildathon-
    ```
 
 2. **Install dependencies**:
@@ -242,10 +192,10 @@ This project uses Next.js, so you need Node.js installed.
 
 ---
 
-## 👨‍💻 Developed By
+## 👨‍💻 Built By
 
-Made with ❤️ by **Arkyadeep Pal**, **Soumyakanta Mitra** and **Anshu Ram**, powered by **Antigravity AI**.
+Made with ❤️ by **Akshat Sinha** — powered by passion for innovation and building for Bharat.
 
 ## 📄 License
 
-This project is for educational and portfolio purposes. All original brand assets belong to Truus.co.
+This project is for the **Bharat Buildathon 2026** event. All rights reserved.
