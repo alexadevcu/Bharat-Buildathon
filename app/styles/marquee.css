@@ -118,7 +118,8 @@
     gap: 5px;
     height: 850px;
     position: relative;
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
     width: 500px;
     margin-right: 80px;
 }

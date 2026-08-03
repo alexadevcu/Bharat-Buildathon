@@ -89,54 +89,59 @@ function initCardAnimations() {
         cards.forEach((card, index) => {
             card.addEventListener('mouseenter', () => {
                 if (leaveTimeout) { clearTimeout(leaveTimeout); leaveTimeout = null; }
-                const hoverGap = 120;
-                const clusterGap = 150;
-                const cardWidth = 320;
-                const hoveredLeft = cards[index].offsetLeft;
-                const leftCards = [];
-                const rightCards = [];
-
-                cards.forEach((otherCard, otherIndex) => {
-                    if (otherIndex < index) leftCards.push({ card: otherCard, index: otherIndex });
-                    else if (otherIndex > index) rightCards.push({ card: otherCard, index: otherIndex });
+                
+                // Bring hovered card to front
+                gsap.set(card, { zIndex: 50 });
+                
+                // Animate hovered card
+                gsap.to(card, { 
+                    x: 0, 
+                    y: -20, 
+                    rotation: 0, 
+                    scale: 1.1, 
+                    duration: 0.6, 
+                    ease: 'back.out(1.5)', 
+                    overwrite: true 
                 });
 
-                const currentTop = cards[index].offsetTop;
-                const targetCommonTop = 50;
-                const moveY = targetCommonTop - currentTop;
-
-                gsap.to(cards[index], { x: 0, y: moveY, rotation: 0, scale: 1.08, duration: 0.9, ease: 'elastic.out(1, 0.5)', overwrite: true });
-
-                if (rightCards.length) {
-                    const clusterStart = hoveredLeft + cardWidth + hoverGap;
-                    rightCards.forEach((item, i) => {
-                        const targetAbsLeft = clusterStart + (i * clusterGap);
-                        const targetX = Math.max(targetAbsLeft - item.card.offsetLeft, 10);
-                        const angleRad = originalData[item.index].rotation * (Math.PI / 180);
-                        const targetY = targetX * Math.tan(angleRad);
-                        gsap.to(item.card, { x: targetX, y: targetY, rotation: originalData[item.index].rotation, scale: 1, duration: 1.0, ease: 'elastic.out(1, 0.5)', overwrite: true });
+                // Push siblings away
+                cards.forEach((otherCard, otherIndex) => {
+                    if (otherIndex === index) return;
+                    
+                    const isLeft = otherIndex < index;
+                    const distance = Math.abs(index - otherIndex);
+                    // Push cards further away based on how close they are
+                    const pushX = isLeft ? -(60 / distance) : (60 / distance);
+                    const pushY = 10;
+                    
+                    gsap.to(otherCard, { 
+                        x: pushX, 
+                        y: pushY, 
+                        rotation: originalData[otherIndex].rotation + (isLeft ? -2 : 2), 
+                        scale: 0.95, 
+                        duration: 0.6, 
+                        ease: 'power2.out', 
+                        overwrite: true,
+                        zIndex: originalData.length - distance // Lower z-index for siblings
                     });
-                }
-
-                if (leftCards.length) {
-                    leftCards.reverse();
-                    const clusterStart = hoveredLeft - hoverGap - cardWidth;
-                    leftCards.forEach((item, i) => {
-                        const targetAbsLeft = clusterStart - (i * clusterGap);
-                        const targetX = Math.min(targetAbsLeft - item.card.offsetLeft, -10);
-                        const angleRad = originalData[item.index].rotation * (Math.PI / 180);
-                        const targetY = targetX * Math.tan(angleRad);
-                        gsap.to(item.card, { x: targetX, y: targetY, rotation: originalData[item.index].rotation, scale: 1, duration: 1.0, ease: 'elastic.out(1, 0.5)', overwrite: true });
-                    });
-                }
+                });
             });
 
             card.addEventListener('mouseleave', () => {
                 leaveTimeout = setTimeout(() => {
                     cards.forEach((c, i) => {
-                        gsap.to(c, { x: 0, y: 0, scale: 1, rotation: originalData[i].rotation, duration: 1.0, ease: 'elastic.out(1, 0.5)', overwrite: true, zIndex: i + 1 });
+                        gsap.to(c, { 
+                            x: 0, 
+                            y: 0, 
+                            scale: 1, 
+                            rotation: originalData[i].rotation, 
+                            duration: 0.8, 
+                            ease: 'back.out(1.2)', 
+                            overwrite: true, 
+                            zIndex: i + 1 
+                        });
                     });
-                }, 80);
+                }, 50);
             });
         });
     } else {

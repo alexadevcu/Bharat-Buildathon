@@ -43,6 +43,23 @@ export default function Schedule() {
                 items.forEach((item) => {
                     const circle = item.querySelector('.timeline-circle');
                     const content = item.querySelector('.timeline-content');
+                    const startDate = item.querySelector('.timeline-start-date');
+
+                    if (startDate) {
+                        gsap.from(startDate, {
+                            x: -50,
+                            opacity: 0,
+                            duration: 0.8,
+                            ease: 'power3.out',
+                            scrollTrigger: {
+                                trigger: item,
+                                containerAnimation: tween,
+                                start: "left 85%",
+                                toggleActions: "play none none reverse"
+                            }
+                        });
+                    }
+
                     gsap.from([circle, content], {
                         scale: 0.5,
                         opacity: 0,
@@ -64,6 +81,22 @@ export default function Schedule() {
                 items.forEach((item) => {
                     const circle = item.querySelector('.timeline-circle');
                     const content = item.querySelector('.timeline-content');
+                    const startDate = item.querySelector('.timeline-start-date');
+
+                    if (startDate) {
+                        gsap.from(startDate, {
+                            x: -30,
+                            opacity: 0,
+                            duration: 0.8,
+                            ease: 'power3.out',
+                            scrollTrigger: {
+                                trigger: item,
+                                start: "top 85%",
+                                toggleActions: "play none none reverse"
+                            }
+                        });
+                    }
+
                     gsap.from([circle, content], {
                         y: 30,
                         opacity: 0,
@@ -94,13 +127,16 @@ export default function Schedule() {
         <section ref={sectionRef} className="schedule-section content-section" id="schedule-section">
             <div className="schedule-header-sticky">
                 <h2 className="display schedule__title">Event Schedule</h2>
-                <p className="schedule__subtitle">Minute-to-Minute Timeline</p>
+                <p className="schedule__subtitle">12 Aug 2026 • Minute-to-Minute Timeline</p>
             </div>
 
             <div className="schedule-track-container">
                 <div className="schedule-track" ref={trackRef}>
                     {SCHEDULE_DATA.map((item, i) => (
                         <div key={i} className="timeline-node">
+                            {i === 0 && (
+                                <div className="timeline-start-date">12 Aug 2026</div>
+                            )}
                             <div className="timeline-circle" style={{ borderColor: colors[i % colors.length] }}>
                                 <span className="timeline-time">{item.time.split(' - ')[0]}</span>
                             </div>

@@ -3,8 +3,8 @@
     position: relative;
     width: 100%;
     max-width: 1400px;
-    height: 650px;
-    margin: 100px auto 100px 100px;
+    height: 500px;
+    margin: 40px auto 60px auto;
     display: flex;
     justify-content: center;
     cursor: url("/assets/Cursor SVG/cursor-text.svg") 12 12, auto;
@@ -12,15 +12,15 @@
 
 /* ─── Base Card ──────────────────────────────────────────────────────────── */
 .card {
-    width: 320px;
-    height: 460px;
+    width: 280px;
+    height: 400px;
     position: absolute;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: stretch;
-    gap: 1.5rem;
-    padding: 3.5rem 1.5rem 1.5rem;
+    gap: 1rem;
+    padding: 2.5rem 1.2rem 1.2rem;
     cursor: pointer;
     border-radius: 10px;
     color: var(--color-white);
@@ -31,10 +31,10 @@
 
 .card-title {
     text-align: left;
-    font-size: 2.2rem;
+    font-size: 1.8rem;
     font-family: 'Epilogue', sans-serif;
     font-weight: 800;
-    margin-top: 30px;
+    margin-top: 20px;
     line-height: 1;
     letter-spacing: -1px;
 }
@@ -50,8 +50,8 @@
 /* ─── Card Color Variants ────────────────────────────────────────────────── */
 .card-green {
     background-color: var(--color-green);
-    left: calc(50% - 700px);
-    top: 50px;
+    left: calc(50% - 612px);
+    top: 30px;
     transform: rotate(4deg);
     z-index: 1;
 }
@@ -59,8 +59,8 @@
 .card-navy {
     background-color: var(--color-navy);
     color: var(--color-white);
-    left: calc(50% - 430px);
-    top: 100px;
+    left: calc(50% - 376px);
+    top: 70px;
     transform: rotate(-5deg);
     z-index: 2;
 }
@@ -68,16 +68,16 @@
 .card-gold {
     background-color: var(--color-gold);
     color: var(--color-dark);
-    left: calc(50% - 220px);
-    top: 20px;
+    left: calc(50% - 140px);
+    top: 10px;
     transform: rotate(5deg);
     z-index: 3;
 }
 
 .card-saffron {
     background-color: var(--color-saffron);
-    left: calc(50% + 50px);
-    top: 30px;
+    left: calc(50% + 96px);
+    top: 20px;
     transform: rotate(-8deg);
     z-index: 4;
 }
@@ -85,8 +85,8 @@
 .card-purple {
     background-color: var(--color-purple);
     color: var(--color-white);
-    left: calc(50% + 320px);
-    top: 70px;
+    left: calc(50% + 332px);
+    top: 50px;
     transform: rotate(5deg);
     z-index: 5;
 }
@@ -118,19 +118,19 @@
 }
 
 .card-list li {
-    margin-bottom: 8px;
-    font-size: 1.15rem;
+    margin-bottom: 6px;
+    font-size: 1rem;
     font-weight: 500;
     display: flex;
     align-items: flex-start;
-    gap: 12px;
+    gap: 10px;
     line-height: 1.3;
     letter-spacing: -0.3px;
 }
 
 .services-card__bullet-svg {
-    width: 14px;
-    height: 18px;
+    width: 12px;
+    height: 16px;
     flex-shrink: 0;
     margin-top: 2px;
     color: currentColor;
@@ -138,23 +138,23 @@
 
 /* ─── Card Sticker Variables ─────────────────────────────────────────────── */
 :root {
-    --sticker-camera-w: 160px;
-    --sticker-phone-w: 120px;
-    --sticker-smiley-w: 120px;
-    --sticker-hand-w: 120px;
-    --sticker-heart-w: 140px;
+    --sticker-camera-w: 130px;
+    --sticker-phone-w: 100px;
+    --sticker-smiley-w: 100px;
+    --sticker-hand-w: 100px;
+    --sticker-heart-w: 110px;
 
-    --sticker-camera-top: -45px;
-    --sticker-camera-left: 120px;
+    --sticker-camera-top: -35px;
+    --sticker-camera-left: 90px;
 
-    --sticker-phone-top: -45px;
-    --sticker-phone-left: 155px;
+    --sticker-phone-top: -35px;
+    --sticker-phone-left: 110px;
 
-    --sticker-smiley-top: -50px;
+    --sticker-smiley-top: -40px;
 
-    --sticker-hand-top: -40px;
+    --sticker-hand-top: -30px;
 
-    --sticker-heart-top: -50px;
+    --sticker-heart-top: -40px;
     --sticker-heart-right: 15px;
 }
 

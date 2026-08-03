@@ -27,12 +27,29 @@ export default function SmoothScroll() {
         };
         document.addEventListener('visibilitychange', handleVisibility);
 
+        // Intercept anchor clicks for smooth scrolling
+        const handleAnchorClick = (e) => {
+            const target = e.target.closest('a');
+            if (!target) return;
+            const href = target.getAttribute('href');
+            if (href && href.startsWith('#') && href.length > 1) {
+                e.preventDefault();
+                lenis.scrollTo(href, { 
+                    offset: 0, 
+                    duration: 1.5, 
+                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) 
+                });
+            }
+        };
+        document.addEventListener('click', handleAnchorClick);
+
         // Store lenis on window so other components can access it
         window.__lenis = lenis;
 
         return () => {
             lenis.destroy();
             document.removeEventListener('visibilitychange', handleVisibility);
+            document.removeEventListener('click', handleAnchorClick);
             delete window.__lenis;
         };
     }, []);

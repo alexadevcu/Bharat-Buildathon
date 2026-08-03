@@ -21,7 +21,7 @@ const HorizontalWords = () => {
             const scrollTween = gsap.fromTo(textRef, {
                 xPercent: 50
             }, {
-                xPercent: -100,
+                xPercent: -40,
                 ease: 'none',
                 scrollTrigger: {
                     trigger: container,
@@ -94,7 +94,7 @@ const HorizontalWords = () => {
                         <path d="M2 123C9 35.9999 84.5 17 124 25.9999C217.764 47.3635 207 115 177.5 123C105.777 142.45 110.737 1.99991 232.5 2C310.5 2.00006 366.5 79 376 118L356.5 105.5" stroke="var(--color-saffron)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"></path>
                         <path d="M2 123C9 35.9999 84.5 17 124 25.9999C217.764 47.3635 207 115 177.5 123C105.777 142.45 110.737 1.99991 232.5 2C310.5 2.00006 366.5 79 376 118L384 97" stroke="var(--color-saffron)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"></path>
                     </svg>
-                    
+
                     <img src="/assets/Card-Sticker SVG/sticker-smiley.svg" className="horizontal-words__sticker" style={{ width: '120px', left: '20%', top: '-20%', position: 'absolute' }} />
                     <img src="/assets/Card-Sticker SVG/sticker-camera.svg" className="horizontal-words__sticker" style={{ width: '100px', left: '50%', top: '100%', position: 'absolute' }} />
                     <img src="/assets/Card-Sticker SVG/sticker-music.svg" className="horizontal-words__sticker" style={{ width: '110px', left: '80%', top: '-40%', position: 'absolute' }} />

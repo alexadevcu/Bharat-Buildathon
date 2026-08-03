@@ -159,13 +159,13 @@ export default function Footer() {
                 {/* Jobs */}
                 <div className="footer-column">
                     <span className="footer-badge">status</span>
-                    <h3>Registrations Open!</h3>
+                    <h3><a style={{ color: 'white', textDecoration: 'none' }} href="https://forms.gle/crrKyBGmG1uS8GN9A">Registrations Open!</a></h3>
                 </div>
                 {/* Office */}
                 <div className="footer-column">
                     <span className="footer-badge">venue</span>
                     <address>
-                        Chandigarh University<br />
+                        C3 block and C1 Block, Chandigarh University<br />
                         Gharuan, Mohali
                     </address>
                     <a href="#" className="footer-map-link">
@@ -179,8 +179,8 @@ export default function Footer() {
                 {/* Contact */}
                 <div className="footer-column">
                     <span className="footer-badge">contact</span>
-                    <a href="mailto:hello@bharatbuildathon.com" className="footer-email">hello@bharatbuildathon.com</a>
-                    <a href="#" className="footer-whatsapp">join our discord*</a>
+                    <a href="mailto:adc.cu@cumail.in" className="footer-email" style={{ fontSize: '2rem', textTransform: 'lowercase' }}>adc.cu@cumail.in</a>
+                    <a href="mailto:gfg.cu@cumail.in" className="footer-email" style={{ fontSize: '2rem', textTransform: 'lowercase' }}>gfg.cu@cumail.in</a>
                     <p className="footer-note">*for all latest updates and queries.</p>
                     <div className="footer-socials" id="footer-socials">
                         {SOCIAL_ICONS.map(({ href, label, svg }) => (
@@ -201,7 +201,7 @@ export default function Footer() {
             {/* Big Wordmark */}
             <div className="footer-bottom">
                 <div className="footer-big-text">
-                    <h1 style={{ fontSize: 'clamp(5rem, 10vw, 15rem)', fontWeight: 800, margin: 0, lineHeight: 1, letterSpacing: '-0.05em', color: 'currentColor' }}>
+                    <h1 style={{ fontSize: 'clamp(5rem, 10vw, 15rem)', fontWeight: 800, lineHeight: 1, letterSpacing: '-0.05em', color: 'currentColor' }}>
                         BHARAT BUILDATHON
                     </h1>
                 </div>
@@ -235,12 +235,12 @@ export default function Footer() {
                         <div className="credits-box">
                             <div className="credits-content">
                                 <div className="credits-item credit-wiggle">
-                                    <div className="overflow-wrapper"><span className="credits-label">organized by</span></div>
-                                    <div className="overflow-wrapper"><a href="#" className="credits-name" data-wiggle-target="true">CU Team</a></div>
+                                    <div className="overflow-wrapper"><span className="credits-label">organised by</span></div>
+                                    <div className="overflow-wrapper"><a href="#" className="credits-name" data-wiggle-target="true" style={{ fontSize: '0.9rem', lineHeight: '1.2' }}>Alexa Developer Community CU <br /> Geeks for Geeks CU</a></div>
                                 </div>
                                 <div className="credits-item credit-wiggle">
                                     <div className="overflow-wrapper"><span className="credits-label">hosted at</span></div>
-                                    <div className="overflow-wrapper"><a href="#" className="credits-name" data-wiggle-target="true">Chandigarh</a></div>
+                                    <div className="overflow-wrapper"><a href="#" className="credits-name" data-wiggle-target="true">Chandigarh <br /> University</a></div>
                                 </div>
                             </div>
                         </div>

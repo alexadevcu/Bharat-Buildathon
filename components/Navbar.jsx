@@ -96,7 +96,7 @@ export default function Navbar() {
             gsap.set(workBox, { visibility: 'visible', scale: 1, opacity: 1 });
             const boxRect = workBox.getBoundingClientRect();
             const navLeftRect = navLeft.getBoundingClientRect();
-            
+
             const originX = (navLeftRect.left + navLeftRect.width / 2) - boxRect.left;
             const originY = 0; // scale from top
             const workOrigin = `${originX}px ${originY}px`;
@@ -288,12 +288,13 @@ export default function Navbar() {
 
                         {/* Pop-out Box for Left Side */}
                         <div className="nav-popout nav-work-box" style={{ width: '220px' }}>
-                            <div className="nav-popout-inner" style={{ padding: '30px 20px', display: 'flex', flexDirection: 'column', gap: '15px' }}>
+                            <div className="nav-popout-inner" style={{ display: 'flex', flexDirection: 'column', gap: '15px', maxHeight: '80vh', overflowY: 'auto' }}>
                                 <a href="#about" style={{ textDecoration: 'none', color: 'inherit', fontSize: '1.2rem', fontWeight: 600, borderBottom: '1px solid rgba(0,0,0,0.1)', paddingBottom: '10px' }}>About</a>
                                 <a href="#theme" style={{ textDecoration: 'none', color: 'inherit', fontSize: '1.2rem', fontWeight: 600, borderBottom: '1px solid rgba(0,0,0,0.1)', paddingBottom: '10px' }}>Themes</a>
                                 <a href="#rounds" style={{ textDecoration: 'none', color: 'inherit', fontSize: '1.2rem', fontWeight: 600, borderBottom: '1px solid rgba(0,0,0,0.1)', paddingBottom: '10px' }}>Rounds</a>
                                 <a href="#schedule" style={{ textDecoration: 'none', color: 'inherit', fontSize: '1.2rem', fontWeight: 600, borderBottom: '1px solid rgba(0,0,0,0.1)', paddingBottom: '10px' }}>Schedule</a>
                                 <a href="#judging" style={{ textDecoration: 'none', color: 'inherit', fontSize: '1.2rem', fontWeight: 600, borderBottom: '1px solid rgba(0,0,0,0.1)', paddingBottom: '10px' }}>Judging</a>
+                                <a href="#prizes" style={{ textDecoration: 'none', color: 'inherit', fontSize: '1.2rem', fontWeight: 600, borderBottom: '1px solid rgba(0,0,0,0.1)', paddingBottom: '10px' }}>Prizes</a>
                                 <a href="#faq" style={{ textDecoration: 'none', color: 'inherit', fontSize: '1.2rem', fontWeight: 600, borderBottom: '1px solid rgba(0,0,0,0.1)', paddingBottom: '10px' }}>FAQ</a>
                                 <a href="#sponsors" style={{ textDecoration: 'none', color: 'inherit', fontSize: '1.2rem', fontWeight: 600 }}>Sponsors</a>
                             </div>
@@ -304,7 +305,7 @@ export default function Navbar() {
                     <h1 className="logo-truus" style={{ fontSize: '1.5rem', fontWeight: 800, margin: 0, whiteSpace: 'nowrap' }}>BHARAT BUILDATHON</h1>
                 </div>
                 <div className="nav-right">
-                    <a href="#register" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', background: 'var(--color-saffron)', color: 'var(--color-white)', padding: '10px 20px', borderRadius: '50px', fontWeight: 600, fontSize: '1.1rem' }}>
+                    <a href="https://forms.gle/crrKyBGmG1uS8GN9A" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', background: 'var(--color-saffron)', color: 'var(--color-white)', padding: '10px 20px', borderRadius: '50px', fontWeight: 600, fontSize: '1.1rem' }}>
                         Register Now
                     </a>
                 </div>

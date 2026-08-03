@@ -11,8 +11,16 @@
 
 .schedule-header-sticky {
     text-align: center;
-    padding-top: 100px;
+    padding-top: 40px;
     flex-shrink: 0;
+}
+
+.schedule__title {
+    font-size: 6rem;
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1;
+    margin-bottom: 10px;
 }
 
 .schedule-track-container {
@@ -61,6 +69,19 @@
     font-size: 1.1rem;
     color: var(--color-dark);
     text-align: center;
+}
+
+.timeline-start-date {
+    position: absolute;
+    left: -40px; /* Pull it slightly to the left outside the node for better spacing */
+    top: 90px; /* Align vertically with the center of the first circle (40px + 60px/2) */
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--color-navy);
+    width: 120px;
+    text-align: right;
+    line-height: 1.2;
+    z-index: 10;
 }
 
 .timeline-content {
@@ -138,8 +159,11 @@
         padding-bottom: 60px;
     }
     .schedule-header-sticky {
-        padding-top: 60px;
+        padding-top: 20px;
         margin-bottom: 40px;
+    }
+    .schedule__title {
+        font-size: 3.5rem;
     }
     .schedule-track-container {
         display: block;

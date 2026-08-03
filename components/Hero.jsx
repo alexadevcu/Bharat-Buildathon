@@ -39,7 +39,7 @@ export default function Hero() {
                     </h1>
                     
                     <div style={{ marginTop: '30px', display: 'flex', gap: '20px' }}>
-                        <a href="#register" target="_blank" rel="noopener noreferrer" style={{ background: 'var(--color-saffron)', color: 'white', padding: '15px 30px', borderRadius: '30px', textDecoration: 'none', fontWeight: 'bold', fontSize: '1.2rem', transition: 'transform 0.2s' }} onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'} onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}>
+                        <a href="https://forms.gle/crrKyBGmG1uS8GN9A" target="_blank" rel="noopener noreferrer" style={{ background: 'var(--color-saffron)', color: 'white', padding: '15px 30px', borderRadius: '30px', textDecoration: 'none', fontWeight: 'bold', fontSize: '1.2rem', transition: 'transform 0.2s' }} onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'} onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}>
                             Register Now
                         </a>
                         <a href="#about" style={{ border: '2px solid var(--color-white)', color: 'white', padding: '15px 30px', borderRadius: '30px', textDecoration: 'none', fontWeight: 'bold', fontSize: '1.2rem', transition: 'background 0.2s, color 0.2s' }} onMouseEnter={(e) => { e.target.style.background = 'white'; e.target.style.color = 'var(--color-navy)'; }} onMouseLeave={(e) => { e.target.style.background = 'transparent'; e.target.style.color = 'white'; }}>

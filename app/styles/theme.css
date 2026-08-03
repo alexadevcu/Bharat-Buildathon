@@ -84,12 +84,8 @@
         scroll-snap-type: x mandatory;
         gap: 15px;
         margin: 0 -20px;
-        padding: 20px;
-        scrollbar-width: none;
+        padding: 20px 20px 30px; /* added bottom padding for scrollbar */
         -webkit-overflow-scrolling: touch;
-    }
-    .theme__grid::-webkit-scrollbar {
-        display: none;
     }
     .theme-card {
         scroll-snap-align: center;

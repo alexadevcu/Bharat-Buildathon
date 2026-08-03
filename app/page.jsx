@@ -9,6 +9,7 @@ import Rounds from '@/components/Rounds';
 import Schedule from '@/components/Schedule';
 import JudgingCriteria from '@/components/JudgingCriteria';
 import FAQ from '@/components/FAQ';
+import Prizes from '@/components/Prizes';
 import DoubleMarquee from '@/components/DoubleMarquee';
 import Footer from '@/components/Footer';
 import TransitionScribble from '@/components/TransitionScribble';
@@ -43,6 +44,7 @@ export default function Home() {
                 <div className="content-section service-cards-wrapper" id="judging">
                     <JudgingCriteria />
                 </div>
+                <Prizes />
                 <div id="faq">
                     <FAQ />
                 </div>

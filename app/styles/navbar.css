@@ -115,6 +115,19 @@
 .nav-popout-inner {
     display: flex;
     flex-direction: column;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
+.nav-popout-inner::-webkit-scrollbar {
+    width: 6px;
+}
+.nav-popout-inner::-webkit-scrollbar-track {
+    background: transparent;
+}
+.nav-popout-inner::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
 }
 
 .nav-hover-trigger:hover .nav-popout {

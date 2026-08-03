@@ -267,12 +267,8 @@
         scroll-snap-type: x mandatory;
         gap: 20px;
         padding: 0 20px 20px;
-        scrollbar-width: none;
         -webkit-overflow-scrolling: touch;
         justify-content: flex-start;
-    }
-    .motion-card__cards::-webkit-scrollbar {
-        display: none;
     }
     .motion-card__blob {
         display: block;
