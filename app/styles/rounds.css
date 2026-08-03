@@ -70,9 +70,43 @@
     font-size: 2.5rem;
     margin-bottom: 15px;
 }
-
 .round-content p {
     font-size: 1.2rem;
     line-height: 1.6;
     opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    .rounds-section {
+        padding: 60px 20px;
+    }
+    .rounds-header {
+        margin-bottom: 40px;
+    }
+    .rounds-header h2 {
+        font-size: 3rem;
+    }
+    .rounds-timeline {
+        width: 60px;
+    }
+    .rounds-line {
+        left: 30px;
+    }
+    .round-item {
+        margin-bottom: 40px;
+    }
+    .round-number {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+    .round-content {
+        padding-left: 20px;
+    }
+    .round-content h3 {
+        font-size: 1.5rem;
+    }
+    .round-content p {
+        font-size: 1rem;
+    }
 }

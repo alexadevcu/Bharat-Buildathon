@@ -60,13 +60,18 @@ body {
     font-family: 'Epilogue', sans-serif;
     color: var(--color-dark);
     overflow-x: hidden;
+    width: 100%;
+    position: relative;
     scrollbar-width: none;
     -ms-overflow-style: none;
     cursor: url("/assets/Cursor SVG/cursor-default.svg") 2 0, auto;
 }
 
 html {
+    overflow-x: hidden;
+    width: 100%;
     scrollbar-width: none;
+
     -ms-overflow-style: none;
 }
 

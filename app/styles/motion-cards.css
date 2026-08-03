@@ -231,3 +231,82 @@
     letter-spacing: -0.2px;
     cursor: url("/assets/Cursor SVG/cursor-text.svg") 12 12, auto;
 }
+
+/* ─── Mobile Responsiveness ──────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .motion-card-section {
+        padding: 60px 20px 40px;
+    }
+    .motion-card__title {
+        font-size: 3.5rem;
+        letter-spacing: -2px;
+    }
+    .motion-card__subtitle {
+        font-size: 3.5rem;
+        top: -15px;
+    }
+    .motion-card__sticker--top {
+        width: 80px;
+        height: auto;
+        right: -10px;
+        top: -10px;
+    }
+    .motion-card__underline-svg {
+        margin-top: -20px;
+    }
+    .motion-card__cards-area {
+        height: 420px;
+        margin: 40px -20px;
+        position: relative;
+    }
+    .motion-card__cards {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        gap: 20px;
+        padding: 0 20px 20px;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+        justify-content: flex-start;
+    }
+    .motion-card__cards::-webkit-scrollbar {
+        display: none;
+    }
+    .motion-card__blob {
+        display: block;
+        width: 350px;
+        height: 300px;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        top: 50%;
+        opacity: 0.6;
+    }
+    .motion-card__card {
+        scroll-snap-align: center;
+        flex: 0 0 75vw;
+        max-width: 300px;
+        height: 100%;
+        aspect-ratio: unset;
+        transform: none !important;
+        margin: 0 !important;
+        left: 0 !important;
+        bottom: 0 !important;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        border: 1px solid rgba(255,255,255,0.4);
+    }
+    .motion-card__floating-labels {
+        display: block;
+    }
+    .motion-card__floating-text {
+        font-size: 0.85rem;
+        padding: 8px 16px;
+    }
+    .motion-card__floating-label--pink { top: -5%; left: 10%; z-index: 10; }
+    .motion-card__floating-label--orange { top: 85%; left: 5%; z-index: 10; }
+    .motion-card__floating-label--red { top: 15%; left: 75%; z-index: 10; }
+    .motion-card__description {
+        font-size: 1.1rem;
+    }
+}

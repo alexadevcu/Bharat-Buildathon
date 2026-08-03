@@ -60,3 +60,19 @@
 .faq-item.is-active .faq-icon {
     transform: rotate(45deg);
 }
+
+@media (max-width: 768px) {
+    .faq-section {
+        padding: 60px 20px;
+    }
+    .faq-question {
+        padding: 15px;
+        font-size: 1rem;
+    }
+    .faq-answer {
+        padding: 0 15px;
+    }
+    .faq-answer p {
+        font-size: 0.95rem;
+    }
+}
