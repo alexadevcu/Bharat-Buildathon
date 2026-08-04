@@ -1,3 +1,39 @@
+/* ─── Section Header (Judging Criteria) ─────────────────────────────────── */
+.title-container {
+    position: relative;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 60px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.main-title {
+    font-family: 'Epilogue', sans-serif;
+    font-size: clamp(3rem, 6vw, 4.8rem);
+    font-weight: 850;
+    line-height: 1;
+    letter-spacing: -2px;
+    color: var(--color-dark);
+    text-align: center;
+    margin: 0 auto;
+}
+
+.main-title .italic-text {
+    font-family: 'Times New Roman', serif;
+    font-style: italic;
+    font-weight: 400;
+}
+
+.title-underline-svg {
+    display: block;
+    margin: 10px auto 0 auto;
+    color: var(--color-navy);
+}
+
 /* ─── Cards Wrapper ──────────────────────────────────────────────────────── */
 .cards-wrapper {
     position: relative;

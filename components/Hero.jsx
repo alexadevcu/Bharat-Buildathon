@@ -227,13 +227,13 @@ export default function Hero() {
                     </div>
 
                     <div className="bharat-partners-card">
-                        <img src="/assets/logos/cu.png" alt="Chandigarh University" className="bharat-partner-logo" />
-                        <img src="/assets/logos/adc-cu.png" alt="Alexa Developers Community" className="bharat-partner-logo" />
-                        <img src="/assets/logos/gfg-cu.png" alt="GeeksforGeeks" className="bharat-partner-logo" />
+                        <img src="/assets/logos/cu.png" alt="Chandigarh University" className="bharat-partner-logo bharat-partner-logo-cu" />
+                        <img src="/assets/logos/adc-cu.png" alt="Alexa Developers Community" className="bharat-partner-logo bharat-partner-logo-adc" />
+                        <img src="/assets/logos/gfg-cu.png" alt="GeeksforGeeks" className="bharat-partner-logo bharat-partner-logo-gfg" />
                     </div>
 
                     <p className="bharat-partners-subtext">
-                        Organised by CSE Takshashila · Alexa Developers Community & GeeksforGeeks
+                        <b>Organised by CSE Takshashila · Alexa Developers Community & GeeksforGeeks</b>
                     </p>
                 </div>
             </div>

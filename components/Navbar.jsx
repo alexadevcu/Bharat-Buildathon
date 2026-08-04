@@ -35,21 +35,21 @@ export default function Navbar() {
                         <img
                             src="/assets/logos/cu.png"
                             alt="Chandigarh University"
-                            className="navbar-pill__logo-img"
+                            className="navbar-pill__logo-img navbar-pill__logo-cu"
                             onError={(e) => { e.currentTarget.style.display = 'none'; }}
                         />
                         <span className="navbar-pill__logo-divider" />
                         <img
                             src="/assets/logos/adc-cu.png"
                             alt="Alexa Developers Community"
-                            className="navbar-pill__logo-img"
+                            className="navbar-pill__logo-img navbar-pill__logo-adc"
                             onError={(e) => { e.currentTarget.style.display = 'none'; }}
                         />
                         <span className="navbar-pill__logo-divider" />
                         <img
                             src="/assets/logos/gfg-cu.png"
                             alt="GeeksforGeeks CU"
-                            className="navbar-pill__logo-img"
+                            className="navbar-pill__logo-img navbar-pill__logo-gfg"
                             onError={(e) => { e.currentTarget.style.display = 'none'; }}
                         />
                     </div>
@@ -83,9 +83,9 @@ export default function Navbar() {
             <div className={`mobile-menu-overlay ${isMobileMenuOpen ? 'open' : ''}`}>
                 <div className="mobile-menu-logos">
                     <div className="mobile-menu-logos-top">
-                        <img src="/assets/logos/cu.png" alt="CU" />
-                        <img src="/assets/logos/adc-cu.png" alt="ADC" />
-                        <img src="/assets/logos/gfg-cu.png" alt="GFG" />
+                        <img src="/assets/logos/cu.png" alt="CU" className="mobile-logo-cu" />
+                        <img src="/assets/logos/adc-cu.png" alt="ADC" className="mobile-logo-adc" />
+                        <img src="/assets/logos/gfg-cu.png" alt="GFG" className="mobile-logo-gfg" />
                     </div>
                 </div>
 
