@@ -113,11 +113,24 @@
 .bharat-hero__title-bharat {
     font-size: clamp(2.8rem, 4.8vw, 4.8rem);
     font-weight: 900;
-    letter-spacing: 0.06em;
-    background: linear-gradient(135deg, #FF6B35 0%, #D97706 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-style: italic;
+    letter-spacing: 0.04em;
+    display: inline-flex;
+    align-items: center;
+}
+
+.bharat-letter-orange {
+    color: #E05600;
+}
+
+.bharat-letter-white {
+    color: #FFFFFF;
+    -webkit-text-stroke: 2.5px #0A192F;
+    paint-order: stroke fill;
+}
+
+.bharat-letter-green {
+    color: #15803D;
 }
 
 .bharat-hero__title-buildathon {
@@ -158,8 +171,13 @@
     margin: 16px 0 0 0;
 }
 
-.bharat-hero__tagline span {
+.bharat-hero__tagline span.tagline-viksit {
     color: #FF6B35;
+    font-weight: 800;
+}
+
+.bharat-hero__tagline span.tagline-bharat {
+    color: #15803D;
     font-weight: 800;
 }
 

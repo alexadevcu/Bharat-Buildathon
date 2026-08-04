@@ -27,66 +27,66 @@ export default function Hero() {
                 { opacity: 0, y: -25 },
                 { opacity: 1, y: 0, duration: 0.6, delay: 0.2 }
             )
-            .fromTo(
-                '.bharat-hero__title-bharat',
-                { opacity: 0, x: 40, scale: 0.9 },
-                { opacity: 1, x: 0, scale: 1, duration: 0.7, ease: 'back.out(1.5)' },
-                '-=0.3'
-            )
-            .fromTo(
-                '.bharat-hero__title-buildathon',
-                { opacity: 0, x: 40, scale: 0.9 },
-                { opacity: 1, x: 0, scale: 1, duration: 0.7, ease: 'back.out(1.5)' },
-                '-=0.5'
-            )
-            .fromTo(
-                '.bharat-hero__title-ideathon',
-                { opacity: 0, x: 40, scale: 0.9 },
-                { opacity: 1, x: 0, scale: 1, duration: 0.7, ease: 'back.out(1.5)' },
-                '-=0.5'
-            )
-            .fromTo(
-                '.bharat-hero__tagline',
-                { opacity: 0, y: 20 },
-                { opacity: 1, y: 0, duration: 0.5 },
-                '-=0.4'
-            )
-            .fromTo(
-                '.bharat-hero__desc',
-                { opacity: 0, y: 20 },
-                { opacity: 1, y: 0, duration: 0.5 },
-                '-=0.3'
-            )
-            .fromTo(
-                '.bharat-spec-item',
-                { opacity: 0, y: 20 },
-                { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: 'back.out(1.4)' },
-                '-=0.4'
-            )
-            .fromTo(
-                '.bharat-hero__btn-primary',
-                { opacity: 0, scale: 0.7, y: 20 },
-                { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: 'back.out(1.8)' },
-                '-=0.3'
-            )
-            .fromTo(
-                '.bharat-hero__btn-secondary',
-                { opacity: 0, scale: 0.7, y: 20 },
-                { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: 'back.out(1.8)' },
-                '-=0.5'
-            )
-            .fromTo(
-                '.bharat-qr-box',
-                { opacity: 0, scale: 0.8, y: 30 },
-                { opacity: 1, scale: 1, y: 0, duration: 0.7, ease: 'back.out(1.4)' },
-                '-=0.4'
-            )
-            .fromTo(
-                '.bharat-partners-footer',
-                { opacity: 0, y: 30 },
-                { opacity: 1, y: 0, duration: 0.7 },
-                '-=0.5'
-            );
+                .fromTo(
+                    '.bharat-hero__title-bharat',
+                    { opacity: 0, x: 40, scale: 0.9 },
+                    { opacity: 1, x: 0, scale: 1, duration: 0.7, ease: 'back.out(1.5)' },
+                    '-=0.3'
+                )
+                .fromTo(
+                    '.bharat-hero__title-buildathon',
+                    { opacity: 0, x: 40, scale: 0.9 },
+                    { opacity: 1, x: 0, scale: 1, duration: 0.7, ease: 'back.out(1.5)' },
+                    '-=0.5'
+                )
+                .fromTo(
+                    '.bharat-hero__title-ideathon',
+                    { opacity: 0, x: 40, scale: 0.9 },
+                    { opacity: 1, x: 0, scale: 1, duration: 0.7, ease: 'back.out(1.5)' },
+                    '-=0.5'
+                )
+                .fromTo(
+                    '.bharat-hero__tagline',
+                    { opacity: 0, y: 20 },
+                    { opacity: 1, y: 0, duration: 0.5 },
+                    '-=0.4'
+                )
+                .fromTo(
+                    '.bharat-hero__desc',
+                    { opacity: 0, y: 20 },
+                    { opacity: 1, y: 0, duration: 0.5 },
+                    '-=0.3'
+                )
+                .fromTo(
+                    '.bharat-spec-item',
+                    { opacity: 0, y: 20 },
+                    { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: 'back.out(1.4)' },
+                    '-=0.4'
+                )
+                .fromTo(
+                    '.bharat-hero__btn-primary',
+                    { opacity: 0, scale: 0.7, y: 20 },
+                    { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: 'back.out(1.8)' },
+                    '-=0.3'
+                )
+                .fromTo(
+                    '.bharat-hero__btn-secondary',
+                    { opacity: 0, scale: 0.7, y: 20 },
+                    { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: 'back.out(1.8)' },
+                    '-=0.5'
+                )
+                .fromTo(
+                    '.bharat-qr-box',
+                    { opacity: 0, scale: 0.8, y: 30 },
+                    { opacity: 1, scale: 1, y: 0, duration: 0.7, ease: 'back.out(1.4)' },
+                    '-=0.4'
+                )
+                .fromTo(
+                    '.bharat-partners-footer',
+                    { opacity: 0, y: 30 },
+                    { opacity: 1, y: 0, duration: 0.7 },
+                    '-=0.5'
+                );
 
         }, root);
 
@@ -118,12 +118,16 @@ export default function Hero() {
                         {/* Eyebrow Badge */}
                         <div className="bharat-hero__eyebrow-badge">
                             <span className="bharat-hero__eyebrow-dot" />
-                            🇮🇳 Chandigarh University ,Mohali Campus 2026 · Official Ideathon
+                            🇮🇳 Chandigarh University, Mohali Campus 2026 · Official Ideathon
                         </div>
 
                         {/* Stacked 3D Title */}
                         <h1 className="bharat-hero__headline">
-                            <span className="bharat-hero__title-bharat">BHARAT</span>
+                            <span className="bharat-hero__title-bharat">
+                                <span className="bharat-letter-orange">BH</span>
+                                <span className="bharat-letter-white">AR</span>
+                                <span className="bharat-letter-green">AT</span>
+                            </span>
                             <span className="bharat-hero__title-buildathon">BUILDATHON</span>
                             <span className="bharat-hero__title-ideathon">
                                 IDEATHON
@@ -133,7 +137,7 @@ export default function Hero() {
 
                         {/* Tagline & Description */}
                         <p className="bharat-hero__tagline">
-                            ‘Ideas to Ignite <span>VIKSIT BHARAT</span>’
+                            ‘Ideas to Ignite <span className="tagline-viksit">VIKSIT</span> <span className="tagline-bharat">BHARAT</span>’
                         </p>
 
                         <p className="bharat-hero__desc">
@@ -201,30 +205,11 @@ export default function Hero() {
                                     </svg>
                                 </div>
                                 <div className="bharat-qr-box__frame">
-                                    <svg viewBox="0 0 100 100" className="bharat-qr-svg">
-                                        <rect width="100" height="100" fill="#FFFFFF" />
-                                        <rect x="5" y="5" width="28" height="28" fill="#1E293B" />
-                                        <rect x="9" y="9" width="20" height="20" fill="#FFFFFF" />
-                                        <rect x="13" y="13" width="12" height="12" fill="#FF6B35" />
-                                        <rect x="67" y="5" width="28" height="28" fill="#1E293B" />
-                                        <rect x="71" y="9" width="20" height="20" fill="#FFFFFF" />
-                                        <rect x="75" y="13" width="12" height="12" fill="#0E9F6E" />
-                                        <rect x="5" y="67" width="28" height="28" fill="#1E293B" />
-                                        <rect x="9" y="71" width="20" height="20" fill="#FFFFFF" />
-                                        <rect x="13" y="75" width="12" height="12" fill="#1E293B" />
-                                        <rect x="38" y="8" width="6" height="6" fill="#1E293B" />
-                                        <rect x="48" y="16" width="6" height="6" fill="#1E293B" />
-                                        <rect x="38" y="24" width="12" height="6" fill="#0E9F6E" />
-                                        <rect x="8" y="38" width="6" height="12" fill="#1E293B" />
-                                        <rect x="20" y="44" width="12" height="6" fill="#FF6B35" />
-                                        <rect x="40" y="40" width="20" height="20" fill="#1E293B" />
-                                        <rect x="68" y="38" width="6" height="12" fill="#1E293B" />
-                                        <rect x="82" y="44" width="10" height="6" fill="#0E9F6E" />
-                                        <rect x="40" y="68" width="12" height="6" fill="#FF6B35" />
-                                        <rect x="58" y="74" width="8" height="14" fill="#1E293B" />
-                                        <rect x="72" y="68" width="18" height="18" fill="#1E293B" />
-                                        <circle cx="50" cy="50" r="6" fill="#000080" />
-                                    </svg>
+                                    <img
+                                        src="/assets/Scanner.png"
+                                        alt="Scan to register"
+                                        style={{ width: '100%', height: '100%', objectFit: 'contain', borderRadius: '6px' }}
+                                    />
                                 </div>
                             </div>
                         </div>
