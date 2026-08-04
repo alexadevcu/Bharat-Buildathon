@@ -1,228 +1,254 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
-import { gsap } from 'gsap';
-import { useGSAP } from '@gsap/react';
-import GridScan from '@/components/GridScan';
-import SplitText from '@/components/SplitText';
-import Countdown from '@/components/Countdown';
-import { EVENT, ORGANISERS } from '@/lib/data';
-
-/**
- * Logo with a wordmark fallback.
- * The organiser PNGs are dark-on-transparent, so they sit on a white chip to
- * stay legible on navy. If a file is missing we render the short name instead
- * of a broken-image icon.
- */
-function OrganiserMark({ name, short, logo }) {
-    const [failed, setFailed] = useState(false);
-    const imgRef = useRef(null);
-
-    /* The img is server-rendered, so a 404 can fire before React attaches
-       onError. Re-check the decoded size once on mount to catch that case. */
-    useEffect(() => {
-        const img = imgRef.current;
-        if (img && img.complete && img.naturalWidth === 0) setFailed(true);
-    }, []);
-
-    if (failed || !logo) {
-        return <span className="hero__org-name">{short}</span>;
-    }
-
-    return (
-        <span className="hero__org-chip">
-            <img
-                ref={imgRef}
-                src={logo}
-                alt={name}
-                className="hero__org-logo"
-                loading="eager"
-                onError={() => setFailed(true)}
-            />
-        </span>
-    );
-}
+import { useRef, useEffect } from 'react';
+import gsap from 'gsap';
 
 export default function Hero() {
-    const rootRef = useRef(null);
-    const [preloaderDone, setPreloaderDone] = useState(true);
+    const heroRef = useRef(null);
 
+    // GSAP Entrance Animation Sequence for Right-Aligned Hero Content
     useEffect(() => {
-        const trigger = () => setPreloaderDone(true);
+        const root = heroRef.current;
+        if (!root) return;
 
-        window.addEventListener('preloaderReveal', trigger);
-        window.addEventListener('preloaderFinished', trigger);
+        const ctx = gsap.context(() => {
+            const tl = gsap.timeline({
+                defaults: { ease: 'power3.out' },
+                onComplete: () => {
+                    gsap.set(
+                        '.bharat-hero__eyebrow-badge, .bharat-spec-item, .bharat-hero__btn-primary, .bharat-hero__btn-secondary, .bharat-qr-box, .bharat-partners-footer',
+                        { clearProps: 'opacity' }
+                    );
+                }
+            });
 
-        return () => {
-            window.removeEventListener('preloaderReveal', trigger);
-            window.removeEventListener('preloaderFinished', trigger);
-        };
+            tl.fromTo(
+                '.bharat-hero__eyebrow-badge',
+                { opacity: 0, y: -25 },
+                { opacity: 1, y: 0, duration: 0.6, delay: 0.2 }
+            )
+            .fromTo(
+                '.bharat-hero__title-bharat',
+                { opacity: 0, x: 40, scale: 0.9 },
+                { opacity: 1, x: 0, scale: 1, duration: 0.7, ease: 'back.out(1.5)' },
+                '-=0.3'
+            )
+            .fromTo(
+                '.bharat-hero__title-buildathon',
+                { opacity: 0, x: 40, scale: 0.9 },
+                { opacity: 1, x: 0, scale: 1, duration: 0.7, ease: 'back.out(1.5)' },
+                '-=0.5'
+            )
+            .fromTo(
+                '.bharat-hero__title-ideathon',
+                { opacity: 0, x: 40, scale: 0.9 },
+                { opacity: 1, x: 0, scale: 1, duration: 0.7, ease: 'back.out(1.5)' },
+                '-=0.5'
+            )
+            .fromTo(
+                '.bharat-hero__tagline',
+                { opacity: 0, y: 20 },
+                { opacity: 1, y: 0, duration: 0.5 },
+                '-=0.4'
+            )
+            .fromTo(
+                '.bharat-hero__desc',
+                { opacity: 0, y: 20 },
+                { opacity: 1, y: 0, duration: 0.5 },
+                '-=0.3'
+            )
+            .fromTo(
+                '.bharat-spec-item',
+                { opacity: 0, y: 20 },
+                { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: 'back.out(1.4)' },
+                '-=0.4'
+            )
+            .fromTo(
+                '.bharat-hero__btn-primary',
+                { opacity: 0, scale: 0.7, y: 20 },
+                { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: 'back.out(1.8)' },
+                '-=0.3'
+            )
+            .fromTo(
+                '.bharat-hero__btn-secondary',
+                { opacity: 0, scale: 0.7, y: 20 },
+                { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: 'back.out(1.8)' },
+                '-=0.5'
+            )
+            .fromTo(
+                '.bharat-qr-box',
+                { opacity: 0, scale: 0.8, y: 30 },
+                { opacity: 1, scale: 1, y: 0, duration: 0.7, ease: 'back.out(1.4)' },
+                '-=0.4'
+            )
+            .fromTo(
+                '.bharat-partners-footer',
+                { opacity: 0, y: 30 },
+                { opacity: 1, y: 0, duration: 0.7 },
+                '-=0.5'
+            );
+
+        }, root);
+
+        return () => ctx.revert();
     }, []);
 
-    /* Sequential character fade-up typewriter cadence calculations */
-    const CHAR_STAGGER = 0.042; // ~42ms per character for typewriter cadence
-    const BASE_DELAY = 0.15;
-
-    const lineDelays = [];
-    let currentDelay = BASE_DELAY;
-    EVENT.title.forEach((lineText) => {
-        lineDelays.push(currentDelay);
-        currentDelay += lineText.length * CHAR_STAGGER + 0.05;
-    });
-
-    const ruleDelay = lineDelays[1] ? lineDelays[1] + (EVENT.title[1]?.length || 10) * CHAR_STAGGER : 0.85;
-    const taglineDelay = currentDelay + 0.08;
-
-    /* Staged fade-up keeps the registration path clear after the title arrives. */
-    useGSAP(
-        () => {
-            if (!preloaderDone) return;
-            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-            gsap.from('.hero__kicker', { y: 12, autoAlpha: 0, duration: 0.6, delay: 0.1, ease: 'power3.out' });
-            gsap.from('.hero__conversion', { y: 16, autoAlpha: 0, duration: 0.65, delay: taglineDelay + 0.15, ease: 'power3.out' });
-            gsap.from('.hero__spec', { y: 20, autoAlpha: 0, duration: 0.7, stagger: 0.07, delay: taglineDelay + 0.35, ease: 'power3.out' });
-            gsap.from('.countdown__unit', { y: 18, autoAlpha: 0, duration: 0.6, stagger: 0.07, delay: taglineDelay + 0.5, ease: 'power3.out' });
-            gsap.from('.countdown__label', { autoAlpha: 0, duration: 0.5, delay: taglineDelay + 0.5, ease: 'power3.out' });
-            gsap.from('.hero__organisers > *', { y: 14, autoAlpha: 0, duration: 0.7, stagger: 0.06, delay: taglineDelay + 0.65, ease: 'power3.out' });
-            gsap.from('.hero__scroll-hint', { autoAlpha: 0, duration: 0.6, delay: taglineDelay + 0.75, ease: 'power3.out' });
-
-            gsap.fromTo(
-                '.hero__rule',
-                { scaleX: 0, transformOrigin: 'left center' },
-                { scaleX: 1, duration: 0.55, ease: 'power3.out', delay: ruleDelay }
-            );
-        },
-        { scope: rootRef, dependencies: [preloaderDone] }
-    );
-
     return (
-        <section className="hero" aria-labelledby="hero-title" ref={rootRef}>
-            <div className="hero__bg">
-                <GridScan
-                    sensitivity={0.55}
-                    lineThickness={1}
-                    linesColor="#2F293A"
-                    gridScale={0.1}
-                    scanColor="#FF9FFC"
-                    scanOpacity={0.4}
-                    enablePost
-                    bloomIntensity={0.6}
-                    chromaticAberration={0.002}
-                    noiseIntensity={0.01}
-                    lineJitter={0.1}
-                    scanGlow={0.5}
-                    scanSoftness={2}
-                    enableWebcam={false}
-                    showPreview={false}
+        <section className="bharat-hero" id="hero" ref={heroRef}>
+            {/* Animated Background Video from assets/video1.webm */}
+            <div className="bharat-hero__video-wrapper">
+                <video
+                    src="/assets/video1.webm"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="bharat-hero__video"
                 />
+                <div className="bharat-hero__video-overlay" />
             </div>
 
-            <div className="hero__scrim" />
+            <div className="bharat-hero__container">
+                <div className="bharat-hero__content-grid">
+                    {/* Left Column Spacer (Accommodates 3D Emblem in Video) */}
+                    <div className="bharat-hero__video-spacer" />
 
-            <div className="hero__inner">
-                {/* ── Headline ── */}
-                <div className="hero__headline">
-                    <p className="hero__kicker">
-                        <span className="hero__kicker-dot" aria-hidden="true" />
-                        {EVENT.kicker}
-                    </p>
-
-                    <h1 className="hero__title" id="hero-title">
-                        <span className="sr-only">{EVENT.title.join(' ')}</span>
-                        {EVENT.title.map((line, i) => (
-                            <span
-                                className={`hero__line${
-                                    line === EVENT.ruleOn ? ' hero__line--ruled' : ''
-                                }`}
-                                key={line}
-                                aria-hidden="true"
-                            >
-                                <SplitText
-                                    tag="span"
-                                    text={line}
-                                    className="hero__line-text"
-                                    splitType="chars"
-                                    delay={CHAR_STAGGER * 1000}
-                                    duration={0.45}
-                                    ease="power3.out"
-                                    from={{ opacity: 0, yPercent: 85, filter: 'blur(6px)' }}
-                                    to={{ opacity: 1, yPercent: 0, filter: 'blur(0px)' }}
-                                    textAlign="left"
-                                    animateOnMount={preloaderDone}
-                                    startDelay={preloaderDone ? lineDelays[i] : 99999}
-                                />
-                                {line === EVENT.ruleOn && (
-                                    <span className="hero__rule" aria-hidden="true" />
-                                )}
-                            </span>
-                        ))}
-                    </h1>
-
-                    {preloaderDone && (
-                        <p className="hero__tagline">
-                            <SplitText
-                                tag="span"
-                                text={EVENT.tagline}
-                                className="hero__tagline-text"
-                                splitType="chars"
-                                delay={34}
-                                duration={0.38}
-                                ease="power3.out"
-                                from={{ opacity: 0, yPercent: 75, filter: 'blur(4px)' }}
-                                to={{ opacity: 1, yPercent: 0, filter: 'blur(0px)' }}
-                                textAlign="left"
-                                animateOnMount={preloaderDone}
-                                startDelay={preloaderDone ? taglineDelay : 99999}
-                            />
-                            <span className="hero__caret" aria-hidden="true">_</span>
-                        </p>
-                    )}
-                </div>
-
-                <div className="hero__conversion">
-                    <div className="hero__actions">
-                        <a className="hero__cta hero__cta--primary" href="https://docs.google.com/forms/d/e/1FAIpQLSdFxoWH_VBfuiZ3l421pqWCBLbH496XMPEk8RfkIDD2qr7hkw/viewform" target="_blank" rel="noopener noreferrer">
-                            Register Your Team
-                        </a>
-                        <a className="hero__cta hero__cta--ghost" href="#about">
-                            Explore the Ideathon
-                        </a>
-                    </div>
-                    <p className="hero__trust-line">Free to enter <span aria-hidden="true">·</span> Teams of 3–4 <span aria-hidden="true">·</span> Chandigarh University</p>
-                </div>
-
-                {/* ── Facts ── */}
-                <dl className="hero__specs">
-                    {EVENT.specs.map(({ label, value, priority }) => (
-                        <div className={`hero__spec${priority === 'secondary' ? ' hero__spec--secondary' : ''}`} key={label}>
-                            <dt className="hero__spec-label">{label}</dt>
-                            <dd className="hero__spec-value">{value}</dd>
+                    {/* Right Column: All Text, Data, Specs & CTAs */}
+                    <div className="bharat-hero__text-col">
+                        {/* Eyebrow Badge */}
+                        <div className="bharat-hero__eyebrow-badge">
+                            <span className="bharat-hero__eyebrow-dot" />
+                            🇮🇳 Chandigarh University ,Mohali Campus 2026 · Official Ideathon
                         </div>
-                    ))}
-                </dl>
 
-                {/* ── Countdown + organisers ── */}
-                <div className="hero__foot">
-                    <Countdown target={EVENT.startsAt} />
+                        {/* Stacked 3D Title */}
+                        <h1 className="bharat-hero__headline">
+                            <span className="bharat-hero__title-bharat">BHARAT</span>
+                            <span className="bharat-hero__title-buildathon">BUILDATHON</span>
+                            <span className="bharat-hero__title-ideathon">
+                                IDEATHON
+                                <span className="bharat-hero__tricolor-bar" />
+                            </span>
+                        </h1>
 
-                    <div className="hero__organisers">
-                        <span className="hero__organisers-label">Organised by</span>
-                        <span className="hero__organisers-rule" aria-hidden="true" />
-                        <ul className="hero__organisers-list">
-                            {ORGANISERS.map((org) => (
-                                <li className="hero__org" key={org.name}>
-                                    <OrganiserMark {...org} />
-                                </li>
-                            ))}
-                        </ul>
+                        {/* Tagline & Description */}
+                        <p className="bharat-hero__tagline">
+                            ‘Ideas to Ignite <span>VIKSIT BHARAT</span>’
+                        </p>
+
+                        <p className="bharat-hero__desc">
+                            Empowering and accelerating innovation for India's growth. Join 100+ teams in an 8-hour device-free ideation & pitch sprint.
+                        </p>
+
+                        {/* Horizontal Specs Glass Bar */}
+                        <div className="bharat-specs-bar">
+                            <div className="bharat-spec-item">
+                                <span className="bharat-spec-item__icon">📅</span>
+                                <div className="bharat-spec-item__info">
+                                    <span className="bharat-spec-item__label">DATE</span>
+                                    <span className="bharat-spec-item__val">12th Aug 2026</span>
+                                </div>
+                            </div>
+
+                            <div className="bharat-spec-item">
+                                <span className="bharat-spec-item__icon">📍</span>
+                                <div className="bharat-spec-item__info">
+                                    <span className="bharat-spec-item__label">VENUE</span>
+                                    <span className="bharat-spec-item__val">C1 & C3 Seminar, CU</span>
+                                </div>
+                            </div>
+
+                            <div className="bharat-spec-item">
+                                <span className="bharat-spec-item__icon">⏰</span>
+                                <div className="bharat-spec-item__info">
+                                    <span className="bharat-spec-item__label">WINDOW</span>
+                                    <span className="bharat-spec-item__val">9:30 AM – 4:30 PM</span>
+                                </div>
+                            </div>
+
+                            <div className="bharat-spec-item">
+                                <span className="bharat-spec-item__icon">👥</span>
+                                <div className="bharat-spec-item__info">
+                                    <span className="bharat-spec-item__label">TEAM</span>
+                                    <span className="bharat-spec-item__val">3–4 Members</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Action Buttons & QR Code Card */}
+                        <div className="bharat-hero__action-row">
+                            <div className="bharat-hero__actions">
+                                <a
+                                    href="https://docs.google.com/forms/d/e/1FAIpQLSdFxoWH_VBfuiZ3l421pqWCBLbH496XMPEk8RfkIDD2qr7hkw/viewform"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="bharat-hero__btn-primary"
+                                >
+                                    REGISTER YOUR TEAM TODAY
+                                </a>
+                                <a href="#about" className="bharat-hero__btn-secondary">
+                                    Explore Ideathon
+                                </a>
+                            </div>
+
+                            {/* Floating QR Code Registration Card */}
+                            <div className="bharat-qr-box">
+                                <div className="bharat-qr-box__header">
+                                    <span className="bharat-qr-box__title">Or scan to register</span>
+                                    <svg className="bharat-qr-box__arrow" viewBox="0 0 40 40" fill="none">
+                                        <path className="bharat-qr-box__arrow-path" d="M10 10 Q25 15 28 28" stroke="#1E293B" strokeWidth="2" strokeDasharray="4 4" fill="none" />
+                                        <path d="M22 26 L28 28 L26 22" stroke="#1E293B" strokeWidth="2" fill="none" />
+                                    </svg>
+                                </div>
+                                <div className="bharat-qr-box__frame">
+                                    <svg viewBox="0 0 100 100" className="bharat-qr-svg">
+                                        <rect width="100" height="100" fill="#FFFFFF" />
+                                        <rect x="5" y="5" width="28" height="28" fill="#1E293B" />
+                                        <rect x="9" y="9" width="20" height="20" fill="#FFFFFF" />
+                                        <rect x="13" y="13" width="12" height="12" fill="#FF6B35" />
+                                        <rect x="67" y="5" width="28" height="28" fill="#1E293B" />
+                                        <rect x="71" y="9" width="20" height="20" fill="#FFFFFF" />
+                                        <rect x="75" y="13" width="12" height="12" fill="#0E9F6E" />
+                                        <rect x="5" y="67" width="28" height="28" fill="#1E293B" />
+                                        <rect x="9" y="71" width="20" height="20" fill="#FFFFFF" />
+                                        <rect x="13" y="75" width="12" height="12" fill="#1E293B" />
+                                        <rect x="38" y="8" width="6" height="6" fill="#1E293B" />
+                                        <rect x="48" y="16" width="6" height="6" fill="#1E293B" />
+                                        <rect x="38" y="24" width="12" height="6" fill="#0E9F6E" />
+                                        <rect x="8" y="38" width="6" height="12" fill="#1E293B" />
+                                        <rect x="20" y="44" width="12" height="6" fill="#FF6B35" />
+                                        <rect x="40" y="40" width="20" height="20" fill="#1E293B" />
+                                        <rect x="68" y="38" width="6" height="12" fill="#1E293B" />
+                                        <rect x="82" y="44" width="10" height="6" fill="#0E9F6E" />
+                                        <rect x="40" y="68" width="12" height="6" fill="#FF6B35" />
+                                        <rect x="58" y="74" width="8" height="14" fill="#1E293B" />
+                                        <rect x="72" y="68" width="18" height="18" fill="#1E293B" />
+                                        <circle cx="50" cy="50" r="6" fill="#000080" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <span className="hero__scroll-hint" aria-hidden="true">
-                Scroll
-            </span>
+                {/* Bottom Organizers & Partners Section */}
+                <div className="bharat-partners-footer">
+                    <div className="bharat-partners-header">
+                        <span className="bharat-partners-title">Our Organizers and Partners</span>
+                        <div className="bharat-partners-brush" />
+                    </div>
+
+                    <div className="bharat-partners-card">
+                        <img src="/assets/logos/cu.png" alt="Chandigarh University" className="bharat-partner-logo" />
+                        <img src="/assets/logos/adc-cu.png" alt="Alexa Developers Community" className="bharat-partner-logo" />
+                        <img src="/assets/logos/gfg-cu.png" alt="GeeksforGeeks" className="bharat-partner-logo" />
+                    </div>
+
+                    <p className="bharat-partners-subtext">
+                        Organised by CSE Takshashila · Alexa Developers Community & GeeksforGeeks
+                    </p>
+                </div>
+            </div>
         </section>
     );
 }

@@ -235,7 +235,7 @@ export default function About() {
             {/* ─── Part 3: Bottom Paragraph Text ─── */}
             <div className="motion-card__footer-text">
                 <p className="motion-card__description">
-                    Bharat Buildathon is an innovation-focused Ideathon that challenges participants to develop creative and practical solutions for real-world problems. Join us for a 12-hour device-free ideation round followed by an exciting pitching session to showcase your ideas.
+                    Bharat Buildathon is an innovation-focused Ideathon that challenges participants to develop creative and practical solutions for real-world problems. Join us for an 8-hour device-free ideation round followed by an exciting pitching session to showcase your ideas.
                 </p>
             </div>
         </section>

@@ -3,93 +3,135 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import '../app/styles/rounds.css';
-
-gsap.registerPlugin(ScrollTrigger);
 
 export default function Rounds() {
     const sectionRef = useRef(null);
     const containerRef = useRef(null);
 
     useEffect(() => {
-        const ctx = gsap.context(() => {
-            const cards = gsap.utils.toArray('.round-card');
-            
-            // Stagger reveal cards
-            gsap.from(cards, {
-                y: 50,
-                opacity: 0,
-                duration: 1,
-                stagger: 0.3,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: 'top 80%',
-                }
-            });
+        gsap.registerPlugin(ScrollTrigger);
 
-            // Animate connector line
-            const connector = document.querySelector('.round-connector-path');
-            if (connector && connector.getTotalLength) {
-                const pathLen = connector.getTotalLength();
-                gsap.set(connector, { strokeDasharray: pathLen, strokeDashoffset: pathLen });
-                gsap.to(connector, {
-                    strokeDashoffset: 0,
-                    duration: 1.5,
-                    ease: 'power2.inOut',
+        const ctx = gsap.context(() => {
+            const cards = gsap.utils.toArray('.normal-round-card');
+
+            gsap.fromTo(
+                cards,
+                { y: 30, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.7,
+                    stagger: 0.25,
+                    ease: 'power3.out',
                     scrollTrigger: {
                         trigger: containerRef.current,
-                        start: 'top 70%',
+                        start: 'top 80%',
                     }
-                });
-            }
+                }
+            );
         }, sectionRef);
 
         return () => ctx.revert();
     }, []);
 
     return (
-        <section ref={sectionRef} className="rounds-section content-section" id="rounds-section">
-            <div className="rounds-header">
-                <h2 className="display rounds__title">How it Works</h2>
-                <p className="rounds__subtitle">The competition will be conducted in two exciting rounds.</p>
-            </div>
-
-            <div className="rounds-container" ref={containerRef}>
-                {/* SVG Timeline Connector */}
-                <div className="rounds-timeline">
-                    <svg width="100%" height="100%" viewBox="0 0 100 400" preserveAspectRatio="none">
-                        <path className="round-connector-path" d="M50 0 L50 400" stroke="rgba(255,255,255,0.2)" strokeWidth="4" strokeDasharray="10 10" />
-                    </svg>
+        <section ref={sectionRef} className="normal-rounds-section" id="rounds">
+            <div className="normal-rounds-container" ref={containerRef}>
+                {/* Header */}
+                <div className="normal-rounds-header">
+                    <span className="normal-eyebrow">COMPETITION ROADMAP</span>
+                    <h2 className="normal-rounds-title">Event Flow</h2>
+                    <p className="normal-rounds-subtitle">
+                        Bharat Buildathon consists of two structured competition rounds.
+                    </p>
                 </div>
 
-                <div className="round-item round-card">
-                    <div className="round-number" style={{ backgroundColor: 'var(--color-saffron)' }}>1</div>
-                    <div className="round-content">
-                        <div className="round-title-row">
-                            <h3>Round 1: Device-Free Ideation</h3>
-                            <span className="round-badge alert-badge">🚫 Strict No-Device Policy</span>
+                {/* 2-Column Standard Card Layout */}
+                <div className="normal-rounds-grid">
+                    {/* ROUND 1 */}
+                    <div className="normal-round-card">
+                        <div className="normal-card-badge badge-saffron">ROUND 1</div>
+
+                        <h3 className="normal-card-title">Think Tank</h3>
+                        <p className="normal-card-subtitle">Idea Generation Round</p>
+
+                        <div className="normal-card-body">
+                            <div className="normal-info-row">
+                                <strong>Participation:</strong>
+                                <span>25–30 teams (maximum 4 members per team).</span>
+                            </div>
+
+                            <div className="normal-info-row">
+                                <strong>Spin The Wheel Challenge:</strong>
+                                <span>Each team spins two wheels: <em>Wheel 1 (Domain)</em> and <em>Wheel 2 (Constraint)</em>.</span>
+                            </div>
+
+                            <div className="normal-info-row">
+                                <strong>Brainstorming Window:</strong>
+                                <span>30 minutes to brainstorm an innovative solution based on the assigned combination.</span>
+                            </div>
+
+                            <div className="normal-info-row">
+                                <strong>Device Policy:</strong>
+                                <span>Laptops and mobile phones are strictly prohibited. Teams rely purely on discussion and creativity.</span>
+                            </div>
+
+                            <div className="normal-worksheet-section">
+                                <strong>Physical Worksheet Deliverable:</strong>
+                                <ul>
+                                    <li>Problem Statement</li>
+                                    <li>Target Audience</li>
+                                    <li>Existing Challenges</li>
+                                    <li>Proposed Solution</li>
+                                    <li>Unique Features</li>
+                                    <li>Constraint Satisfaction</li>
+                                </ul>
+                            </div>
                         </div>
-                        <ul className="round-list">
-                            <li><strong style={{color: 'var(--color-saffron)'}}>No Electronics:</strong> Laptops, mobile phones, smartwatches, or any electronic devices are strictly prohibited.</li>
-                            <li><strong style={{color: 'var(--color-saffron)'}}>30-Minute Sprint:</strong> Teams will have exactly 30 minutes to brainstorm and develop their core idea.</li>
-                            <li><strong style={{color: 'var(--color-saffron)'}}>Idea Canvas:</strong> Solutions must be prepared exclusively on the physical Idea Canvas provided by the organizers.</li>
-                        </ul>
+
+                        <div className="normal-card-footer footer-saffron">
+                            <strong>Qualification:</strong> Internal judges evaluate this round. The <strong>Top 10 teams</strong> qualify for the finals.
+                        </div>
                     </div>
-                </div>
 
-                <div className="round-item round-card">
-                    <div className="round-number" style={{ backgroundColor: 'var(--color-green)' }}>2</div>
-                    <div className="round-content">
-                        <div className="round-title-row">
-                            <h3>Round 2: Final Pitch</h3>
-                            <span className="round-badge success-badge">🎙️ Present to Judges</span>
+                    {/* ROUND 2 */}
+                    <div className="normal-round-card">
+                        <div className="normal-card-badge badge-green">ROUND 2</div>
+
+                        <h3 className="normal-card-title">Pitch Perfect</h3>
+                        <p className="normal-card-subtitle">Final Presentation Round</p>
+
+                        <div className="normal-card-body">
+                            <div className="normal-info-row">
+                                <strong>Finalists:</strong>
+                                <span>The Top 10 teams present their solutions.</span>
+                            </div>
+
+                            <div className="normal-info-row">
+                                <strong>Presentation Format:</strong>
+                                <span>Teams prepare a short PowerPoint presentation.</span>
+                            </div>
+
+                            <div className="normal-info-row">
+                                <strong>Live Pitch:</strong>
+                                <span>Deliver a Shark Tank-style pitch before the expert judging panel.</span>
+                            </div>
+
+                            <div className="normal-worksheet-section">
+                                <strong>Judging Criteria:</strong>
+                                <ul>
+                                    <li>Innovation</li>
+                                    <li>Problem-Solving</li>
+                                    <li>Feasibility</li>
+                                    <li>Presentation</li>
+                                    <li>Overall Impact</li>
+                                </ul>
+                            </div>
                         </div>
-                        <ul className="round-list">
-                            <li><strong style={{color: 'var(--color-green)'}}>The Shortlist:</strong> Only the top teams selected from the Round 1 ideation phase will qualify for the finals.</li>
-                            <li><strong style={{color: 'var(--color-green)'}}>Presentation:</strong> Finalists will prepare a detailed PowerPoint presentation outlining their solution.</li>
-                            <li><strong style={{color: 'var(--color-green)'}}>Live Pitch:</strong> Teams will pitch their solution live before our expert judging panel.</li>
-                        </ul>
+
+                        <div className="normal-card-footer footer-green">
+                            <strong>Grand Finale:</strong> The <strong>Top 3 teams</strong> will be announced as official winners.
+                        </div>
                     </div>
                 </div>
             </div>

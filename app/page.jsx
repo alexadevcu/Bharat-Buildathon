@@ -4,7 +4,6 @@ import SvgSymbols from '@/components/SvgSymbols';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
-import Theme from '@/components/Theme';
 import Rounds from '@/components/Rounds';
 import Schedule from '@/components/Schedule';
 import JudgingCriteria from '@/components/JudgingCriteria';
@@ -31,9 +30,6 @@ export default function Home() {
             <main>
                 <div className="content-section motion-cards-wrapper" id="about">
                     <About />
-                </div>
-                <div id="theme">
-                    <Theme />
                 </div>
                 <div id="rounds">
                     <Rounds />

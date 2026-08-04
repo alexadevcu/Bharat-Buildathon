@@ -29,10 +29,6 @@ const FAQ_DATA = [
         a: "No, participation in Bharat Buildathon is completely free."
     },
     {
-        q: "Will food be provided?",
-        a: "Yes! Meals, snacks, and plenty of coffee will be provided to keep you energized throughout the 12 hours."
-    },
-    {
         q: "What's the format — online or offline?",
         a: "The event is completely offline and will be held in person at the venue."
     },

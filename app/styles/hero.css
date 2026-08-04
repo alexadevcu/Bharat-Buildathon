@@ -1,687 +1,524 @@
-/* ─── Hero ──────────────────────────────────────────────────────────────────
-   Full-bleed section: RippleGrid (WebGL) behind an editorial, left-aligned
-   masthead. Layout is a single column that grows top-to-bottom:
-     organisers → kicker → headline → tagline → specs → countdown + CTAs
-─────────────────────────────────────────────────────────────────────────── */
-
-.hero {
+/* ─── Bharat Buildathon Hero Section (with Background video1.webm) ─── */
+.bharat-hero {
     position: relative;
     width: 100%;
     min-height: 100vh;
+    background-color: #ECE6D8;
+    color: #0A192F;
     overflow: hidden;
-    background:
-        radial-gradient(130% 100% at 82% 8%, rgba(108, 155, 255, 0.14) 0%, transparent 56%),
-        linear-gradient(168deg, var(--color-navy) 0%, var(--color-black-deep) 100%);
-    isolation: isolate;
+    padding-top: 110px;
+    padding-bottom: 50px;
 }
 
-/* ── WebGL layer ── */
-.hero__bg {
+/* ── Video Background Container ───────────────────────────────────────── */
+.bharat-hero__video-wrapper {
     position: absolute;
     inset: 0;
-    z-index: 0;
-}
-
-.ripple-grid-container {
-    position: relative;
     width: 100%;
     height: 100%;
+    z-index: 0;
     overflow: hidden;
+    pointer-events: none;
 }
 
-.ripple-grid-container canvas {
-    display: block;
+.bharat-hero__video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: left center;
+    filter: brightness(1.38) contrast(1.05) saturate(1.15);
 }
 
-/* Darkens the lower-left so the masthead always clears contrast */
-.hero__scrim {
+.bharat-hero__video-overlay {
     position: absolute;
     inset: 0;
-    z-index: 1;
+    background: transparent;
     pointer-events: none;
-    background:
-        linear-gradient(to top, rgba(10, 18, 37, 0.94) 0%, rgba(10, 18, 37, 0.45) 34%, transparent 66%),
-        linear-gradient(to right, rgba(10, 18, 37, 0.8) 0%, transparent 62%);
 }
 
-/* ── Layout ─────────────────────────────────────────────────────────────── */
-.hero__inner {
+.bharat-hero__container {
     position: relative;
     z-index: 2;
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 24px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: clamp(10px, 1.8vh, 22px);
-    min-height: 100vh;
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: clamp(70px, 8vh, 90px) clamp(24px, 4.4vw, 64px) clamp(24px, 3vh, 36px);
-}
-
-/* ── Organisers eyebrow ─────────────────────────────────────────────────── */
-.hero__organisers {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    flex-wrap: wrap;
-}
-
-.hero__organisers-label,
-.hero__spec-label,
-.hero__kicker,
-.countdown__label,
-.hero__scroll-hint {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.68rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-}
-
-.hero__organisers-label {
-    color: rgba(255, 255, 255, 0.45);
-}
-
-.hero__organisers-rule {
-    flex: 0 0 30px;
-    height: 1px;
-    background: rgba(255, 255, 255, 0.18);
-}
-
-.hero__organisers-list {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.hero__org {
-    display: flex;
     align-items: center;
 }
 
-/* Logos are dark-on-transparent → white chip keeps them readable on navy. */
-.hero__org-chip {
+/* ── Content Grid (Left Video Spacer, Right Text Column) ──────────────── */
+.bharat-hero__content-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 16px;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.bharat-hero__video-spacer {
+    width: 100%;
+    min-height: 440px;
+}
+
+/* ── Right Column: Eyebrow, Headline, Specs & CTAs ───────────────────── */
+.bharat-hero__text-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    padding-left: 65px;
+}
+
+.bharat-hero__eyebrow-badge {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    height: 38px;
-    padding: 0 14px;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.96);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1);
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
-    cursor: default;
-}
-
-.hero__org-chip:hover {
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 6px 24px rgba(255, 159, 252, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.3);
-}
-
-.hero__org-logo {
-    height: 22px;
-    width: auto;
-    max-width: 140px;
-    object-fit: contain;
-    display: block;
-}
-
-/* Fallback wordmark when a logo file is absent */
-.hero__org-name {
+    gap: 10px;
+    padding: 8px 20px;
+    background: #FFFFFF;
+    border-radius: 999px;
     font-family: 'DM Sans', sans-serif;
-    font-size: 0.82rem;
-    font-weight: 600;
-    letter-spacing: 0.01em;
-    color: rgba(255, 255, 255, 0.72);
-}
-
-/* ── Headline block ─────────────────────────────────────────────────────── */
-.hero__headline {
-    margin-top: 0;
-}
-
-.hero__kicker {
-    margin: 0 0 clamp(8px, 1.2vh, 14px);
-    color: var(--color-saffron);
+    font-size: 0.88rem;
     font-weight: 700;
-    letter-spacing: 0.12em;
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 4px 12px;
-    border-radius: 20px;
-    background: rgba(255, 107, 53, 0.08);
-    border: 1px solid rgba(255, 107, 53, 0.22);
-    box-shadow: 0 0 16px rgba(255, 107, 53, 0.12);
-    width: fit-content;
+    color: #334155;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    margin-bottom: 24px;
 }
 
-.hero__kicker-dot {
-    width: 6px;
-    height: 6px;
+.bharat-hero__eyebrow-dot {
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
-    background: var(--color-saffron);
-    box-shadow: 0 0 8px var(--color-saffron);
-    animation: kicker-pulse 1.8s ease-in-out infinite;
+    background: #FF6B35;
+    box-shadow: 0 0 8px #FF6B35;
+    animation: eyebrow-pulse 1.8s ease-in-out infinite;
 }
 
-@keyframes kicker-pulse {
+@keyframes eyebrow-pulse {
     0%, 100% { transform: scale(1); opacity: 1; }
     50% { transform: scale(1.4); opacity: 0.6; }
 }
 
-.hero__title {
+.bharat-hero__headline {
     margin: 0;
     font-family: 'Epilogue', sans-serif;
-    font-weight: 900;
-    /* vmin keeps a 3-line headline inside short/landscape viewports. */
-    font-size: clamp(2.4rem, 5.8vmin + 1rem, 6rem);
-    line-height: 0.89;
-    letter-spacing: -0.045em;
-    /* Solid colour is the real fallback: it renders for the sr-only text and
-       for any run that SplitText hasn't wrapped into .split-char spans. */
-    color: #F2F5FA;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 0.94;
 }
 
-/* Subtle top-lit gradient, applied per character. SplitText transforms each
-   .split-char, and a transformed element breaks an ancestor's background-clip:
-   text — so the clip must live on the char itself, not on .hero__title. */
-.hero__title .split-char {
-    background: linear-gradient(178deg, #FFFFFF 0%, #EAEEF5 45%, #C4CEDD 100%);
+.bharat-hero__title-bharat {
+    font-size: clamp(2.8rem, 4.8vw, 4.8rem);
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    background: linear-gradient(135deg, #FF6B35 0%, #D97706 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.hero__line {
-    display: block;
-    position: relative;
-    /* Shrink to the glyphs so the saffron rule matches the word, not the column. */
-    width: fit-content;
-    max-width: 100%;
+.bharat-hero__title-buildathon {
+    font-size: clamp(2.8rem, 4.8vw, 4.8rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    color: #0A192F;
 }
 
-/* SplitText renders an inline-block with overflow:hidden, which doubles as the
-   clip mask for the character rise. */
-.hero__line-text {
-    display: inline-block;
-}
-
-/* Saffron rule under the middle line */
-.hero__line--ruled {
-    padding-bottom: 0.06em;
-}
-
-.hero__rule {
-    position: absolute;
-    left: 2%;
-    bottom: 0.2em;
-    width: 96%;
-    height: clamp(3px, 0.28vw, 5px);
-    background: var(--color-saffron);
-    border-radius: 999px;
-    transform: scaleX(0);
-    transform-origin: left center;
-}
-
-/* ── Tagline (typewriter) ───────────────────────────────────────────────── */
-.hero__tagline {
-    margin: clamp(10px, 1.4vh, 18px) 0 0;
-    min-height: 1.4em;
-    font-family: 'DM Sans', sans-serif;
-    font-size: clamp(0.95rem, 1.35vw, 1.25rem);
-    font-weight: 400;
-    letter-spacing: 0.01em;
-    color: rgba(255, 255, 255, 0.62);
-    display: flex;
-    align-items: center;
-}
-
-.hero__tagline-text {
-    display: inline-block;
-}
-
-.hero__caret {
-    display: inline-block;
-    margin-left: 0.25em;
-    color: var(--color-saffron);
-    font-weight: 700;
-    animation: hero-caret-blink 0.75s steps(2, start) infinite;
-}
-
-@keyframes hero-caret-blink {
-    to {
-        visibility: hidden;
-    }
-}
-
-/* ── Registration path ─────────────────────────────────────────────────── */
-.hero__conversion {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-}
-
-.hero__trust-line {
-    margin: 0;
-    color: rgba(255, 255, 255, 0.62);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.88rem;
-    font-weight: 600;
-    letter-spacing: 0.01em;
-}
-
-.hero__trust-line span {
-    margin: 0 0.35em;
-    color: var(--color-saffron);
-}
-
-/* ── Spec bar ───────────────────────────────────────────────────────────── */
-.hero__specs {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 0;
-    margin: clamp(14px, 2vh, 22px) 0;
-    background: rgba(255, 255, 255, 0.025);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.09);
-    overflow: hidden;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-    max-width: min(860px, 100%);
-}
-
-.hero__spec {
-    padding: clamp(10px, 1.3vh, 16px) clamp(14px, 1.8vw, 24px);
-    border-left: 1px solid rgba(255, 255, 255, 0.08);
-    /* Inner top-edge highlight sells the frosted-glass surface. */
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
-    transition: background 0.3s ease;
-    position: relative;
-}
-
-.hero__spec::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 3px;
-    height: 0%;
-    background: var(--color-saffron);
-    transition: height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.hero__spec:hover {
-    background: rgba(255, 255, 255, 0.045);
-}
-
-.hero__spec:hover::before {
-    height: 100%;
-}
-
-.hero__spec:first-child {
-    border-left: 0;
-}
-
-.hero__spec-label {
-    margin: 0 0 4px;
-    color: rgba(255, 255, 255, 0.45);
-    font-size: 0.7rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    font-weight: 700;
-}
-
-.hero__spec-value {
-    margin: 0;
-    font-family: 'DM Sans', sans-serif;
-    font-size: clamp(0.85rem, 1vw, 1rem);
-    font-weight: 600;
-    line-height: 1.3;
-    color: rgba(255, 255, 255, 0.95);
-}
-
-/* ── Countdown + CTAs ───────────────────────────────────────────────────── */
-.hero__foot {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 24px;
-    flex-wrap: wrap;
-}
-
-.countdown__label {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-bottom: 6px;
-    color: rgba(255, 255, 255, 0.48);
-    font-size: 0.72rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    font-weight: 700;
-}
-
-.countdown__units {
-    display: flex;
-    align-items: center;
-    gap: clamp(8px, 1.2vw, 14px);
-}
-
-.countdown__unit {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 8px 14px;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.035);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    min-width: 60px;
-    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-}
-
-.countdown__unit:hover {
-    transform: translateY(-2px);
-    border-color: rgba(255, 159, 252, 0.25);
-    box-shadow: 0 4px 16px rgba(255, 159, 252, 0.12);
-}
-
-.countdown__value {
-    font-family: 'Epilogue', sans-serif;
-    font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+.bharat-hero__title-ideathon {
+    font-size: clamp(2.1rem, 3.8vw, 3.6rem);
     font-weight: 800;
-    line-height: 1;
-    letter-spacing: -0.03em;
-    color: var(--color-white);
-    font-variant-numeric: tabular-nums;
-    font-feature-settings: 'tnum' 1;
-}
-
-.countdown__unit-label {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.65rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: rgba(255, 255, 255, 0.45);
+    letter-spacing: 0.08em;
+    color: transparent;
+    -webkit-text-stroke: 2.5px #0A192F;
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
     margin-top: 4px;
 }
 
-.countdown__live {
-    margin: 0;
+.bharat-hero__tricolor-bar {
+    display: inline-block;
+    width: 6px;
+    height: 48px;
+    background: linear-gradient(to bottom, #FF6B35 33%, #FFFFFF 33%, #FFFFFF 66%, #0E9F6E 66%);
+    border: 1px solid #0A192F;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.bharat-hero__tagline {
     font-family: 'Epilogue', sans-serif;
-    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-size: clamp(1.05rem, 1.4vw, 1.3rem);
+    font-style: italic;
+    font-weight: 700;
+    color: #1E293B;
+    margin: 16px 0 0 0;
+}
+
+.bharat-hero__tagline span {
+    color: #FF6B35;
     font-weight: 800;
-    letter-spacing: -0.03em;
-    color: var(--color-saffron);
 }
 
-.hero__actions {
+.bharat-hero__desc {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    color: #475569;
+    line-height: 1.55;
+    margin: 14px 0 24px 0;
+    max-width: 500px;
+}
+
+/* ── Horizontal Specs Capsule Bar ─────────────────────────────────────── */
+.bharat-specs-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    background: #FFFFFF;
+    padding: 12px 16px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    width: 100%;
+    margin-bottom: 28px;
+}
+
+.bharat-spec-item {
     display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 8px;
+    transition: transform 0.25s ease;
 }
 
-.hero__cta {
+.bharat-spec-item:hover {
+    transform: translateY(-2px);
+}
+
+.bharat-spec-item__icon {
+    font-size: 1.1rem;
+    background: #F1F5F9;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.bharat-spec-item__info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.bharat-spec-item__label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: #94A3B8;
+}
+
+.bharat-spec-item__val {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #0F172A;
+    white-space: nowrap;
+}
+
+/* ── Action Buttons & Floating QR Code Box Row ────────────────────────── */
+.bharat-hero__action-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.bharat-hero__actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.bharat-hero__btn-primary {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 15px 34px;
-    border: 1.5px solid transparent;
+    padding: 16px 36px;
     border-radius: 999px;
+    background: linear-gradient(135deg, #D97706 0%, #0E9F6E 100%);
+    color: #FFFFFF;
     font-family: 'Epilogue', sans-serif;
-    font-size: 1.02rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
     text-decoration: none;
-    white-space: nowrap;
-    cursor: url("/assets/Cursor SVG/cursor-pointer.svg") 2 0, pointer;
-    transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), background 0.24s ease,
-        color 0.24s ease, border-color 0.24s ease;
+    box-shadow: 0 10px 28px rgba(14, 159, 110, 0.35);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.hero__cta:focus-visible {
-    outline: 3px solid var(--color-gold);
-    outline-offset: 3px;
-}
-
-.hero__cta--primary {
-    background: linear-gradient(135deg, #FF6B35 0%, #FF3B00 100%);
-    border-color: rgba(255, 255, 255, 0.2);
-    color: #FFFFFF;
-    box-shadow: 0 4px 20px rgba(255, 107, 53, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-}
-
-.hero__cta--primary:hover {
+.bharat-hero__btn-primary:hover {
     transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 8px 28px rgba(255, 107, 53, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.4);
-    background: linear-gradient(135deg, #FF7B47 0%, #FF4C14 100%);
+    box-shadow: 0 14px 36px rgba(14, 159, 110, 0.45);
 }
 
-.hero__cta--ghost {
-    background: rgba(255, 255, 255, 0.04);
-    border-color: rgba(255, 255, 255, 0.2);
-    color: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+.bharat-hero__btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 28px;
+    border-radius: 999px;
+    background: #FFFFFF;
+    border: 1.5px solid #CBD5E1;
+    color: #1E293B;
+    font-family: 'Epilogue', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.25s ease;
 }
 
-.hero__cta--ghost:hover {
-    transform: translateY(-2px);
-    border-color: rgba(255, 255, 255, 0.45);
-    background: rgba(255, 255, 255, 0.1);
+.bharat-hero__btn-secondary:hover {
+    background: #1E293B;
+    border-color: #1E293B;
     color: #FFFFFF;
-    box-shadow: 0 4px 16px rgba(255, 255, 255, 0.1);
 }
 
-/* ── Scroll hint ────────────────────────────────────────────────────────── */
-.hero__scroll-hint {
-    position: absolute;
-    right: 20px;
-    bottom: clamp(56px, 7vh, 88px);
-    z-index: 2;
-    writing-mode: vertical-rl;
-    color: rgba(255, 255, 255, 0.3);
-    pointer-events: none;
+/* Floating QR Code Box */
+.bharat-qr-box {
+    position: relative;
+    background: #FFFFFF;
+    padding: 12px 20px;
+    border-radius: 18px;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    animation: qr-levitate 3.6s ease-in-out infinite;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* ── Utility ────────────────────────────────────────────────────────────── */
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
+.bharat-qr-box:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.12);
+}
+
+@keyframes qr-levitate {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+.bharat-qr-box__header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.bharat-qr-box__title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #334155;
+}
+
+.bharat-qr-box__arrow {
+    width: 28px;
+    height: 28px;
+    margin-top: 2px;
+}
+
+.bharat-qr-box__arrow-path {
+    stroke-dasharray: 6 6;
+    animation: arrow-dash 1.8s linear infinite;
+}
+
+@keyframes arrow-dash {
+    to { stroke-dashoffset: -12; }
+}
+
+.bharat-qr-box__frame {
+    width: 68px;
+    height: 68px;
+    border-radius: 10px;
     overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
+    border: 1.5px solid #E2E8F0;
+    padding: 4px;
+    background: #FFFFFF;
+    flex-shrink: 0;
 }
 
-/* ── Reduced motion ────────────────────────────────────────────────────── */
-@media (prefers-reduced-motion: reduce) {
-    .hero__rule {
-        animation: none;
-        transform: scaleX(1);
-    }
-
-    .hero__cta:hover,
-    .hero__org-chip:hover,
-    .countdown__unit:hover {
-        transform: none;
-    }
-
-    .hero__kicker-dot,
-    .hero__caret {
-        animation: none;
-    }
+.bharat-qr-svg {
+    width: 100%;
+    height: 100%;
 }
 
-/* ── Tablet ─────────────────────────────────────────────────────────────── */
+/* ── Bottom Partners Section ──────────────────────────────────────────── */
+.bharat-partners-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    max-width: 900px;
+    margin-top: 10px;
+}
+
+.bharat-partners-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bharat-partners-title {
+    font-family: 'Epilogue', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #0A192F;
+}
+
+.bharat-partners-brush {
+    width: 180px;
+    height: 4px;
+    background: linear-gradient(to right, #FF6B35 0%, #0E9F6E 100%);
+    border-radius: 999px;
+    margin-top: 4px;
+    opacity: 0.6;
+}
+
+.bharat-partners-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 36px;
+    background: #FFFFFF;
+    padding: 16px 36px;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border: 1.5px solid rgba(226, 232, 240, 0.8);
+    flex-wrap: wrap;
+}
+
+.bharat-partner-logo {
+    height: 36px;
+    width: auto;
+    max-width: 170px;
+    object-fit: contain;
+    transition: transform 0.25s ease;
+}
+
+.bharat-partner-logo:hover {
+    transform: scale(1.05);
+}
+
+.bharat-partners-subtext {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #0A192F;
+    margin: 4px 0 0 0;
+}
+
+/* ── Mobile Responsive Rules ──────────────────────────────────────────── */
 @media (max-width: 1024px) {
-    .hero__specs {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .hero__spec:nth-child(3) {
-        padding-left: 0;
-        border-left: 0;
-    }
-
-    .hero__spec:nth-child(1),
-    .hero__spec:nth-child(2) {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-    }
-
-    .hero__scroll-hint {
-        display: none;
-    }
-}
-
-/* ── Mobile ─────────────────────────────────────────────────────────────── */
-@media (max-width: 768px) {
-    .hero__inner {
-        gap: 18px;
-        padding: 104px 22px 42px;
-    }
-
-    .hero__title {
-        letter-spacing: -0.03em;
-    }
-
-    .hero__organisers {
-        gap: 12px;
-    }
-
-    .hero__organisers-rule {
-        display: none;
-    }
-
-    .hero__org-chip {
-        height: 30px;
-        padding: 0 10px;
-    }
-
-    .hero__org-logo {
-        height: 17px;
-        max-width: 106px;
-    }
-
-    .hero__foot {
-        align-items: stretch;
+    .bharat-hero__content-grid {
+        grid-template-columns: 1fr;
         gap: 20px;
     }
-
-    .hero__actions {
-        width: 100%;
+    .bharat-hero__video-spacer {
+        display: none;
     }
-
-    .hero__cta {
-        flex: 1 1 auto;
-        padding: 14px 22px;
-        font-size: 0.96rem;
+    .bharat-hero__text-col {
+        align-items: center;
+        text-align: center;
+        padding-left: 0;
     }
-
-    .hero__organisers {
-        align-items: flex-start;
+    .bharat-hero__headline {
+        align-items: center;
+    }
+    .bharat-specs-bar {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .bharat-hero__action-row {
+        justify-content: center;
         flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .bharat-hero {
+        padding-top: 95px;
+        padding-bottom: 40px;
+    }
+    .bharat-hero__container {
+        padding: 0 16px;
+    }
+    .bharat-hero__title-bharat,
+    .bharat-hero__title-buildathon {
+        font-size: clamp(2.2rem, 8.5vw, 3.5rem);
+    }
+    .bharat-hero__title-ideathon {
+        font-size: clamp(1.8rem, 6.8vw, 2.6rem);
+    }
+    .bharat-hero__eyebrow-badge {
+        font-size: 0.78rem;
+        padding: 6px 14px;
+    }
+    .bharat-specs-bar {
+        grid-template-columns: repeat(2, 1fr);
         gap: 8px;
+        padding: 10px;
+    }
+    .bharat-spec-item__val {
+        font-size: 0.76rem;
+    }
+    .bharat-hero__action-row {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+    }
+    .bharat-hero__actions {
+        width: 100%;
+        flex-direction: column;
+        gap: 12px;
+    }
+    .bharat-hero__btn-primary,
+    .bharat-hero__btn-secondary {
+        width: 100%;
+        padding: 14px 20px;
+        font-size: 0.92rem;
+    }
+    .bharat-qr-box {
+        width: 100%;
+        justify-content: center;
+    }
+    .bharat-partners-card {
+        gap: 16px;
+        padding: 12px 18px;
+    }
+    .bharat-partner-logo {
+        height: 28px;
+    }
+    .bharat-hero__video {
+        object-position: center center;
+        opacity: 0.88;
     }
 }
 
 @media (max-width: 480px) {
-    .hero__specs {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+    .bharat-specs-bar {
+        grid-template-columns: 1fr;
     }
-
-    .hero__spec {
-        padding: 12px 10px;
-        border-bottom: 0;
-    }
-
-    .hero__spec--secondary {
-        display: none;
-    }
-
-    .hero__spec:nth-child(3) {
-        padding-left: 10px;
-        border-left: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .hero__spec-label {
-        font-size: 0.6rem;
-    }
-
-    .hero__spec-value {
-        font-size: 0.76rem;
-    }
-
-    .hero__actions {
-        gap: 10px;
-    }
-
-    .hero__cta {
-        width: 100%;
-    }
-
-    .hero__trust-line {
-        font-size: 0.78rem;
-    }
-
-    .countdown__units {
-        gap: 16px;
-    }
-}
-
-/* ─── Content section (used by About / JudgingCriteria) ───────────────────── */
-.content-section {
-    padding: 200px 20px 0px;
-    text-align: center;
-}
-
-.title-container {
-    margin-bottom: 80px;
-    position: relative;
-    display: inline-block;
-}
-
-.main-title {
-    font-size: 6rem;
-    font-family: 'Epilogue', sans-serif;
-    font-weight: 800;
-    letter-spacing: -4px;
-    color: var(--color-black);
-    cursor: url("/assets/Cursor SVG/cursor-text.svg") 12 12, auto;
-}
-
-.italic-text {
-    font-family: 'Times New Roman', serif;
-    font-style: italic;
-    font-weight: 400;
-    margin-left: -5px;
-}
-
-.title-underline-svg {
-    position: absolute;
-    bottom: -15px;
-    right: 0;
-    width: 160px;
-    height: auto;
-    color: var(--color-black);
-}
-
-.title-underline-svg path {
-    stroke-dasharray: 200;
-    stroke-dashoffset: 200;
 }
