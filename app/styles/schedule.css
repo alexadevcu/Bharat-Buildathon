@@ -4,12 +4,12 @@
     position: relative;
     z-index: 10;
     overflow: hidden;
-    height: 100vh; /* Full viewport height for pinning */
+    height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
-/* Fix GSAP pin-spacer blank gap */
+/* Fix GSAP pin-spacer blank gap on desktop */
 .pin-spacer:has(> .schedule-section) {
     background-color: var(--bg-color) !important;
 }
@@ -39,7 +39,7 @@
     display: flex;
     align-items: center;
     width: max-content;
-    padding: 0 50vw 0 10vw; /* padding to allow scrolling past the last item */
+    padding: 0 50vw 0 10vw;
 }
 
 .timeline-node {
@@ -78,8 +78,8 @@
 
 .timeline-start-date {
     position: absolute;
-    left: -40px; /* Pull it slightly to the left outside the node for better spacing */
-    top: 90px; /* Align vertically with the center of the first circle (40px + 60px/2) */
+    left: -40px;
+    top: 90px;
     font-size: 1.5rem;
     font-weight: 800;
     color: var(--color-navy);
@@ -115,38 +115,38 @@
 
 /* Winding logic */
 .timeline-node:nth-child(odd) .timeline-circle {
-    top: 40px; /* Circle is UP */
+    top: 40px;
 }
 .timeline-node:nth-child(even) .timeline-circle {
-    bottom: 40px; /* Circle is DOWN */
+    bottom: 40px;
 }
 
 .timeline-node:nth-child(odd) .timeline-content {
     position: absolute;
-    top: 180px; /* Below the top circle */
+    top: 180px;
 }
 .timeline-node:nth-child(even) .timeline-content {
     position: absolute;
-    bottom: 180px; /* Above the bottom circle */
+    bottom: 180px;
 }
 
-/* The curved connectors starting perfectly from circle centers */
+/* Curved connectors */
 .timeline-node:nth-child(odd)::after {
     content: '';
     position: absolute;
     left: 50%;
-    top: 100px; /* Center of the top circle (40px top + 60px half-height) */
+    top: 100px;
     width: 350px;
-    height: 200px; /* 400 - 40 - 40 - 120 = 200px distance between centers */
+    height: 200px;
     background: url('data:image/svg+xml;utf8,<svg width="350" height="200" viewBox="0 0 350 200" xmlns="http://www.w3.org/2000/svg"><path d="M0 0 C 175 0, 175 200, 350 200" stroke="%231d2b45" stroke-width="6" fill="none"/></svg>') no-repeat;
-    z-index: 1; /* Below the circle which is z-index: 2 */
+    z-index: 1;
 }
 
 .timeline-node:nth-child(even)::after {
     content: '';
     position: absolute;
     left: 50%;
-    top: 100px; /* To connect to the next odd node's center */
+    top: 100px;
     width: 350px;
     height: 200px;
     background: url('data:image/svg+xml;utf8,<svg width="350" height="200" viewBox="0 0 350 200" xmlns="http://www.w3.org/2000/svg"><path d="M0 200 C 175 200, 175 0, 350 0" stroke="%231d2b45" stroke-width="6" fill="none"/></svg>') no-repeat;
@@ -157,12 +157,79 @@
     display: none;
 }
 
+/* ─── MOBILE: native horizontal scroll, no GSAP pin ─── */
 @media (max-width: 768px) {
+    .schedule-section {
+        height: auto;        /* Remove the fixed 100vh — no pin on mobile */
+        overflow: visible;
+        padding-bottom: 40px;
+    }
+
     .schedule-header-sticky {
         padding-top: 20px;
-        margin-bottom: 40px;
+        margin-bottom: 20px;
     }
+
     .schedule__title {
-        font-size: 3.5rem;
+        font-size: 2.8rem;
+        letter-spacing: -1px;
+    }
+
+    .schedule-track-container {
+        overflow-x: auto;
+        overflow-y: visible;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 20px;
+        align-items: flex-start;
+    }
+
+    /* Hide the scrollbar but keep scrollability */
+    .schedule-track-container::-webkit-scrollbar {
+        display: none;
+    }
+
+    .schedule-track {
+        padding: 20px 20px 20px 20px;
+        height: auto;
+        min-height: 460px;
+    }
+
+    .timeline-node {
+        width: 240px;
+        height: 360px;
+    }
+
+    .timeline-circle {
+        width: 90px;
+        height: 90px;
+        border-width: 6px;
+    }
+
+    .timeline-time {
+        font-size: 0.9rem;
+    }
+
+    .timeline-content {
+        width: 200px;
+        padding: 12px;
+    }
+
+    .timeline-content h4 {
+        font-size: 1rem;
+    }
+
+    .timeline-content p {
+        font-size: 0.8rem;
+    }
+
+    .timeline-start-date {
+        font-size: 1rem;
+        left: -20px;
+        width: 80px;
+    }
+
+    .timeline-node:nth-child(odd)::after,
+    .timeline-node:nth-child(even)::after {
+        width: 240px;
     }
 }

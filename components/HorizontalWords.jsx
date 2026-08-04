@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useLayoutEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import '../app/styles/horizontal-words.css';
@@ -12,7 +12,10 @@ const NAVY = '#1B2A4A';
 const HorizontalWords = () => {
     const sectionRef = useRef(null);
 
-    useLayoutEffect(() => {
+    useEffect(() => {
+        // Mobile: no GSAP at all — pure CSS, no pin, no scroll-jacking
+        if (window.innerWidth <= 768) return;
+
         const ctx = gsap.context(() => {
             const container = sectionRef.current;
             const textRef = container.querySelector('.horizontal-words__relative');
@@ -20,24 +23,20 @@ const HorizontalWords = () => {
             const stickers = container.querySelectorAll('.horizontal-words__sticker');
             const arrows = container.querySelectorAll('.horizontal-words__arrow-svg path, .horizontal-words__arrow-end-svg path');
 
-            const isMobile = window.innerWidth <= 768;
-            const scrollDistance = isMobile ? "+=1200" : "+=3000";
-
             const scrollTween = gsap.fromTo(textRef, {
-                xPercent: isMobile ? 30 : 50
+                xPercent: 50
             }, {
-                xPercent: isMobile ? -80 : -40,
+                xPercent: -40,
                 ease: 'none',
                 scrollTrigger: {
                     trigger: container,
                     start: "top top",
-                    end: scrollDistance,
+                    end: "+=3000",
                     scrub: 1,
                     pin: true,
                     onRefresh() {
-                        // Patch pin-spacer background every time ScrollTrigger refreshes
                         const spacer = container.closest('.pin-spacer') || container.parentElement;
-                        if (spacer) spacer.style.backgroundColor = NAVY;
+                        if (spacer && spacer !== document.body) spacer.style.backgroundColor = NAVY;
                     }
                 }
             });
@@ -98,17 +97,16 @@ const HorizontalWords = () => {
 
     return (
         <section ref={sectionRef} className="horizontal-words-section content-section">
-            <div className="horizontal-words__relative">
+            {/* Desktop: animated scrolling text */}
+            <div className="horizontal-words__relative desktop-hw-content">
                 <div className="horizontal-words__sticker-svg">
                     <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 386 127" fill="none" className="horizontal-words__arrow-svg">
                         <path d="M2 123C9 35.9999 84.5 17 124 25.9999C217.764 47.3635 207 115 177.5 123C105.777 142.45 110.737 1.99991 232.5 2C310.5 2.00006 366.5 79 376 118L356.5 105.5" stroke="var(--color-saffron)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"></path>
                         <path d="M2 123C9 35.9999 84.5 17 124 25.9999C217.764 47.3635 207 115 177.5 123C105.777 142.45 110.737 1.99991 232.5 2C310.5 2.00006 366.5 79 376 118L384 97" stroke="var(--color-saffron)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"></path>
                     </svg>
-
                     <img src="/assets/Card-Sticker SVG/sticker-smiley.svg" className="horizontal-words__sticker" style={{ width: '120px', left: '20%', top: '-20%', position: 'absolute' }} onError={(e) => { e.currentTarget.style.display = 'none'; }} />
                     <img src="/assets/Card-Sticker SVG/sticker-camera.svg" className="horizontal-words__sticker" style={{ width: '100px', left: '50%', top: '100%', position: 'absolute' }} onError={(e) => { e.currentTarget.style.display = 'none'; }} />
                     <img src="/assets/Card-Sticker SVG/sticker-phone.svg" className="horizontal-words__sticker" style={{ width: '110px', left: '80%', top: '-40%', position: 'absolute' }} onError={(e) => { e.currentTarget.style.display = 'none'; }} />
-
                     <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 140 127" fill="none" className="horizontal-words__arrow-end-svg" style={{ left: '100%', top: '0', position: 'absolute' }}>
                         <path d="M2.03125 2.42188C100.469 2.42188 130.156 52.4219 118.437 125.078L99.6875 107.891" stroke="var(--color-saffron)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"></path>
                         <path d="M2.03125 2.42188C100.469 2.42188 130.156 52.4219 118.438 125.078L137.969 110.234" stroke="var(--color-saffron)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"></path>
@@ -141,7 +139,21 @@ const HorizontalWords = () => {
                 </h2>
             </div>
 
-            <div className="horizontal-words__bottom-text">
+            {/* Mobile: simple static display */}
+            <div className="mobile-hw-content">
+                <h2 className="mobile-hw-title" aria-label="IDEATE PITCH WIN">
+                    <span>IDEATE</span>
+                    <span className="mobile-hw-dot">•</span>
+                    <span>PITCH</span>
+                    <span className="mobile-hw-dot">•</span>
+                    <span>WIN</span>
+                </h2>
+                <p className="mobile-hw-desc">
+                    Join 100+ teams in an 8-hour sprint of pure innovation. Ideate, pitch, and compete for a massive prize pool.
+                </p>
+            </div>
+
+            <div className="horizontal-words__bottom-text desktop-hw-content">
                 <div className="horizontal-words__bottom-text-l">
                     Join 100+ teams in an 8-hour sprint of pure innovation.<br />
                     Ideate, pitch, and compete for a massive prize pool.<br />
@@ -151,6 +163,5 @@ const HorizontalWords = () => {
         </section>
     );
 };
-
 
 export default HorizontalWords;

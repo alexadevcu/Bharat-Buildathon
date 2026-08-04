@@ -5,23 +5,29 @@
     width: 100%;
     height: 100vh;
     background-color: var(--color-navy);
+    color: var(--color-white);
     overflow: hidden;
 }
 
-/* GSAP creates a .pin-spacer wrapper when pinning.
-   It must match the section bg or a blank gap appears during scroll. */
-.horizontal-words-section + .pin-spacer,
-.pin-spacer:has(.horizontal-words-section) {
+/* GSAP pin-spacer must match section bg to avoid blank gap */
+.pin-spacer:has(> .horizontal-words-section) {
     background-color: var(--color-navy) !important;
 }
 
-/* User provided CSS */
+/* ── Desktop content (animated) ── */
+.desktop-hw-content {
+    display: block;
+}
+
+/* Mobile content (static fallback) */
+.mobile-hw-content {
+    display: none;
+}
+
 .horizontal-words__relative {
-    /* Remove huge margin-left/right so it starts directly at viewport edge */
     padding-left: 25vw;
     padding-right: 25vw;
     position: absolute;
-    /* Lock to track */
     top: 50%;
     transform: translateY(-50%);
     white-space: nowrap;
@@ -56,7 +62,6 @@
     line-height: 1.4;
     font-weight: 400;
     margin: 0;
-    /* Removed the hacky centered margin */
 }
 
 .horizontal-words__sticker-svg {
@@ -71,7 +76,6 @@
     left: 50%;
     transform: translate(-50%, 10%);
     z-index: 10;
-    /* Put sticker over text */
 }
 
 .horizontal-words__sticker-phone {
@@ -81,7 +85,6 @@
     left: 79%;
     transform: translate(-50%, -100%);
     z-index: 10;
-    /* Put sticker over text */
 }
 
 .horizontal-words__arrow-end-svg {
@@ -99,16 +102,6 @@
     left: 17.5%;
     transform: translate(-50%, -110%);
     z-index: 10;
-    /* Put sticker over text */
-}
-
-.horizontal-words__placeholder-left-svg {
-    opacity: .05;
-    width: 90em;
-    position: absolute;
-    top: 50%;
-    right: 101.5%;
-    transform: translate(0%, -50%);
 }
 
 .horizontal-words__h2 {
@@ -122,34 +115,57 @@
     white-space: nowrap;
 }
 
+/* ─── MOBILE ────────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
-    .horizontal-words__h2 {
-        font-size: 20vw;
+    .horizontal-words-section {
+        height: auto;           /* No fixed height — no GSAP pin on mobile */
+        min-height: 60vh;
+        overflow: visible;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 80px 24px 60px;
     }
-    .horizontal-words__bottom-text {
-        transform: translate(-50%, 35vw);
+
+    /* Hide the desktop GSAP-powered animated content */
+    .desktop-hw-content {
+        display: none !important;
     }
-    .horizontal-words__bottom-text-l {
-        font-size: 1rem;
-        width: 85vw;
+
+    /* Show the simple mobile version */
+    .mobile-hw-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         text-align: center;
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(5px);
-        padding: 12px 16px;
-        border-radius: 12px;
-        border: 1px solid rgba(255,255,255,0.2);
+        gap: 24px;
+        width: 100%;
     }
-    .horizontal-words__arrow-svg {
-        width: 10em;
-        transform: translate(-100%, -20%);
+
+    .mobile-hw-title {
+        font-family: 'Epilogue', sans-serif;
+        font-size: clamp(2.8rem, 13vw, 5rem);
+        font-weight: 900;
+        line-height: 1.05;
+        letter-spacing: -2px;
+        color: var(--color-white);
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
     }
-    .horizontal-words__sticker-cursor,
-    .horizontal-words__sticker-phone,
-    .horizontal-words__sticker-watch,
-    .horizontal-words__sticker {
-        width: 20vw !important;
+
+    .mobile-hw-dot {
+        color: var(--color-saffron);
     }
-    .horizontal-words__arrow-end-svg {
-        width: 4em;
+
+    .mobile-hw-desc {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 1rem;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.75);
+        max-width: 340px;
+        margin: 0;
     }
-}
+}

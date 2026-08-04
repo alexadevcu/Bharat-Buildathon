@@ -75,11 +75,3 @@ body::-webkit-scrollbar {
     display: none;
 }
 
-/* ─── GSAP Pin-Spacer Background Fix ────────────────────────────────────────── */
-/* GSAP wraps pinned sections in a .pin-spacer div. 
-   Without explicit background, the spacer shows the page's beige bg as a gap. */
-.horizontal-words-section,
-.horizontal-words-section + *,
-.pin-spacer:has(> .horizontal-words-section) {
-    background-color: var(--color-navy) !important;
-}

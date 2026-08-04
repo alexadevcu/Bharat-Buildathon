@@ -13,13 +13,15 @@ export default function Schedule() {
     const trackRef = useRef(null);
 
     useEffect(() => {
+        // Only run GSAP horizontal scroll on desktop
+        if (window.innerWidth <= 768) return;
+
         const ctx = gsap.context(() => {
             const track = trackRef.current;
             const items = gsap.utils.toArray('.timeline-node');
 
             const getScrollAmount = () => {
-                let trackWidth = track.scrollWidth;
-                return -(trackWidth - window.innerWidth);
+                return -(track.scrollWidth - window.innerWidth);
             };
 
             const tween = gsap.to(track, {
@@ -37,7 +39,6 @@ export default function Schedule() {
                 invalidateOnRefresh: true
             });
 
-            // Pop in the nodes as they scroll into view
             items.forEach((item) => {
                 const circle = item.querySelector('.timeline-circle');
                 const content = item.querySelector('.timeline-content');
@@ -75,11 +76,8 @@ export default function Schedule() {
 
         }, sectionRef);
 
-        return () => {
-            ctx.revert();
-        };
+        return () => ctx.revert();
     }, []);
-
 
     const colors = ['var(--color-saffron)', 'var(--color-green)', 'var(--color-lightblue)', 'var(--color-orange)', 'var(--color-purple)'];
 
