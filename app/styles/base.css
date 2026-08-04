@@ -60,34 +60,17 @@ body {
     font-family: 'Epilogue', sans-serif;
     color: var(--color-dark);
     overflow-x: hidden;
-    width: 100%;
-    position: relative;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     cursor: url("/assets/Cursor SVG/cursor-default.svg") 2 0, auto;
-    scrollbar-color: var(--color-navy) var(--bg-color);
-    scrollbar-width: thin;
 }
 
 html {
-    overflow-x: hidden;
-    width: 100%;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
-/* Custom Scrollbar Globally */
-::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.05);
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--color-navy);
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--color-saffron);
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;
 }

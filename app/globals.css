@@ -8,7 +8,7 @@
 @import './styles/navbar.css';
 /* Navbar, logos, header hero               */
 @import './styles/hero.css';
-/* Content section title + underline SVG    */
+/* Hero (GridScan bg + headline) + content section title */
 @import './styles/motion-cards.css';
 /* MotionCard section (heading + cards + text)  */
 @import './styles/showreel.css';
@@ -24,8 +24,6 @@
 @import './styles/faq.css';
 @import './styles/footer.css';
 /* Footer layout, credits, stickers         */
-@import './styles/vimeo-hero.css';
-/* Vimeo hero video player + headline       */
 @import './styles/cursor.css';
 /* Custom cursor bubble + scribble overlay  */
 @import './styles/responsive.css';

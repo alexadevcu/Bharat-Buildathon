@@ -25,8 +25,8 @@ export default function Home() {
             <CursorBubble />
             <header className="main-header">
                 <Navbar />
-                <Hero />
             </header>
+            <Hero />
             <HorizontalWords />
             <main>
                 <div className="content-section motion-cards-wrapper" id="about">

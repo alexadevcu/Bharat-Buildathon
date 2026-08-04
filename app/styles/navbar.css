@@ -40,20 +40,23 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 40px;
-    background: transparent;
+    padding: 24px 32px;
+    background: transparent !important;
+    background-color: transparent !important;
     z-index: 1000;
-    transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.5s;
+    pointer-events: none;
 }
 
 .navbar.on-dark {
     color: var(--bg-color);
-    background-color: var(--color-navy);
+    background: transparent !important;
+    background-color: transparent !important;
 }
 
 .navbar.on-light {
     color: var(--color-dark);
-    background-color: var(--bg-color);
+    background: transparent !important;
+    background-color: transparent !important;
 }
 
 .logo-truus {
@@ -151,17 +154,18 @@
 
 /* --- Left Popout (Work) --- */
 .nav-left .nav-popout {
-    top: -10px;
-    left: -20px;
-    width: 250px;
+    top: 55px;
+    left: 0;
+    width: 220px;
     height: auto;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
 }
 
 .nav-left .nav-popout-inner {
     width: 100%;
     height: auto;
-    padding: 80px 20px 20px 20px; /* 80px top padding provides space for Explore Sections text */
-    gap: 15px;
+    padding: 24px 20px 20px 20px;
+    gap: 12px;
 }
 
 .nav-left .logo-work-container {
