@@ -1,16 +1,18 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import '../app/styles/horizontal-words.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const NAVY = '#1B2A4A';
+
 const HorizontalWords = () => {
     const sectionRef = useRef(null);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const ctx = gsap.context(() => {
             const container = sectionRef.current;
             const textRef = container.querySelector('.horizontal-words__relative');
@@ -32,16 +34,13 @@ const HorizontalWords = () => {
                     end: scrollDistance,
                     scrub: 1,
                     pin: true,
+                    onRefresh() {
+                        // Patch pin-spacer background every time ScrollTrigger refreshes
+                        const spacer = container.closest('.pin-spacer') || container.parentElement;
+                        if (spacer) spacer.style.backgroundColor = NAVY;
+                    }
                 }
             });
-
-            // Immediately patch the pin-spacer background so no blank gap appears
-            ScrollTrigger.refresh();
-            const pinSpacer = container.parentElement;
-            if (pinSpacer && pinSpacer.classList.contains('pin-spacer')) {
-                pinSpacer.style.backgroundColor = getComputedStyle(document.documentElement)
-                    .getPropertyValue('--color-navy').trim() || '#1B2A4A';
-            }
 
             letters.forEach((letter) => {
                 gsap.from(letter, {
@@ -98,7 +97,7 @@ const HorizontalWords = () => {
     }, []);
 
     return (
-        <section ref={sectionRef} className="horizontal-words-section content-section" style={{ backgroundColor: 'var(--color-navy)', color: 'var(--color-white)', paddingTop: '100px', paddingBottom: '100px' }}>
+        <section ref={sectionRef} className="horizontal-words-section content-section">
             <div className="horizontal-words__relative">
                 <div className="horizontal-words__sticker-svg">
                     <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 386 127" fill="none" className="horizontal-words__arrow-svg">
@@ -152,5 +151,6 @@ const HorizontalWords = () => {
         </section>
     );
 };
+
 
 export default HorizontalWords;
