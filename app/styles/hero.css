@@ -184,7 +184,19 @@
     font-size: clamp(2.4rem, 5.8vmin + 1rem, 6rem);
     line-height: 0.89;
     letter-spacing: -0.045em;
+    /* Solid colour is the real fallback: it renders for the sr-only text and
+       for any run that SplitText hasn't wrapped into .split-char spans. */
     color: #F2F5FA;
+}
+
+/* Subtle top-lit gradient, applied per character. SplitText transforms each
+   .split-char, and a transformed element breaks an ancestor's background-clip:
+   text — so the clip must live on the char itself, not on .hero__title. */
+.hero__title .split-char {
+    background: linear-gradient(178deg, #FFFFFF 0%, #EAEEF5 45%, #C4CEDD 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .hero__line {
@@ -290,6 +302,8 @@
 .hero__spec {
     padding: clamp(10px, 1.3vh, 16px) clamp(14px, 1.8vw, 24px);
     border-left: 1px solid rgba(255, 255, 255, 0.08);
+    /* Inner top-edge highlight sells the frosted-glass surface. */
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
     transition: background 0.3s ease;
     position: relative;
 }
