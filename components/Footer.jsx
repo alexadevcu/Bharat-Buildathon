@@ -236,15 +236,15 @@ export default function Footer() {
                             <div className="credits-content">
                                 <div className="credits-item credit-wiggle">
                                     <div className="overflow-wrapper"><span className="credits-label">organised by</span></div>
-                                    <div className="overflow-wrapper"><a href="#" className="credits-name" data-wiggle-target="true" style={{ fontSize: '0.9rem', lineHeight: '1.2' }}>Alexa Developer Community CU <br /> Geeks for Geeks CU</a></div>
+                                    <div className="overflow-wrapper"><a href="#" onClick={(e) => e.preventDefault()} className="credits-name" data-wiggle-target="true" style={{ fontSize: '0.9rem', lineHeight: '1.2' }}>Alexa Developer Community CU <br /> Geeks for Geeks CU</a></div>
                                 </div>
                                 <div className="credits-item credit-wiggle">
                                     <div className="overflow-wrapper"><span className="credits-label">hosted at</span></div>
-                                    <div className="overflow-wrapper"><a href="#" className="credits-name" data-wiggle-target="true">Chandigarh <br /> University</a></div>
+                                    <div className="overflow-wrapper"><a href="#" onClick={(e) => e.preventDefault()} className="credits-name" data-wiggle-target="true">Chandigarh <br /> University</a></div>
                                 </div>
                             </div>
                         </div>
-                        <a href="#" className="footer-credits">credits</a>
+                        <a href="#" className="footer-credits" onClick={(e) => e.preventDefault()}>credits</a>
                     </div>
                 </div>
             </div>

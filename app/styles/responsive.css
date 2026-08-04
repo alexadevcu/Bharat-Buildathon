@@ -15,7 +15,7 @@
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
     }
-    
+
     .cards-wrapper::-webkit-scrollbar {
         display: none;
     }
@@ -85,9 +85,11 @@
     .hamburger-line.open:nth-child(1) {
         transform: translateY(8.5px) rotate(45deg);
     }
+
     .hamburger-line.open:nth-child(2) {
         opacity: 0;
     }
+
     .hamburger-line.open:nth-child(3) {
         transform: translateY(-8.5px) rotate(-45deg);
     }
@@ -160,7 +162,7 @@
         letter-spacing: -2px !important;
         padding-top: 100px;
     }
-    
+
     .home-header__title {
         padding: 0 20px 60px 20px;
     }
@@ -172,7 +174,8 @@
         margin-top: 40px;
     }
 
-    .hero-btn-primary, .hero-btn-secondary {
+    .hero-btn-primary,
+    .hero-btn-secondary {
         width: 100%;
         padding: 16px 20px;
         font-size: 1.1rem;
@@ -214,7 +217,7 @@
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
     }
-    
+
     .cards-wrapper::-webkit-scrollbar {
         display: none;
     }
@@ -242,7 +245,8 @@
         display: block;
         margin-top: 40px;
         width: 100vw;
-        margin-left: -24px; /* compensate for .header-content padding */
+        margin-left: -24px;
+        /* compensate for .header-content padding */
         padding: 20px 0;
     }
 
@@ -255,9 +259,10 @@
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
         padding: 0 24px;
-        gap: -30px; /* Overlap effect */
+        gap: -30px;
+        /* Overlap effect */
     }
-    
+
     .motion-card__cards::-webkit-scrollbar {
         display: none;
     }
@@ -272,12 +277,14 @@
         border: 4px solid var(--color-white);
         border-radius: 12px;
         scroll-snap-align: center;
-        margin-right: -40px; /* Overlap effect */
-        box-shadow: 10px 0 20px rgba(0,0,0,0.15);
+        margin-right: -40px;
+        /* Overlap effect */
+        box-shadow: 10px 0 20px rgba(0, 0, 0, 0.15);
     }
-    
+
     .motion-card__card:last-child {
-        margin-right: 24px; /* padding at end of scroll */
+        margin-right: 24px;
+        /* padding at end of scroll */
     }
 
     .motion-card__floating-labels {
@@ -429,20 +436,21 @@
     /* ── Footer wordmark ────────────── */
     .footer-bottom {
         margin-top: 40px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        /* display: flex; */
+        /* justify-content: center; */
+        /* align-items: center; */
+        align-items: flex-start;
         width: 100%;
         overflow: visible;
     }
-    
+
     .footer-big-text {
         margin-bottom: 0;
     }
 
     .footer-title {
-        font-size: 13vw !important;
-        white-space: nowrap;
+        font-size: 12.5vw !important;
+        /* white-space: nowrap; */
     }
 
     .footer-logo__svg {
@@ -463,15 +471,25 @@
     }
 
     .credits-box {
-        padding: 16px 20px;
-        gap: 20px;
+        padding: 0; /* Let credits-content handle padding */
+        gap: 15px;
+    }
+
+    .credits-content {
+        flex-direction: column;
+        gap: 12px;
+        padding: 12px 16px;
+        white-space: normal;
+        width: 220px; /* Force a narrow width to make text wrap and keep bubble small */
     }
 
     .credits-label {
-        font-size: 0.85rem;
+        font-size: 0.75rem;
     }
 
     .credits-name {
-        font-size: 0.95rem;
+        font-size: 0.85rem;
+        white-space: normal; /* Allow text to wrap if needed */
+        line-height: 1.2;
     }
 }
