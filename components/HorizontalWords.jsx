@@ -20,7 +20,7 @@ const HorizontalWords = () => {
 
             const isMobile = window.innerWidth <= 768;
             const scrollTween = gsap.fromTo(textRef, {
-                xPercent: isMobile ? 80 : 50
+                xPercent: isMobile ? 30 : 50
             }, {
                 xPercent: isMobile ? -80 : -40,
                 ease: 'none',

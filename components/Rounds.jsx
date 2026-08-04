@@ -59,23 +59,37 @@ export default function Rounds() {
                 {/* SVG Timeline Connector */}
                 <div className="rounds-timeline">
                     <svg width="100%" height="100%" viewBox="0 0 100 400" preserveAspectRatio="none">
-                        <path className="round-connector-path" d="M50 0 L50 400" stroke="var(--color-navy)" strokeWidth="4" strokeDasharray="10 10" />
+                        <path className="round-connector-path" d="M50 0 L50 400" stroke="rgba(255,255,255,0.2)" strokeWidth="4" strokeDasharray="10 10" />
                     </svg>
                 </div>
 
                 <div className="round-item round-card">
                     <div className="round-number" style={{ backgroundColor: 'var(--color-saffron)' }}>1</div>
                     <div className="round-content">
-                        <h3>Round 1: Device-Free Ideation</h3>
-                        <p>Laptops, mobile phones, smartwatches, or any electronic devices are strictly prohibited. Teams will have 30 minutes to brainstorm and prepare their solution only on the Idea Canvas provided by the organizing team.</p>
+                        <div className="round-title-row">
+                            <h3>Round 1: Device-Free Ideation</h3>
+                            <span className="round-badge alert-badge">🚫 Strict No-Device Policy</span>
+                        </div>
+                        <ul className="round-list">
+                            <li><strong style={{color: 'var(--color-saffron)'}}>No Electronics:</strong> Laptops, mobile phones, smartwatches, or any electronic devices are strictly prohibited.</li>
+                            <li><strong style={{color: 'var(--color-saffron)'}}>30-Minute Sprint:</strong> Teams will have exactly 30 minutes to brainstorm and develop their core idea.</li>
+                            <li><strong style={{color: 'var(--color-saffron)'}}>Idea Canvas:</strong> Solutions must be prepared exclusively on the physical Idea Canvas provided by the organizers.</li>
+                        </ul>
                     </div>
                 </div>
 
                 <div className="round-item round-card">
                     <div className="round-number" style={{ backgroundColor: 'var(--color-green)' }}>2</div>
                     <div className="round-content">
-                        <h3>Round 2: Pitch & Present</h3>
-                        <p>Teams shortlisted from Round 1 will qualify for Round 2, where they will prepare a PPT and pitch their solution before the judges.</p>
+                        <div className="round-title-row">
+                            <h3>Round 2: Final Pitch</h3>
+                            <span className="round-badge success-badge">🎙️ Present to Judges</span>
+                        </div>
+                        <ul className="round-list">
+                            <li><strong style={{color: 'var(--color-green)'}}>The Shortlist:</strong> Only the top teams selected from the Round 1 ideation phase will qualify for the finals.</li>
+                            <li><strong style={{color: 'var(--color-green)'}}>Presentation:</strong> Finalists will prepare a detailed PowerPoint presentation outlining their solution.</li>
+                            <li><strong style={{color: 'var(--color-green)'}}>Live Pitch:</strong> Teams will pitch their solution live before our expert judging panel.</li>
+                        </ul>
                     </div>
                 </div>
             </div>

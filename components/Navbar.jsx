@@ -205,7 +205,25 @@ export default function Navbar() {
 
             {/* Mobile Menu Overlay */}
             <div className={`mobile-menu-overlay ${isMobileMenuOpen ? 'open' : ''}`}>
-                <div className="mobile-menu-close" onClick={closeMobileMenu} style={{ position: 'absolute', top: '30px', right: '30px', fontSize: '2rem', cursor: 'pointer', color: 'var(--color-white)', zIndex: 1002 }}>✕</div>
+                <div className="mobile-menu-logos">
+                    <div className="mobile-menu-logos-top">
+                        <img src="/assets/CU Logo red &white.png" alt="CU" />
+                        <img src="/assets/Alexa Developers Community White.png" alt="ADC" />
+                        <img src="/assets/GfG Horizontal Combination Mark (Dark Mode)@2x.png" alt="GFG" />
+                    </div>
+                </div>
+
+                <div style={{ width: '100%', paddingRight: '30px', display: 'flex', justifyContent: 'flex-end', marginBottom: '30px' }}>
+                    <div className="mobile-menu-close" onClick={(e) => {
+                        const el = e.currentTarget;
+                        el.style.transform = 'rotate(90deg) scale(0.8)';
+                        setTimeout(() => {
+                            closeMobileMenu();
+                            setTimeout(() => { el.style.transform = 'none'; }, 300);
+                        }, 150);
+                    }} style={{ fontSize: '2.5rem', cursor: 'pointer', color: 'var(--color-white)', zIndex: 1002, transition: 'transform 0.15s ease-in-out' }}>✕</div>
+                </div>
+
                 <div className="mobile-menu-content">
                     <a href="#about" onClick={closeMobileMenu}>About</a>
                     <a href="#theme" onClick={closeMobileMenu}>Themes</a>

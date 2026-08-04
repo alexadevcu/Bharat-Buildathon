@@ -145,6 +145,31 @@
         position: relative;
     }
 
+    .mobile-menu-logos {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+        margin-bottom: 40px;
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    .mobile-menu-logos-top {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        width: 100%;
+    }
+
+    .mobile-menu-logos-top img {
+        height: 35px;
+        width: auto;
+        max-width: 30vw;
+        object-fit: contain;
+    }
+
     /* ── Header Hero ────────────────── */
     .header-content {
         height: 100svh;
