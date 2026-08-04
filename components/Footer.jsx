@@ -159,7 +159,7 @@ export default function Footer() {
                 {/* Jobs */}
                 <div className="footer-column">
                     <span className="footer-badge">status</span>
-                    <h3><a style={{ color: 'white', textDecoration: 'none' }} href="https://forms.gle/crrKyBGmG1uS8GN9A">Registrations Open!</a></h3>
+                    <h3><a style={{ color: 'white', textDecoration: 'none' }} href="https://docs.google.com/forms/d/e/1FAIpQLSdFxoWH_VBfuiZ3l421pqWCBLbH496XMPEk8RfkIDD2qr7hkw/viewform">Registrations Open!</a></h3>
                 </div>
                 {/* Office */}
                 <div className="footer-column">

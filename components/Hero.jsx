@@ -39,7 +39,7 @@ export default function Hero() {
                     </h1>
                     
                     <div className="hero-btn-group">
-                        <a href="https://forms.gle/crrKyBGmG1uS8GN9A" target="_blank" rel="noopener noreferrer" className="hero-btn-primary">
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdFxoWH_VBfuiZ3l421pqWCBLbH496XMPEk8RfkIDD2qr7hkw/viewform" target="_blank" rel="noopener noreferrer" className="hero-btn-primary">
                             Register Now
                         </a>
                         <a href="#about" className="hero-btn-secondary">

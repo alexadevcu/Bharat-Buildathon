@@ -190,7 +190,7 @@ export default function Navbar() {
                 </div>
 
                 <div className="nav-right desktop-only">
-                    <a href="https://forms.gle/crrKyBGmG1uS8GN9A" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', background: 'var(--color-saffron)', color: 'var(--color-white)', padding: '10px 20px', borderRadius: '50px', fontWeight: 600, fontSize: '1.1rem' }}>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdFxoWH_VBfuiZ3l421pqWCBLbH496XMPEk8RfkIDD2qr7hkw/viewform" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', background: 'var(--color-saffron)', color: 'var(--color-white)', padding: '10px 20px', borderRadius: '50px', fontWeight: 600, fontSize: '1.1rem' }}>
                         Register Now
                     </a>
                 </div>
@@ -215,7 +215,7 @@ export default function Navbar() {
                     <a href="#prizes" onClick={closeMobileMenu}>Prizes</a>
                     <a href="#faq" onClick={closeMobileMenu}>FAQ</a>
                     <a href="#sponsors" onClick={closeMobileMenu}>Sponsors</a>
-                    <a href="https://forms.gle/crrKyBGmG1uS8GN9A" target="_blank" rel="noopener noreferrer" className="mobile-register-btn" onClick={closeMobileMenu}>Register Now</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdFxoWH_VBfuiZ3l421pqWCBLbH496XMPEk8RfkIDD2qr7hkw/viewform" target="_blank" rel="noopener noreferrer" className="mobile-register-btn" onClick={closeMobileMenu}>Register Now</a>
                 </div>
             </div>
         </>
