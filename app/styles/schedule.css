@@ -9,6 +9,11 @@
     flex-direction: column;
 }
 
+/* Fix GSAP pin-spacer blank gap */
+.pin-spacer:has(> .schedule-section) {
+    background-color: var(--bg-color) !important;
+}
+
 .schedule-header-sticky {
     text-align: center;
     padding-top: 40px;

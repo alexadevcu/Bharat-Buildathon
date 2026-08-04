@@ -19,7 +19,7 @@ const HorizontalWords = () => {
             const arrows = container.querySelectorAll('.horizontal-words__arrow-svg path, .horizontal-words__arrow-end-svg path');
 
             const isMobile = window.innerWidth <= 768;
-            const scrollDistance = isMobile ? "+=1000" : "+=3000";
+            const scrollDistance = isMobile ? "+=1200" : "+=3000";
 
             const scrollTween = gsap.fromTo(textRef, {
                 xPercent: isMobile ? 30 : 50
@@ -32,14 +32,16 @@ const HorizontalWords = () => {
                     end: scrollDistance,
                     scrub: 1,
                     pin: true,
-                    // Apply background color to the pin-spacer so it doesn't show a blank gap
-                    onRefresh: (self) => {
-                        if (self.pin && self.pin.parentElement && self.pin.parentElement.classList.contains('pin-spacer')) {
-                            self.pin.parentElement.style.backgroundColor = 'var(--color-navy)';
-                        }
-                    }
                 }
             });
+
+            // Immediately patch the pin-spacer background so no blank gap appears
+            ScrollTrigger.refresh();
+            const pinSpacer = container.parentElement;
+            if (pinSpacer && pinSpacer.classList.contains('pin-spacer')) {
+                pinSpacer.style.backgroundColor = getComputedStyle(document.documentElement)
+                    .getPropertyValue('--color-navy').trim() || '#1B2A4A';
+            }
 
             letters.forEach((letter) => {
                 gsap.from(letter, {
