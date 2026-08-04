@@ -13,42 +13,22 @@ export default function Rounds() {
 
         const ctx = gsap.context(() => {
             const cards = gsap.utils.toArray('.normal-round-card');
-            const mm = gsap.matchMedia();
 
-            mm.add("(min-width: 769px)", () => {
-                gsap.fromTo(
-                    cards,
-                    { y: 30, opacity: 0 },
-                    {
-                        y: 0,
-                        opacity: 1,
-                        duration: 0.7,
-                        stagger: 0.25,
-                        ease: 'power3.out',
-                        scrollTrigger: {
-                            trigger: containerRef.current,
-                            start: 'top 80%',
-                        }
+            gsap.fromTo(
+                cards,
+                { y: 30, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.7,
+                    stagger: 0.25,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: containerRef.current,
+                        start: 'top 80%',
                     }
-                );
-            });
-            
-            mm.add("(max-width: 768px)", () => {
-                gsap.fromTo(
-                    cards,
-                    { y: 20, opacity: 0 },
-                    {
-                        y: 0,
-                        opacity: 1,
-                        duration: 0.5,
-                        stagger: 0.15,
-                        scrollTrigger: {
-                            trigger: containerRef.current,
-                            start: 'top 85%',
-                        }
-                    }
-                );
-            });
+                }
+            );
         }, sectionRef);
 
         return () => ctx.revert();

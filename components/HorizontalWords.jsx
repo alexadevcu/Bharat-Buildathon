@@ -19,6 +19,8 @@ const HorizontalWords = () => {
             const arrows = container.querySelectorAll('.horizontal-words__arrow-svg path, .horizontal-words__arrow-end-svg path');
 
             const isMobile = window.innerWidth <= 768;
+            const scrollDistance = isMobile ? "+=1000" : "+=3000";
+
             const scrollTween = gsap.fromTo(textRef, {
                 xPercent: isMobile ? 30 : 50
             }, {
@@ -27,9 +29,15 @@ const HorizontalWords = () => {
                 scrollTrigger: {
                     trigger: container,
                     start: "top top",
-                    end: "+=3000",
+                    end: scrollDistance,
                     scrub: 1,
-                    pin: true
+                    pin: true,
+                    // Apply background color to the pin-spacer so it doesn't show a blank gap
+                    onRefresh: (self) => {
+                        if (self.pin && self.pin.parentElement && self.pin.parentElement.classList.contains('pin-spacer')) {
+                            self.pin.parentElement.style.backgroundColor = 'var(--color-navy)';
+                        }
+                    }
                 }
             });
 

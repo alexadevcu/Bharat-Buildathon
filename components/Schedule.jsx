@@ -16,57 +16,39 @@ export default function Schedule() {
         const ctx = gsap.context(() => {
             const track = trackRef.current;
             const items = gsap.utils.toArray('.timeline-node');
-            
-            const mm = gsap.matchMedia();
 
-            mm.add("(min-width: 769px)", () => {
-                const getScrollAmount = () => {
-                    let trackWidth = track.scrollWidth;
-                    return -(trackWidth - window.innerWidth);
-                };
+            const getScrollAmount = () => {
+                let trackWidth = track.scrollWidth;
+                return -(trackWidth - window.innerWidth);
+            };
 
-                const tween = gsap.to(track, {
-                    x: getScrollAmount,
-                    ease: "none"
-                });
+            const tween = gsap.to(track, {
+                x: getScrollAmount,
+                ease: "none"
+            });
 
-                ScrollTrigger.create({
-                    trigger: sectionRef.current,
-                    start: "top top",
-                    end: () => `+=${getScrollAmount() * -1}`,
-                    pin: true,
-                    animation: tween,
-                    scrub: 1,
-                    invalidateOnRefresh: true
-                });
+            ScrollTrigger.create({
+                trigger: sectionRef.current,
+                start: "top top",
+                end: () => `+=${getScrollAmount() * -1}`,
+                pin: true,
+                animation: tween,
+                scrub: 1,
+                invalidateOnRefresh: true
+            });
 
-                // Pop in the nodes as they scroll into view
-                items.forEach((item) => {
-                    const circle = item.querySelector('.timeline-circle');
-                    const content = item.querySelector('.timeline-content');
-                    const startDate = item.querySelector('.timeline-start-date');
+            // Pop in the nodes as they scroll into view
+            items.forEach((item) => {
+                const circle = item.querySelector('.timeline-circle');
+                const content = item.querySelector('.timeline-content');
+                const startDate = item.querySelector('.timeline-start-date');
 
-                    if (startDate) {
-                        gsap.from(startDate, {
-                            x: -50,
-                            opacity: 0,
-                            duration: 0.8,
-                            ease: 'power3.out',
-                            scrollTrigger: {
-                                trigger: item,
-                                containerAnimation: tween,
-                                start: "left 85%",
-                                toggleActions: "play none none reverse"
-                            }
-                        });
-                    }
-
-                    gsap.from([circle, content], {
-                        scale: 0.5,
+                if (startDate) {
+                    gsap.from(startDate, {
+                        x: -50,
                         opacity: 0,
                         duration: 0.8,
-                        stagger: 0.2,
-                        ease: 'back.out(1.7)',
+                        ease: 'power3.out',
                         scrollTrigger: {
                             trigger: item,
                             containerAnimation: tween,
@@ -74,22 +56,20 @@ export default function Schedule() {
                             toggleActions: "play none none reverse"
                         }
                     });
-                });
-            });
-            
-            mm.add("(max-width: 768px)", () => {
-                // On mobile, just fade in the timeline items as they enter the screen natively
-                items.forEach((item) => {
-                    gsap.from(item, {
-                        opacity: 0,
-                        y: 20,
-                        duration: 0.5,
-                        scrollTrigger: {
-                            trigger: item,
-                            start: "top 90%",
-                            toggleActions: "play none none reverse"
-                        }
-                    });
+                }
+
+                gsap.from([circle, content], {
+                    scale: 0.5,
+                    opacity: 0,
+                    duration: 0.8,
+                    stagger: 0.2,
+                    ease: 'back.out(1.7)',
+                    scrollTrigger: {
+                        trigger: item,
+                        containerAnimation: tween,
+                        start: "left 85%",
+                        toggleActions: "play none none reverse"
+                    }
                 });
             });
 
