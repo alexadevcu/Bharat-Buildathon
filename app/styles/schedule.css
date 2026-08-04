@@ -90,9 +90,21 @@
 }
 
 .timeline-content {
-    padding: 20px;
+    padding: 20px 24px;
     text-align: center;
     width: 300px;
+    background: #FFFFFF;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    border: 1.5px solid rgba(226, 232, 240, 0.8);
+    z-index: 5;
+    position: absolute;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-content:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.1);
 }
 
 .timeline-content h4 {
@@ -122,11 +134,9 @@
 }
 
 .timeline-node:nth-child(odd) .timeline-content {
-    position: absolute;
     top: 180px;
 }
 .timeline-node:nth-child(even) .timeline-content {
-    position: absolute;
     bottom: 180px;
 }
 
@@ -162,7 +172,7 @@
     .schedule-section {
         height: auto;        /* Remove the fixed 100vh — no pin on mobile */
         overflow: visible;
-        padding-bottom: 40px;
+        padding-bottom: 50px;
     }
 
     .schedule-header-sticky {
@@ -179,7 +189,7 @@
         overflow-x: auto;
         overflow-y: visible;
         -webkit-overflow-scrolling: touch;
-        padding-bottom: 20px;
+        padding-bottom: 30px;
         align-items: flex-start;
     }
 
@@ -189,14 +199,14 @@
     }
 
     .schedule-track {
-        padding: 20px 20px 20px 20px;
+        padding: 30px 40px 30px 60px;
         height: auto;
-        min-height: 460px;
+        min-height: 480px;
     }
 
     .timeline-node {
-        width: 240px;
-        height: 360px;
+        width: 280px;
+        height: 420px;
     }
 
     .timeline-circle {
@@ -210,26 +220,35 @@
     }
 
     .timeline-content {
-        width: 200px;
-        padding: 12px;
+        width: 250px;
+        padding: 16px 18px;
+        background: #FFFFFF;
+        border-radius: 18px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        border: 1.5px solid rgba(226, 232, 240, 0.9);
+        z-index: 5;
     }
 
     .timeline-content h4 {
-        font-size: 1rem;
+        font-size: 1.1rem;
+        margin-bottom: 6px;
     }
 
     .timeline-content p {
-        font-size: 0.8rem;
+        font-size: 0.88rem;
+        line-height: 1.4;
     }
 
     .timeline-start-date {
-        font-size: 1rem;
-        left: -20px;
-        width: 80px;
+        font-size: 1.05rem;
+        left: -45px;
+        top: 65px;
+        width: 90px;
+        z-index: 15;
     }
 
     .timeline-node:nth-child(odd)::after,
     .timeline-node:nth-child(even)::after {
-        width: 240px;
+        width: 280px;
     }
 }
