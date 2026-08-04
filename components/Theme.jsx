@@ -46,18 +46,34 @@ export default function Theme() {
     useEffect(() => {
         const ctx = gsap.context(() => {
             const cards = gsap.utils.toArray('.theme-card');
+            const mm = gsap.matchMedia();
             
-            gsap.from(cards, {
-                scale: 0.8,
-                y: 60,
-                opacity: 0,
-                duration: 0.8,
-                stagger: 0.15,
-                ease: 'back.out(1.7)',
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    start: 'top 75%',
-                }
+            mm.add("(min-width: 769px)", () => {
+                gsap.from(cards, {
+                    scale: 0.8,
+                    y: 60,
+                    opacity: 0,
+                    duration: 0.8,
+                    stagger: 0.15,
+                    ease: 'back.out(1.7)',
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        start: 'top 75%',
+                    }
+                });
+            });
+
+            mm.add("(max-width: 768px)", () => {
+                gsap.from(cards, {
+                    y: 20,
+                    opacity: 0,
+                    duration: 0.5,
+                    stagger: 0.1,
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        start: 'top 85%',
+                    }
+                });
             });
         }, sectionRef);
 

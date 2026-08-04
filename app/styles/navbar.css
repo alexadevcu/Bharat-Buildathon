@@ -203,25 +203,31 @@
     
     .navbar-floating-wrapper {
         top: 12px;
-        padding: 0 14px;
+        padding: 0 10px;
         display: flex !important;
     }
     .navbar-pill {
-        padding: 8px 18px;
+        padding: 6px 14px;
         border-radius: 999px;
-        justify-content: center;
+        justify-content: space-between;
+        width: 100%;
     }
     .navbar-pill__logos {
-        gap: 8px;
-        justify-content: center;
+        gap: 6px;
+        justify-content: flex-start;
+        flex-shrink: 1;
+        min-width: 0;
     }
     .navbar-pill__logo-img {
-        height: 22px;
-        max-width: 75px;
+        height: auto;
+        max-height: 20px;
+        max-width: 60px;
+        width: 100%;
+        object-fit: contain;
     }
     .navbar-pill__logo-divider {
         height: 14px;
-        margin: 0 2px;
+        margin: 0;
     }
     
     /* Hide navigation text links on mobile */
@@ -229,8 +235,9 @@
         display: none !important;
     }
     
-    /* Per user request: completely hide the hamburger on mobile so it doesn't open the full menu */
+    /* Keep hamburger visible on mobile */
     .mobile-hamburger {
-        display: none !important;
+        display: flex !important;
+        flex-shrink: 0;
     }
 }
