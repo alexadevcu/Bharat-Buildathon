@@ -38,11 +38,11 @@ export default function Hero() {
                         <span className="vimeo-hero__word" style={{ fontSize: '0.4em', letterSpacing: '0', fontWeight: 'normal', color: 'var(--color-lightblue)' }}>Ideate. Build. Pitch. Win.</span>
                     </h1>
                     
-                    <div style={{ marginTop: '30px', display: 'flex', gap: '20px' }}>
-                        <a href="https://forms.gle/crrKyBGmG1uS8GN9A" target="_blank" rel="noopener noreferrer" style={{ background: 'var(--color-saffron)', color: 'white', padding: '15px 30px', borderRadius: '30px', textDecoration: 'none', fontWeight: 'bold', fontSize: '1.2rem', transition: 'transform 0.2s' }} onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'} onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}>
+                    <div className="hero-btn-group">
+                        <a href="https://forms.gle/crrKyBGmG1uS8GN9A" target="_blank" rel="noopener noreferrer" className="hero-btn-primary">
                             Register Now
                         </a>
-                        <a href="#about" style={{ border: '2px solid var(--color-white)', color: 'white', padding: '15px 30px', borderRadius: '30px', textDecoration: 'none', fontWeight: 'bold', fontSize: '1.2rem', transition: 'background 0.2s, color 0.2s' }} onMouseEnter={(e) => { e.target.style.background = 'white'; e.target.style.color = 'var(--color-navy)'; }} onMouseLeave={(e) => { e.target.style.background = 'transparent'; e.target.style.color = 'white'; }}>
+                        <a href="#about" className="hero-btn-secondary">
                             Learn More
                         </a>
                     </div>

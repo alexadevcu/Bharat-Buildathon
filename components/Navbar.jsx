@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { WIGGLE_CONFIG } from '@/lib/data';
 
@@ -23,21 +23,19 @@ function initWiggle(element, intensity) {
 }
 
 export default function Navbar() {
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
     useEffect(() => {
         const navbar = document.querySelector('.navbar');
         const contentSection = document.querySelector('.content-section');
         const footerEl = document.querySelector('.main-footer');
 
-        // ② Start white (on-dark) — video is dark background
         if (navbar) { navbar.classList.add('on-dark'); navbar.classList.remove('on-light'); }
 
         const updateNavbarColor = () => {
             if (!navbar || !contentSection || !footerEl) return;
             const scrollPos = window.scrollY + navbar.offsetHeight / 2;
             const contentTop = contentSection.getBoundingClientRect().top + window.scrollY;
-
-            const showreelSection = document.querySelector('#showreel-section');
-            const showreelTop = showreelSection ? showreelSection.getBoundingClientRect().top + window.scrollY : Infinity;
 
             const serviceCardsSection = document.querySelector('.service-cards-wrapper');
             const serviceCardsTop = serviceCardsSection ? serviceCardsSection.getBoundingClientRect().top + window.scrollY : Infinity;
@@ -52,8 +50,6 @@ export default function Navbar() {
                 navbar.classList.add('on-light'); navbar.classList.remove('on-dark');
             } else if (scrollPos >= serviceCardsTop) {
                 navbar.classList.add('on-light'); navbar.classList.remove('on-dark');
-            } else if (scrollPos >= showreelTop) {
-                navbar.classList.add('on-dark'); navbar.classList.remove('on-light');
             } else if (scrollPos >= contentTop) {
                 navbar.classList.add('on-light'); navbar.classList.remove('on-dark');
             } else {
@@ -64,210 +60,90 @@ export default function Navbar() {
         window.addEventListener('scroll', updateNavbarColor);
         updateNavbarColor();
 
-        // Wiggle on logo and whatsapp
+        // Wiggle on logo (desktop only)
         const cleanups = [];
         const logoTruus = document.querySelector('.logo-truus');
-        if (logoTruus) cleanups.push(initWiggle(logoTruus, WIGGLE_CONFIG.logoTruus));
-
-        const overlay = document.querySelector('.nav-overlay');
-        if (overlay) {
-            gsap.set(overlay, { opacity: 0, visibility: 'hidden' });
+        if (logoTruus && window.innerWidth > 768) {
+            cleanups.push(initWiggle(logoTruus, WIGGLE_CONFIG.logoTruus));
         }
-        const showOverlay = () => {
+
+        // Desktop Hover logic
+        if (window.innerWidth > 768) {
+            const overlay = document.querySelector('.nav-overlay');
             if (overlay) {
-                gsap.set(overlay, { visibility: 'visible' });
-                gsap.to(overlay, { opacity: 1, duration: 0.35, ease: 'power2.out' });
+                gsap.set(overlay, { opacity: 0, visibility: 'hidden' });
             }
-        };
-        const hideOverlay = () => {
-            if (overlay) {
-                gsap.to(overlay, { opacity: 0, duration: 0.3, ease: 'power2.in', onComplete: () => gsap.set(overlay, { visibility: 'hidden' }) });
-            }
-        };
-
-        // ─── Navbar Left (Work) Hover ───
-        const navLeft = document.querySelector('.nav-left');
-        const workBox = document.querySelector('.nav-work-box');
-
-        if (navLeft && workBox) {
-            const workInner = workBox.querySelector('.nav-popout-inner');
-            const workItems = workInner ? Array.from(workInner.children) : [];
-
-            gsap.set(workBox, { visibility: 'visible', scale: 1, opacity: 1 });
-            const boxRect = workBox.getBoundingClientRect();
-            const navLeftRect = navLeft.getBoundingClientRect();
-
-            const originX = (navLeftRect.left + navLeftRect.width / 2) - boxRect.left;
-            const originY = 0; // scale from top
-            const workOrigin = `${originX}px ${originY}px`;
-
-            gsap.set(workBox, {
-                visibility: 'hidden',
-                scale: 0,
-                opacity: 0,
-                transformOrigin: workOrigin
-            });
-            gsap.set(workItems, { y: 10, opacity: 0 });
-
-            const onEnterLeft = () => {
-                gsap.killTweensOf(workBox);
-                gsap.killTweensOf(workItems);
-                showOverlay();
-
-                gsap.set(workBox, { visibility: 'visible' });
-                gsap.fromTo(workBox,
-                    { scale: 0, opacity: 0 },
-                    { scale: 1, opacity: 1, duration: 0.8, ease: 'expo.out' }
-                );
-                gsap.to(workItems, { y: 0, opacity: 1, duration: 0.45, stagger: 0.06, ease: 'power3.out', delay: 0.18 });
-            };
-
-            const onLeaveLeft = () => {
-                gsap.killTweensOf(workBox);
-                gsap.killTweensOf(workItems);
-                hideOverlay();
-
-                gsap.to(workItems, { y: 10, opacity: 0, duration: 0.15, ease: 'power2.in' });
-                gsap.to(workBox, {
-                    scale: 0,
-                    opacity: 0,
-                    duration: 0.3,
-                    ease: 'expo.in',
-                    delay: 0.05,
-                    onComplete: () => gsap.set(workBox, { visibility: 'hidden' })
-                });
-            };
-
-            navLeft.addEventListener('mouseenter', onEnterLeft);
-            navLeft.addEventListener('mouseleave', onLeaveLeft);
-            cleanups.push(() => {
-                navLeft.removeEventListener('mouseenter', onEnterLeft);
-                navLeft.removeEventListener('mouseleave', onLeaveLeft);
-            });
-        }
-
-        // ─── Navbar Right (WhatsApp) Hover ───
-        const navRight = document.querySelector('.nav-right');
-        const waBox = document.querySelector('.nav-wa-box');
-        const waSvgPath = document.querySelector('.nav-bar__whatsapp-svg path');
-
-        if (navRight && waBox) {
-            const waInner = waBox.querySelector('.nav-popout-inner');
-            const waItems = waInner ? Array.from(waInner.children) : [];
-            const waIcon = document.querySelector('.nav-bar__whatsapp-svg');
-
-            // Temporarily show to measure both the box AND the WA icon center
-            gsap.set(waBox, { visibility: 'visible', scale: 1, opacity: 1 });
-            const waBoxRect = waBox.getBoundingClientRect();
-            const waIconRect = waIcon ? waIcon.getBoundingClientRect() : waBoxRect;
-            // Icon center relative to the box's own top-left
-            const waOriginX = (waIconRect.left + waIconRect.width / 2) - waBoxRect.left;
-            const waOriginY = (waIconRect.top + waIconRect.height / 2) - waBoxRect.top;
-            const waOrigin = `${waOriginX}px ${waOriginY}px`;
-
-            // Start collapsed, scaling FROM the WA icon center
-            gsap.set(waBox, {
-                visibility: 'hidden',
-                scale: 0,
-                opacity: 0,
-                transformOrigin: waOrigin
-            });
-            gsap.set(waItems, { y: 10, opacity: 0 });
-
-            const onEnterRight = () => {
-                gsap.killTweensOf(waBox);
-                gsap.killTweensOf(waItems);
-                showOverlay();
-                if (waSvgPath) gsap.to(waSvgPath, { fill: '#0e6634ff', duration: 0.3 }); // Darker WA green
-
-                gsap.set(waBox, { visibility: 'visible' });
-                // Box grows out smoothly from the WA icon center
-                gsap.fromTo(waBox,
-                    { scale: 0, opacity: 0 },
-                    { scale: 1, opacity: 1, duration: 0.8, ease: 'expo.out' }
-                );
-                // Items emerge while box is growing
-                gsap.to(waItems, { y: 0, opacity: 1, duration: 0.45, stagger: 0.06, ease: 'power3.out', delay: 0.18 });
-            };
-
-            const onLeaveRight = () => {
-                gsap.killTweensOf(waBox);
-                gsap.killTweensOf(waItems);
-                hideOverlay();
-                if (waSvgPath) gsap.to(waSvgPath, { fill: 'currentColor', duration: 0.3 });
-
-                // Items fade quickly
-                gsap.to(waItems, { y: 10, opacity: 0, duration: 0.15, ease: 'power2.in' });
-                // Box shrinks back into WA icon smoothly
-                gsap.to(waBox, {
-                    scale: 0,
-                    opacity: 0,
-                    duration: 0.3,
-                    ease: 'expo.in',
-                    delay: 0.05,
-                    onComplete: () => gsap.set(waBox, { visibility: 'hidden' })
-                });
-            };
-
-            navRight.addEventListener('mouseenter', onEnterRight);
-            navRight.addEventListener('mouseleave', onLeaveRight);
-            cleanups.push(() => {
-                navRight.removeEventListener('mouseenter', onEnterRight);
-                navRight.removeEventListener('mouseleave', onLeaveRight);
-            });
-        }
-
-        // ─── Work Item: badge wiggle + image tilt on hover ───
-        const workItems = document.querySelectorAll('.nav-work-item');
-        workItems.forEach(item => {
-            const badge = item.querySelector('.nav-work-badge');
-            const img = item.querySelector('.nav-work-item__img');
-            let wiggleTween;
-
-            const onItemEnter = () => {
-                // Wiggle badge intensity 2
-                if (badge) {
-                    gsap.set(badge, { transformOrigin: 'center center' });
-                    wiggleTween = gsap.to(badge, { rotation: 5, duration: 0.15, repeat: -1, yoyo: true, ease: 'steps(1)' });
-                }
-                // Tilt image slightly right
-                if (img) gsap.to(img, { rotation: 16, scale: 1.15, duration: 0.25, ease: 'power2.out' });
-            };
-            const onItemLeave = () => {
-                if (wiggleTween) { wiggleTween.kill(); }
-                if (badge) gsap.to(badge, { rotation: 0, duration: 0.3, ease: 'power2.out' });
-                if (img) gsap.to(img, { rotation: 0, scale: 1, duration: 0.3, ease: 'power2.out' });
-            };
-            item.addEventListener('mouseenter', onItemEnter);
-            item.addEventListener('mouseleave', onItemLeave);
-            cleanups.push(() => {
-                item.removeEventListener('mouseenter', onItemEnter);
-                item.removeEventListener('mouseleave', onItemLeave);
-            });
-        });
-
-        // ─── All Our Work btn: wiggle intensity 4 (bubble handled by CursorBubble) ───
-        const workBtn = document.querySelector('.nav-work-btn');
-        if (workBtn) {
-            let btnWiggle;
-            const onBtnEnter = () => {
-                const btnText = workBtn.querySelector('.nav-work-btn__text');
-                if (btnText) {
-                    gsap.set(btnText, { transformOrigin: 'center center', display: 'inline-block' });
-                    btnWiggle = gsap.to(btnText, { rotation: 4, duration: 0.12, repeat: -1, yoyo: true, ease: 'steps(1)' });
+            const showOverlay = () => {
+                if (overlay) {
+                    gsap.set(overlay, { visibility: 'visible' });
+                    gsap.to(overlay, { opacity: 1, duration: 0.35, ease: 'power2.out' });
                 }
             };
-            const onBtnLeave = () => {
-                const btnText = workBtn.querySelector('.nav-work-btn__text');
-                if (btnWiggle) { btnWiggle.kill(); }
-                if (btnText) gsap.to(btnText, { rotation: 0, duration: 0.3, ease: 'power2.out' });
+            const hideOverlay = () => {
+                if (overlay) {
+                    gsap.to(overlay, { opacity: 0, duration: 0.3, ease: 'power2.in', onComplete: () => gsap.set(overlay, { visibility: 'hidden' }) });
+                }
             };
-            workBtn.addEventListener('mouseenter', onBtnEnter);
-            workBtn.addEventListener('mouseleave', onBtnLeave);
-            cleanups.push(() => {
-                workBtn.removeEventListener('mouseenter', onBtnEnter);
-                workBtn.removeEventListener('mouseleave', onBtnLeave);
-            });
+
+            const navLeft = document.querySelector('.nav-left');
+            const workBox = document.querySelector('.nav-work-box');
+
+            if (navLeft && workBox) {
+                const workInner = workBox.querySelector('.nav-popout-inner');
+                const workItems = workInner ? Array.from(workInner.children) : [];
+
+                gsap.set(workBox, { visibility: 'visible', scale: 1, opacity: 1 });
+                const boxRect = workBox.getBoundingClientRect();
+                const navLeftRect = navLeft.getBoundingClientRect();
+
+                const originX = (navLeftRect.left + navLeftRect.width / 2) - boxRect.left;
+                const originY = 0; 
+                const workOrigin = `${originX}px ${originY}px`;
+
+                gsap.set(workBox, {
+                    visibility: 'hidden',
+                    scale: 0,
+                    opacity: 0,
+                    transformOrigin: workOrigin
+                });
+                gsap.set(workItems, { y: 10, opacity: 0 });
+
+                const onEnterLeft = () => {
+                    gsap.killTweensOf(workBox);
+                    gsap.killTweensOf(workItems);
+                    showOverlay();
+
+                    gsap.set(workBox, { visibility: 'visible' });
+                    gsap.fromTo(workBox,
+                        { scale: 0, opacity: 0 },
+                        { scale: 1, opacity: 1, duration: 0.8, ease: 'expo.out' }
+                    );
+                    gsap.to(workItems, { y: 0, opacity: 1, duration: 0.45, stagger: 0.06, ease: 'power3.out', delay: 0.18 });
+                };
+
+                const onLeaveLeft = () => {
+                    gsap.killTweensOf(workBox);
+                    gsap.killTweensOf(workItems);
+                    hideOverlay();
+
+                    gsap.to(workItems, { y: 10, opacity: 0, duration: 0.15, ease: 'power2.in' });
+                    gsap.to(workBox, {
+                        scale: 0,
+                        opacity: 0,
+                        duration: 0.3,
+                        ease: 'expo.in',
+                        delay: 0.05,
+                        onComplete: () => gsap.set(workBox, { visibility: 'hidden' })
+                    });
+                };
+
+                navLeft.addEventListener('mouseenter', onEnterLeft);
+                navLeft.addEventListener('mouseleave', onLeaveLeft);
+                cleanups.push(() => {
+                    navLeft.removeEventListener('mouseenter', onEnterLeft);
+                    navLeft.removeEventListener('mouseleave', onLeaveLeft);
+                });
+            }
         }
 
         return () => {
@@ -276,40 +152,72 @@ export default function Navbar() {
         };
     }, []);
 
+    const toggleMobileMenu = () => {
+        setIsMobileMenuOpen(!isMobileMenuOpen);
+    };
+
+    const closeMobileMenu = () => {
+        setIsMobileMenuOpen(false);
+    };
+
     return (
         <>
             <div className="nav-overlay"></div>
-            <nav className="navbar">
-                <div className="nav-left">
+            <nav className={`navbar ${isMobileMenuOpen ? 'mobile-menu-open' : ''}`}>
+                <div className="nav-left desktop-only">
                     <div className="nav-hover-trigger">
                         <div className="logo-work-container">
                             <span className="logo-work-text" style={{ fontSize: '1.2rem', fontWeight: 600 }}>Explore Sections</span>
                         </div>
 
-                        {/* Pop-out Box for Left Side */}
                         <div className="nav-popout nav-work-box" style={{ width: '220px' }}>
                             <div className="nav-popout-inner" style={{ display: 'flex', flexDirection: 'column', gap: '15px', maxHeight: '80vh', overflowY: 'auto' }}>
-                                <a href="#about" style={{ textDecoration: 'none', color: 'inherit', fontSize: '1.2rem', fontWeight: 600, borderBottom: '1px solid rgba(0,0,0,0.1)', paddingBottom: '10px' }}>About</a>
-                                <a href="#theme" style={{ textDecoration: 'none', color: 'inherit', fontSize: '1.2rem', fontWeight: 600, borderBottom: '1px solid rgba(0,0,0,0.1)', paddingBottom: '10px' }}>Themes</a>
-                                <a href="#rounds" style={{ textDecoration: 'none', color: 'inherit', fontSize: '1.2rem', fontWeight: 600, borderBottom: '1px solid rgba(0,0,0,0.1)', paddingBottom: '10px' }}>Rounds</a>
-                                <a href="#schedule" style={{ textDecoration: 'none', color: 'inherit', fontSize: '1.2rem', fontWeight: 600, borderBottom: '1px solid rgba(0,0,0,0.1)', paddingBottom: '10px' }}>Schedule</a>
-                                <a href="#judging" style={{ textDecoration: 'none', color: 'inherit', fontSize: '1.2rem', fontWeight: 600, borderBottom: '1px solid rgba(0,0,0,0.1)', paddingBottom: '10px' }}>Judging</a>
-                                <a href="#prizes" style={{ textDecoration: 'none', color: 'inherit', fontSize: '1.2rem', fontWeight: 600, borderBottom: '1px solid rgba(0,0,0,0.1)', paddingBottom: '10px' }}>Prizes</a>
-                                <a href="#faq" style={{ textDecoration: 'none', color: 'inherit', fontSize: '1.2rem', fontWeight: 600, borderBottom: '1px solid rgba(0,0,0,0.1)', paddingBottom: '10px' }}>FAQ</a>
-                                <a href="#sponsors" style={{ textDecoration: 'none', color: 'inherit', fontSize: '1.2rem', fontWeight: 600 }}>Sponsors</a>
+                                <a href="#about" className="nav-popout-link">About</a>
+                                <a href="#theme" className="nav-popout-link">Themes</a>
+                                <a href="#rounds" className="nav-popout-link">Rounds</a>
+                                <a href="#schedule" className="nav-popout-link">Schedule</a>
+                                <a href="#judging" className="nav-popout-link">Judging</a>
+                                <a href="#prizes" className="nav-popout-link">Prizes</a>
+                                <a href="#faq" className="nav-popout-link">FAQ</a>
+                                <a href="#sponsors" className="nav-popout-link" style={{ borderBottom: 'none' }}>Sponsors</a>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <div className="nav-center">
                     <h1 className="logo-truus" style={{ fontSize: '1.5rem', fontWeight: 800, margin: 0, whiteSpace: 'nowrap' }}>BHARAT BUILDATHON</h1>
                 </div>
-                <div className="nav-right">
+
+                <div className="nav-right desktop-only">
                     <a href="https://forms.gle/crrKyBGmG1uS8GN9A" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', background: 'var(--color-saffron)', color: 'var(--color-white)', padding: '10px 20px', borderRadius: '50px', fontWeight: 600, fontSize: '1.1rem' }}>
                         Register Now
                     </a>
                 </div>
+
+                {/* Mobile Hamburger Icon */}
+                <div className="mobile-hamburger" onClick={toggleMobileMenu}>
+                    <div className={`hamburger-line ${isMobileMenuOpen ? 'open' : ''}`}></div>
+                    <div className={`hamburger-line ${isMobileMenuOpen ? 'open' : ''}`}></div>
+                    <div className={`hamburger-line ${isMobileMenuOpen ? 'open' : ''}`}></div>
+                </div>
             </nav>
+
+            {/* Mobile Menu Overlay */}
+            <div className={`mobile-menu-overlay ${isMobileMenuOpen ? 'open' : ''}`}>
+                <div className="mobile-menu-close" onClick={closeMobileMenu} style={{ position: 'absolute', top: '30px', right: '30px', fontSize: '2rem', cursor: 'pointer', color: 'var(--color-white)', zIndex: 1002 }}>✕</div>
+                <div className="mobile-menu-content">
+                    <a href="#about" onClick={closeMobileMenu}>About</a>
+                    <a href="#theme" onClick={closeMobileMenu}>Themes</a>
+                    <a href="#rounds" onClick={closeMobileMenu}>Rounds</a>
+                    <a href="#schedule" onClick={closeMobileMenu}>Schedule</a>
+                    <a href="#judging" onClick={closeMobileMenu}>Judging</a>
+                    <a href="#prizes" onClick={closeMobileMenu}>Prizes</a>
+                    <a href="#faq" onClick={closeMobileMenu}>FAQ</a>
+                    <a href="#sponsors" onClick={closeMobileMenu}>Sponsors</a>
+                    <a href="https://forms.gle/crrKyBGmG1uS8GN9A" target="_blank" rel="noopener noreferrer" className="mobile-register-btn" onClick={closeMobileMenu}>Register Now</a>
+                </div>
+            </div>
         </>
     );
 }

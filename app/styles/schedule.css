@@ -153,11 +153,6 @@
 }
 
 @media (max-width: 768px) {
-    .schedule-section {
-        height: auto;
-        overflow: visible;
-        padding-bottom: 60px;
-    }
     .schedule-header-sticky {
         padding-top: 20px;
         margin-bottom: 40px;
@@ -165,84 +160,6 @@
     .schedule__title {
         font-size: 3.5rem;
     }
-    .schedule-track-container {
-        display: block;
-        width: 100%;
-    }
-    .schedule-track {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        padding: 0 20px;
-        align-items: flex-start;
-        position: relative;
-    }
-    /* Glowing gradient vertical line */
-    .schedule-track::before {
-        content: '';
-        position: absolute;
-        left: 48px; /* 20px padding + 30px half-circle - 2px half-line */
-        top: 0;
-        bottom: 0;
-        width: 4px;
-        background: linear-gradient(to bottom, var(--color-saffron), var(--color-purple), var(--color-lightblue));
-        border-radius: 4px;
-        z-index: 0;
-    }
-    .timeline-node {
-        width: 100%;
-        height: auto;
-        margin: 0 0 40px 0;
-        transform: none;
-        flex-direction: row;
-        align-items: flex-start;
-        justify-content: flex-start;
-    }
-    .timeline-circle {
-        position: static;
-        width: 60px;
-        height: 60px;
-        border-width: 4px;
-        transform: none;
-        margin-right: 20px;
-        flex-shrink: 0;
-        z-index: 2;
-        background-color: var(--color-white);
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    }
-    .timeline-time {
-        font-size: 0.8rem;
-        font-weight: 700;
-        color: var(--color-dark);
-    }
-    /* Glassmorphic Event Card */
-    .timeline-content {
-        position: static !important;
-        width: 100%;
-        background: rgba(255, 255, 255, 0.7);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        border-radius: 16px;
-        padding: 20px;
-        text-align: left;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-    }
-    .timeline-content h4 {
-        font-size: 1.25rem;
-        margin-bottom: 8px;
-    }
-    .timeline-content p {
-        font-size: 0.95rem;
-        color: var(--color-dark);
-        opacity: 0.8;
-    }
-    .timeline-node:nth-child(odd) .timeline-circle,
-    .timeline-node:nth-child(even) .timeline-circle {
-        top: auto;
-        bottom: auto;
-    }
-    .timeline-node::after {
-        display: none !important;
-    }
+    
+
 }

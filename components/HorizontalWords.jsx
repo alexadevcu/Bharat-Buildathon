@@ -18,10 +18,11 @@ const HorizontalWords = () => {
             const stickers = container.querySelectorAll('.horizontal-words__sticker');
             const arrows = container.querySelectorAll('.horizontal-words__arrow-svg path, .horizontal-words__arrow-end-svg path');
 
+            const isMobile = window.innerWidth <= 768;
             const scrollTween = gsap.fromTo(textRef, {
-                xPercent: 50
+                xPercent: isMobile ? 80 : 50
             }, {
-                xPercent: -40,
+                xPercent: isMobile ? -80 : -40,
                 ease: 'none',
                 scrollTrigger: {
                     trigger: container,

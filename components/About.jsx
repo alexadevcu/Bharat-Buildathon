@@ -13,6 +13,9 @@ export default function About() {
 
     useEffect(() => {
         const ctx = gsap.context(() => {
+            // Disable inertia on mobile devices for better UX
+            if (window.innerWidth < 768) return;
+
             // Inertia on cards
             const cards = document.querySelectorAll(".motion-card__card");
             cards.forEach((card) => {

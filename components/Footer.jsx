@@ -201,7 +201,7 @@ export default function Footer() {
             {/* Big Wordmark */}
             <div className="footer-bottom">
                 <div className="footer-big-text">
-                    <h1 style={{ fontSize: 'clamp(5rem, 10vw, 15rem)', fontWeight: 800, lineHeight: 1, letterSpacing: '-0.05em', color: 'currentColor' }}>
+                    <h1 className="footer-title" style={{ fontSize: 'clamp(5rem, 10vw, 15rem)', fontWeight: 800, lineHeight: 1, letterSpacing: '-0.05em', color: 'currentColor' }}>
                         BHARAT BUILDATHON
                     </h1>
                 </div>

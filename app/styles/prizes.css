@@ -152,22 +152,49 @@
 
 @media (max-width: 768px) {
     .podium-wrapper {
-        flex-direction: column;
-        align-items: center;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        gap: 20px;
+        align-items: end;
         height: auto;
-        gap: 50px;
+        margin-bottom: 50px;
     }
     
     .podium {
         width: 100%;
-        max-width: 300px;
+        max-width: 100%;
     }
     
-    .podium--first { order: -1; } /* Force 1st place to top on mobile */
+    .podium--first { 
+        grid-column: 1 / -1; 
+        grid-row: 1;
+        width: 75%;
+        margin: 0 auto 20px auto;
+    } 
+    
+    .podium--second {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .podium--third {
+        grid-column: 2;
+        grid-row: 2;
+    }
     
     .podium__base {
-        height: 80px !important; /* Shorter bases on mobile */
+        height: 80px !important; 
         border-radius: 20px;
+    }
+    
+    .podium__trophy {
+        font-size: 3.5rem;
+    }
+    .podium--first .podium__trophy { font-size: 5rem; }
+    
+    .podium__rank {
+        font-size: 1.4rem;
     }
     
     .participation-banner__content {
