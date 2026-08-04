@@ -103,6 +103,7 @@ export default function Hero() {
                     loop
                     muted
                     playsInline
+                    preload="metadata"
                     className="bharat-hero__video"
                 />
                 <div className="bharat-hero__video-overlay" />
@@ -208,6 +209,8 @@ export default function Hero() {
                                     <img
                                         src="/assets/Scanner.png"
                                         alt="Scan to register"
+                                        loading="lazy"
+                                        decoding="async"
                                         style={{ width: '100%', height: '100%', objectFit: 'contain', borderRadius: '6px' }}
                                     />
                                 </div>

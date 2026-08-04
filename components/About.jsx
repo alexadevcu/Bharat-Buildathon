@@ -168,10 +168,11 @@ export default function About() {
                     <div className="motion-card__card motion-card__card--1">
                         <div className="motion-card__card-image">
                             <img
-                                src="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=1000&auto=format&fit=crop"
+                                src="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=75&w=600&auto=format&fit=crop"
                                 loading="lazy"
-                                width={1000}
-                                height={1000}
+                                decoding="async"
+                                width={600}
+                                height={750}
                                 alt="Ideation Workshop"
                                 className="cover-image"
                             />
@@ -181,10 +182,11 @@ export default function About() {
                     <div className="motion-card__card motion-card__card--2">
                         <div className="motion-card__card-image">
                             <img
-                                src="https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?q=80&w=1000&auto=format&fit=crop"
+                                src="https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?q=75&w=600&auto=format&fit=crop"
                                 loading="lazy"
-                                width={1000}
-                                height={1000}
+                                decoding="async"
+                                width={600}
+                                height={750}
                                 alt="Mentorship"
                                 className="cover-image"
                             />
@@ -194,10 +196,11 @@ export default function About() {
                     <div className="motion-card__card motion-card__card--3">
                         <div className="motion-card__card-image">
                             <img
-                                src="https://images.unsplash.com/photo-1542626991-cbc4e32524cc?q=80&w=1000&auto=format&fit=crop"
+                                src="https://images.unsplash.com/photo-1542626991-cbc4e32524cc?q=75&w=600&auto=format&fit=crop"
                                 loading="lazy"
-                                width={1000}
-                                height={1000}
+                                decoding="async"
+                                width={600}
+                                height={750}
                                 alt="Live Pitching"
                                 className="cover-image"
                             />
@@ -207,10 +210,11 @@ export default function About() {
                     <div className="motion-card__card motion-card__card--4">
                         <div className="motion-card__card-image">
                             <img
-                                src="https://images.unsplash.com/photo-1561489422-45de3d015e3e?q=80&w=1000&auto=format&fit=crop"
+                                src="https://images.unsplash.com/photo-1561489422-45de3d015e3e?q=75&w=600&auto=format&fit=crop"
                                 loading="lazy"
-                                width={1000}
-                                height={1000}
+                                decoding="async"
+                                width={600}
+                                height={750}
                                 alt="Prizes & Glory"
                                 className="cover-image"
                             />
