@@ -57,9 +57,10 @@ export default function Navbar() {
                     {/* Right: Nav Links + Register Button */}
                     <div className="navbar-pill__links desktop-only">
                         <a href="#" className="navbar-pill__link navbar-pill__link--active">Home</a>
+                        <a href="#about" className="navbar-pill__link">About</a>
                         <a href="#rounds" className="navbar-pill__link">Rounds</a>
                         <a href="#schedule" className="navbar-pill__link">Timeline</a>
-                        <a href="#about" className="navbar-pill__link">About</a>
+                        <a href="#prizes" className="navbar-pill__link">Prizes</a>
                         <a href="#faq" className="navbar-pill__link">FAQ</a>
                         <a href="#contact" className="navbar-pill__cta">
                             Contact Us

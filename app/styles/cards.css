@@ -246,3 +246,20 @@
     right: var(--sticker-heart-right);
     transform: rotate(1deg);
 }
+
+/* Mobile Responsive Header Rules */
+@media (max-width: 768px) {
+    .title-container {
+        margin: 0 auto 30px auto;
+        padding: 0 16px;
+    }
+    .main-title {
+        font-size: clamp(2.1rem, 6.5vw, 2.6rem);
+        letter-spacing: -1px;
+        line-height: 1.15;
+    }
+    .title-underline-svg {
+        width: 140px;
+        height: auto;
+    }
+}

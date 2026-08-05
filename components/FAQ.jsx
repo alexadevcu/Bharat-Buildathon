@@ -14,7 +14,7 @@ const FAQ_DATA = [
     },
     {
         q: "What's the team size?",
-        a: "Teams can consist of 2 to 4 members. We encourage cross-disciplinary teams for diverse perspectives."
+        a: "Teams can consist of 3 to 4 members. We encourage cross-disciplinary teams for diverse perspectives."
     },
     {
         q: "Do I need prior coding experience?",
@@ -34,7 +34,7 @@ const FAQ_DATA = [
     },
     {
         q: "Can I participate solo?",
-        a: "No, this is a team-based event. You must register with a team of 2 to 4 members."
+        a: "No, this is a team-based event. You must register with a team of 3 to 4 members."
     }
 ];
 

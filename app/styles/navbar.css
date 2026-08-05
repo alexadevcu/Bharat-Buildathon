@@ -289,9 +289,39 @@
         display: none !important;
     }
     
-    /* Keep hamburger visible on mobile */
+    /* 3-Bar Mobile Hamburger Toggle Button */
     .mobile-hamburger {
         display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        background: #FFFFFF;
+        border: 1.5px solid rgba(226, 232, 240, 0.9);
+        border-radius: 50%;
+        width: 42px;
+        height: 42px;
+        padding: 0;
+        cursor: pointer;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         flex-shrink: 0;
+    }
+
+    .hamburger-line {
+        width: 22px;
+        height: 2.5px;
+        background-color: #0A192F;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+    }
+
+    .hamburger-line.open:nth-child(1) {
+        transform: translateY(7.5px) rotate(45deg);
+    }
+    .hamburger-line.open:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger-line.open:nth-child(3) {
+        transform: translateY(-7.5px) rotate(-45deg);
     }
 }
