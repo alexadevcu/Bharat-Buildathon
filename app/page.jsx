@@ -14,6 +14,7 @@ import Footer from '@/components/Footer';
 import TransitionScribble from '@/components/TransitionScribble';
 import CursorBubble from '@/components/CursorBubble';
 import SmoothScroll from '@/components/SmoothScroll';
+import ScrollToTop from '@/components/ScrollToTop';
 import HorizontalWords from '@/components/HorizontalWords';
 
 export default function Home() {
@@ -21,10 +22,9 @@ export default function Home() {
         <>
             <SvgSymbols />
             <SmoothScroll />
+            <ScrollToTop />
             <CursorBubble />
-            <header className="main-header">
-                <Navbar />
-            </header>
+            <Navbar />
             <Hero />
             <HorizontalWords />
             <main>

@@ -9,6 +9,12 @@ export default function SmoothScroll() {
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
 
+        // Force browser reload to start at top landing page (Hero section)
+        if ('scrollRestoration' in window.history) {
+            window.history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+
         // Skip Lenis on mobile — native touch scroll works better with GSAP pins
         const isMobile = window.innerWidth <= 768;
 

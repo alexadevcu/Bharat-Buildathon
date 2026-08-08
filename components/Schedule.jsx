@@ -13,8 +13,9 @@ export default function Schedule() {
     const trackRef = useRef(null);
 
     useEffect(() => {
-        // Only run GSAP horizontal scroll on desktop
-        if (window.innerWidth <= 768) return;
+        // Only run GSAP horizontal scroll on true desktop non-touch devices
+        const isMobileOrTouch = window.innerWidth <= 768 || ('ontouchstart' in window && window.innerWidth <= 1024);
+        if (isMobileOrTouch) return;
 
         const ctx = gsap.context(() => {
             const track = trackRef.current;

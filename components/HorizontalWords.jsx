@@ -13,8 +13,9 @@ const HorizontalWords = () => {
     const sectionRef = useRef(null);
 
     useEffect(() => {
-        // Mobile: no GSAP at all — pure CSS, no pin, no scroll-jacking
-        if (window.innerWidth <= 768) return;
+        // Mobile or touch: no GSAP at all — pure CSS, no pin, no scroll-jacking
+        const isMobileOrTouch = window.innerWidth <= 768 || ('ontouchstart' in window && window.innerWidth <= 1024);
+        if (isMobileOrTouch) return;
 
         const ctx = gsap.context(() => {
             const container = sectionRef.current;

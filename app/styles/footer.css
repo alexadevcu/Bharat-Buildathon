@@ -172,7 +172,8 @@
     justify-content: space-between;
     align-items: flex-end;
     pointer-events: none;
-    z-index: 10;
+    z-index: 2000;
+    overflow: visible;
 }
 
 .footer-url {
@@ -183,9 +184,11 @@
 .footer-credits-wrapper {
     position: relative;
     pointer-events: auto;
-    margin-right: -25px;
+    margin-right: 0;
     margin-bottom: -25px;
-    z-index: 100;
+    padding-bottom: 25px;
+    z-index: 2000;
+    overflow: visible;
 }
 
 /* Bridge the gap between the credits button and the popup box */
@@ -218,40 +221,36 @@
 
 .credits-box {
     position: absolute;
-    bottom: calc(100% + 15px);
+    bottom: calc(100% + 10px);
     right: 0;
-    background: var(--color-black);
-    border-radius: 12px;
+    background: #0A1225;
+    border-radius: 20px;
     opacity: 0;
     visibility: hidden;
     transform-origin: bottom right;
-    border: 3px solid var(--color-white);
+    border: 2px solid rgba(255, 255, 255, 0.25);
     pointer-events: auto;
-    overflow: hidden;
-    z-index: 1;
-
-    /* Act as a clipping mask anchoring content bottom-right */
+    z-index: 2000;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
     box-sizing: border-box;
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
+    padding: 24px 28px;
+    width: max-content;
+    max-width: 340px;
+    overflow: visible;
 }
 
 .credits-content {
     display: flex;
-    /* REDUCED BOX SIZE: Makes the box smaller without changing text size */
-    gap: 38px;
-    padding: 34px 26px;
-    white-space: nowrap;
-    width: max-content;
-    height: max-content;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    height: auto;
 }
-
 
 .credits-item {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 5px;
 }
 
 .overflow-wrapper {
@@ -260,27 +259,35 @@
 
 .credits-label,
 .credits-name {
-    display: inline-block;
+    display: block;
 }
 
 .credits-label {
-    color: var(--color-white);
-    font-size: 1.3rem;
-    font-weight: 950;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.7rem;
+    font-weight: 700;
     font-family: 'Epilogue', sans-serif;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    white-space: nowrap;
 }
 
 .credits-name {
     color: var(--color-white);
-    font-size: 1.1rem;
-    font-weight: 450;
+    font-size: 0.9rem;
+    line-height: 1.9;
+    font-weight: 400;
     font-family: 'Epilogue', sans-serif;
-    opacity: 0.9;
     text-decoration: none;
-    /* Removed underline since it's an <a> tag now */
-    cursor: url("/assets/Cursor SVG/cursor-pointer.svg") 12 12, pointer;
-    /* Added custom pointer */
-    display: inline-block;
+    white-space: normal;
+    word-break: keep-all;
+}
+
+.credits-name a {
+    color: var(--color-white);
+    text-decoration: underline;
+    text-underline-offset: 2px;
 }
 
 /* ─── Footer Stickers ────────────────────────────────────────────────────── */

@@ -34,57 +34,65 @@ export default function Footer() {
             footerMapLink.addEventListener('mouseleave', onLeave);
         }
 
-        // ─── Credits pop-out ───
+        // ─── Credits pop-out & click toggle ───
         const creditsWrapper = document.querySelector('.footer-credits-wrapper');
         if (creditsWrapper) {
             const creditsBox = creditsWrapper.querySelector('.credits-box');
-            const creditsItems = creditsBox.querySelectorAll('.credits-item');
-
-            // Temporarily make the box visible to measure full dimensions
-            gsap.set(creditsBox, { visibility: 'visible', width: 'auto', height: 'auto', opacity: 1 });
-            const boxRect = creditsBox.getBoundingClientRect();
-            const fullWidth = boxRect.width;
-            const fullHeight = boxRect.height;
-            const boxHeight = boxRect.height; // for text Y translation
-
-            // Distance from box's final position down to behind the credits button
             const creditsBtn = creditsWrapper.querySelector('.footer-credits');
-            const startY = creditsBtn.offsetHeight + 15;
+            let isOpen = false;
 
-            // Set precise initial states for box and text
-            // Box starts collapsed rather than 0 scale
-            gsap.set(creditsBox, { visibility: 'hidden', width: 0, height: 0, opacity: 0, y: startY });
-            gsap.set(creditsItems, { y: boxHeight });
-
-            const onEnter = () => {
-                gsap.set(creditsBox, { visibility: 'visible' });
+            const openBox = () => {
+                isOpen = true;
                 gsap.killTweensOf(creditsBox);
-                gsap.killTweensOf(creditsItems);
-
-                // Box physically grows to full dimensions instead of scaling
-                gsap.to(creditsBox, { width: fullWidth, height: fullHeight, opacity: 1, y: 0, duration: 0.45, ease: 'power3.out' });
-
-                // Text slides up smoothly, slightly delayed
-                gsap.to(creditsItems, { y: 0, duration: 0.5, stagger: 0.04, ease: 'power3.out', delay: 0.1 });
+                gsap.set(creditsBox, { visibility: 'visible' });
+                gsap.to(creditsBox, {
+                    opacity: 1,
+                    scale: 1,
+                    y: 0,
+                    duration: 0.35,
+                    ease: 'back.out(1.4)'
+                });
             };
 
-            const onLeave = () => {
+            const closeBox = () => {
+                isOpen = false;
                 gsap.killTweensOf(creditsBox);
-                gsap.killTweensOf(creditsItems);
-
-                // Box physically shrinks to 0x0
                 gsap.to(creditsBox, {
-                    width: 0, height: 0, opacity: 0, y: startY, duration: 0.35, ease: 'power3.in',
+                    opacity: 0,
+                    scale: 0.9,
+                    y: 10,
+                    duration: 0.25,
+                    ease: 'power2.in',
                     onComplete: () => gsap.set(creditsBox, { visibility: 'hidden' })
                 });
+            };
 
-                // Text sits perfectly still while the box begins crushing it, 
-                // and then slowly slides back down in reverse order (`stagger: -0.03`) so the rightmost column clears first
-                gsap.to(creditsItems, { y: boxHeight, duration: 0.4, ease: 'power3.in', stagger: -0.03, delay: 0.1 });
+            const onEnter = () => openBox();
+            const onLeave = () => { if (isOpen) closeBox(); };
+
+            const toggleBox = (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                if (isOpen) {
+                    closeBox();
+                } else {
+                    openBox();
+                }
             };
 
             creditsWrapper.addEventListener('mouseenter', onEnter);
             creditsWrapper.addEventListener('mouseleave', onLeave);
+            if (creditsBtn) creditsBtn.addEventListener('click', toggleBox);
+
+            // Stop clicks inside the popup box from bubbling to document (prevents jitter)
+            if (creditsBox) creditsBox.addEventListener('click', (e) => e.stopPropagation());
+
+            const onOutsideClick = (e) => {
+                if (isOpen && !creditsWrapper.contains(e.target)) {
+                    closeBox();
+                }
+            };
+            document.addEventListener('click', onOutsideClick);
         }
 
         // ─── Footer sticker pop-up on scroll ───
@@ -275,13 +283,20 @@ export default function Footer() {
                     <div className="footer-credits-wrapper">
                         <div className="credits-box">
                             <div className="credits-content">
-                                <div className="credits-item credit-wiggle">
-                                    <div className="overflow-wrapper"><span className="credits-label">organised by</span></div>
-                                    <div className="overflow-wrapper"><a href="#" onClick={(e) => e.preventDefault()} className="credits-name" data-wiggle-target="true" style={{ fontSize: '0.9rem', lineHeight: '1.2' }}>Alexa Developer Community CU <br /> Geeks for Geeks CU</a></div>
+                                <div className="credits-item">
+                                    <span className="credits-label">built under</span>
+                                    <span className="credits-name">
+                                        <a href="https://linktr.ee/vasu_gera" target="_blank" rel="noopener noreferrer">Vasu Gera</a>,{' '}
+                                        Akshat Sinha,{' '}
+                                        Akshat Raj,{' '}
+                                        Alexa Dev Team &amp; GFG Team
+                                    </span>
                                 </div>
-                                <div className="credits-item credit-wiggle">
-                                    <div className="overflow-wrapper"><span className="credits-label">hosted at</span></div>
-                                    <div className="overflow-wrapper"><a href="#" onClick={(e) => e.preventDefault()} className="credits-name" data-wiggle-target="true">Chandigarh <br /> University</a></div>
+                                <div className="credits-item">
+                                    <span className="credits-label">organized under</span>
+                                    <span className="credits-name">
+                                        C2 Takshashila Block, Chandigarh University
+                                    </span>
                                 </div>
                             </div>
                         </div>
