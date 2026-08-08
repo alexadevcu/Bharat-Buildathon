@@ -149,14 +149,14 @@ const HorizontalWords = () => {
                     <span>WIN</span>
                 </h2>
                 <p className="mobile-hw-desc">
-                    Join 100+ teams in an 8-hour sprint of pure innovation. Ideate, pitch, and compete for a massive prize pool.
+                    Bring your vision to life. Collaborate with fellow innovators, showcase your ideas, and compete for prestige and prizes.
                 </p>
             </div>
 
             <div className="horizontal-words__bottom-text desktop-hw-content">
                 <div className="horizontal-words__bottom-text-l">
-                    Join 100+ teams in an 8-hour sprint of pure innovation.<br />
-                    Ideate, pitch, and compete for a massive prize pool.<br />
+                    Unleash your potential in a high-energy platform of innovation.<br />
+                    Collaborate, pitch your breakthrough solutions, and compete for top honors.<br />
                     Are you ready to shape the future?
                 </div>
             </div>

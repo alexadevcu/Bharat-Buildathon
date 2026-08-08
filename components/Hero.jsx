@@ -142,7 +142,7 @@ export default function Hero() {
                         </p>
 
                         <p className="bharat-hero__desc">
-                            Empowering and accelerating innovation for India's growth. Join 100+ teams in an 8-hour device-free ideation & pitch sprint.
+                            Empowering student visionaries to solve real-world challenges through creative problem solving, strategic thinking, and impactful pitches.
                         </p>
 
                         {/* Horizontal Specs Glass Bar */}
