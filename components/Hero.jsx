@@ -220,7 +220,7 @@ export default function Hero() {
                                         : 'bharat-hero__btn-secondary'
                                     }
                                 >
-                                    {buttonMode === 'round2' ? 'Round 2 Submissions →' : 'Explore Ideathon'}
+                                    <span>{buttonMode === 'round2' ? 'Round 2 Submissions →' : 'Explore Ideathon'}</span>
                                 </a>
                             </div>
 
