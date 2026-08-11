@@ -51,3 +51,8 @@ next-dev-capture.*.log
 /gridscan_extracted.js
 /gridscan_shader.txt
 /GridScan.jsx
+
+# environment
+.env
+.env.local
+.env*.local

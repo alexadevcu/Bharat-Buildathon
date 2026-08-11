@@ -1,10 +1,32 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
+import { supabase } from '@/lib/supabase';
 
 export default function Hero() {
     const heroRef = useRef(null);
+    const [buttonMode, setButtonMode] = useState('explore');
+
+    // Fetch hero button mode from Supabase with instant localStorage sync
+    useEffect(() => {
+        const cached = localStorage.getItem('hero_button_mode');
+        if (cached) setButtonMode(cached);
+
+        supabase
+            .from('app_settings')
+            .select('value')
+            .eq('key', 'hero_button_mode')
+            .single()
+            .then(({ data }) => {
+                if (data?.value) {
+                    setButtonMode(data.value);
+                    localStorage.setItem('hero_button_mode', data.value);
+                }
+            })
+            .catch(() => {});
+    }, []);
+
 
     // GSAP Entrance Animation Sequence for Right-Aligned Hero Content
     useEffect(() => {
@@ -17,7 +39,7 @@ export default function Hero() {
                 onComplete: () => {
                     gsap.set(
                         '.bharat-hero__eyebrow-badge, .bharat-spec-item, .bharat-hero__btn-primary, .bharat-hero__btn-secondary, .bharat-qr-box, .bharat-partners-footer',
-                        { clearProps: 'opacity' }
+                        { clearProps: 'all' }
                     );
                 }
             });
@@ -167,7 +189,7 @@ export default function Hero() {
                                 <span className="bharat-spec-item__icon">⏰</span>
                                 <div className="bharat-spec-item__info">
                                     <span className="bharat-spec-item__label">WINDOW</span>
-                                    <span className="bharat-spec-item__val">9:30 AM – 4:30 PM</span>
+                                    <span className="bharat-spec-item__val">8:30 AM – 4:30 PM</span>
                                 </div>
                             </div>
 
@@ -191,8 +213,14 @@ export default function Hero() {
                                 >
                                     REGISTER YOUR TEAM TODAY
                                 </a>
-                                <a href="#about" className="bharat-hero__btn-secondary">
-                                    Explore Ideathon
+                                <a
+                                    href={buttonMode === 'round2' ? '/register' : '#about'}
+                                    className={buttonMode === 'round2'
+                                        ? 'bharat-hero__btn-secondary bharat-hero__btn-secondary--round2'
+                                        : 'bharat-hero__btn-secondary'
+                                    }
+                                >
+                                    {buttonMode === 'round2' ? 'Round 2 Submissions →' : 'Explore Ideathon'}
                                 </a>
                             </div>
 

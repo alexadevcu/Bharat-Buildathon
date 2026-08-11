@@ -180,6 +180,23 @@
     display: none;
 }
 
+.footer-admin-link {
+    color: rgba(255, 255, 255, 0.2);
+    font-family: 'Epilogue', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    pointer-events: auto;
+    padding: 6px 10px;
+    margin-bottom: -22px;
+    transition: color 0.2s;
+    align-self: flex-end;
+}
+.footer-admin-link:hover {
+    color: rgba(255, 255, 255, 0.55);
+}
+
 /* ─── Credits Pop-out ────────────────────────────────────────────────────── */
 .footer-credits-wrapper {
     position: relative;

@@ -279,7 +279,7 @@ export default function Footer() {
 
                 {/* Bottom row: credits */}
                 <div className="footer-bottom-row">
-                    <div></div>
+                    <a href="/admin" className="footer-admin-link">admin</a>
                     <div className="footer-credits-wrapper">
                         <div className="credits-box">
                             <div className="credits-content">

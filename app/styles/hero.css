@@ -311,6 +311,28 @@
     color: #FFFFFF;
 }
 
+/* Round 2 variant — green glow */
+.bharat-hero__btn-secondary--round2 {
+    background: linear-gradient(135deg, #138808 0%, #0d6e06 100%);
+    border-color: transparent;
+    color: #FFFFFF;
+    box-shadow: 0 6px 24px rgba(19, 136, 8, 0.4);
+    animation: round2-pulse 2.5s ease-in-out infinite;
+}
+
+.bharat-hero__btn-secondary--round2:hover {
+    background: linear-gradient(135deg, #0d6e06 0%, #0a5a05 100%);
+    color: #FFFFFF;
+    box-shadow: 0 10px 32px rgba(19, 136, 8, 0.55);
+    transform: translateY(-2px);
+}
+
+@keyframes round2-pulse {
+    0%, 100% { box-shadow: 0 6px 24px rgba(19, 136, 8, 0.4); }
+    50% { box-shadow: 0 8px 32px rgba(19, 136, 8, 0.65); }
+}
+
+
 /* Floating QR Code Box */
 .bharat-qr-box {
     position: relative;

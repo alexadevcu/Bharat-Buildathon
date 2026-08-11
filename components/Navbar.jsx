@@ -82,27 +82,32 @@ export default function Navbar() {
 
             {/* Mobile Menu Overlay */}
             <div className={`mobile-menu-overlay ${isMobileMenuOpen ? 'open' : ''}`}>
-                <div className="mobile-menu-logos">
+                {/* Top Bar with Logos Pill & Close Button */}
+                <div className="mobile-menu-header">
                     <div className="mobile-menu-logos-top">
                         <img src="/assets/logos/cu.png" alt="CU" className="mobile-logo-cu" />
+                        <span className="mobile-logo-divider" />
                         <img src="/assets/logos/adc-cu.png" alt="ADC" className="mobile-logo-adc" />
+                        <span className="mobile-logo-divider" />
                         <img src="/assets/logos/gfg-cu.png" alt="GFG" className="mobile-logo-gfg" />
                     </div>
+                    <button
+                        className="mobile-menu-close-btn"
+                        onClick={closeMobileMenu}
+                        aria-label="Close menu"
+                    >
+                        ✕
+                    </button>
                 </div>
 
-                <div style={{ width: '100%', paddingRight: '30px', display: 'flex', justifyContent: 'flex-end', marginBottom: '30px' }}>
-                    <div className="mobile-menu-close" onClick={closeMobileMenu} style={{ fontSize: '2.5rem', cursor: 'pointer', color: '#1E293B', zIndex: 1002 }}>✕</div>
-                </div>
-
+                {/* Mobile Navigation Links */}
                 <div className="mobile-menu-content">
                     <a href="#" onClick={closeMobileMenu}>Home</a>
                     <a href="#about" onClick={closeMobileMenu}>About</a>
                     <a href="#rounds" onClick={closeMobileMenu}>Rounds</a>
                     <a href="#schedule" onClick={closeMobileMenu}>Schedule</a>
-                    <a href="#judging" onClick={closeMobileMenu}>Judging</a>
                     <a href="#prizes" onClick={closeMobileMenu}>Prizes</a>
                     <a href="#faq" onClick={closeMobileMenu}>FAQ</a>
-                    <a href="#sponsors" onClick={closeMobileMenu}>Sponsors</a>
                     <a href="#contact" className="mobile-register-btn" onClick={closeMobileMenu}>Contact Us</a>
                 </div>
             </div>

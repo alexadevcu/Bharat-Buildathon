@@ -148,8 +148,10 @@
     top: 100px;
     width: 350px;
     height: 200px;
-    background: url('data:image/svg+xml;utf8,<svg width="350" height="200" viewBox="0 0 350 200" xmlns="http://www.w3.org/2000/svg"><path d="M0 0 C 175 0, 175 200, 350 200" stroke="%231d2b45" stroke-width="6" fill="none"/></svg>') no-repeat;
+    background: url('data:image/svg+xml;utf8,<svg width="350" height="200" viewBox="0 0 350 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 0 C 175 0, 175 200, 350 200" stroke="%231d2b45" stroke-width="6" stroke-linecap="round" fill="none"/></svg>') no-repeat;
+    background-size: 100% 100%;
     z-index: 1;
+    pointer-events: none;
 }
 
 .timeline-node:nth-child(even)::after {
@@ -159,8 +161,10 @@
     top: 100px;
     width: 350px;
     height: 200px;
-    background: url('data:image/svg+xml;utf8,<svg width="350" height="200" viewBox="0 0 350 200" xmlns="http://www.w3.org/2000/svg"><path d="M0 200 C 175 200, 175 0, 350 0" stroke="%231d2b45" stroke-width="6" fill="none"/></svg>') no-repeat;
+    background: url('data:image/svg+xml;utf8,<svg width="350" height="200" viewBox="0 0 350 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 200 C 175 200, 175 0, 350 0" stroke="%231d2b45" stroke-width="6" stroke-linecap="round" fill="none"/></svg>') no-repeat;
+    background-size: 100% 100%;
     z-index: 1;
+    pointer-events: none;
 }
 
 .timeline-node:last-child::after {
@@ -213,6 +217,7 @@
         width: 90px;
         height: 90px;
         border-width: 6px;
+        z-index: 4;
     }
 
     .timeline-time {
@@ -249,6 +254,10 @@
 
     .timeline-node:nth-child(odd)::after,
     .timeline-node:nth-child(even)::after {
+        top: 85px;
         width: 280px;
+        height: 250px;
+        background-size: 100% 100%;
+        z-index: 1;
     }
 }

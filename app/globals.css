@@ -26,5 +26,7 @@
 /* Footer layout, credits, stickers         */
 @import './styles/cursor.css';
 /* Custom cursor bubble + scribble overlay  */
+@import './styles/register.css';
+@import './styles/admin.css';
 @import './styles/responsive.css';
 /* All media queries (tablet + mobile)      */

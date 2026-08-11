@@ -1,4 +1,7 @@
-/* ─── Floating Pill Header Bar (Bharat Buildathon) ─── */
+/* ─────────────────────────────────────────────────────────────────────────────
+   app/styles/navbar.css — Floating Pill Header & Mobile Menu Overlay
+───────────────────────────────────────────────────────────────────────────── */
+
 .navbar-floating-wrapper {
     position: fixed;
     top: 20px;
@@ -37,6 +40,7 @@
     align-items: center;
     gap: 16px;
     padding: 0 4px;
+    overflow: hidden;
 }
 
 .navbar-pill__logo-img {
@@ -53,7 +57,6 @@
     max-width: 110px;
 }
 
-/* Optimal zoom for ADC & GFG logos on website */
 .navbar-pill__logo-adc {
     max-height: 32px !important;
     max-width: 160px !important;
@@ -73,6 +76,7 @@
     height: 20px;
     background: rgba(0, 0, 0, 0.18);
     margin: 0 2px;
+    flex-shrink: 0;
 }
 
 .navbar-pill__links {
@@ -118,32 +122,12 @@
     box-shadow: 0 4px 14px rgba(30, 41, 59, 0.2);
 }
 
-/* Base utility for mobile elements (hide on desktop by default) */
+/* Base utility for mobile elements */
 .mobile-only {
     display: none !important;
 }
 
-/* Mobile Hamburger Toggle Styles (used if enabled) */
-.mobile-hamburger {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 6px;
-    /* Removed display: flex here as it will be hidden by mobile-only on desktop */
-    flex-direction: column;
-    gap: 4px;
-    justify-content: center;
-    align-items: center;
-}
-.hamburger-line {
-    width: 20px;
-    height: 2px;
-    background-color: #0A192F;
-    border-radius: 2px;
-    transition: all 0.3s ease;
-}
-
-/* Mobile Menu Slide-Out Overlay */
+/* ─── Mobile Menu Slide-Out Overlay ─── */
 .mobile-menu-overlay {
     position: fixed;
     inset: 0;
@@ -153,58 +137,113 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding: 24px;
+    padding: 20px 20px 40px;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
     overflow-y: auto;
 }
+
 .mobile-menu-overlay.open {
     opacity: 1;
     visibility: visible;
 }
-.mobile-menu-logos {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
+.mobile-menu-header {
     width: 100%;
-    margin-top: 10px;
-    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 36px;
 }
+
 .mobile-menu-logos-top {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: #FFFFFF;
+    padding: 10px 20px;
+    border-radius: 999px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    border: 1.5px solid rgba(226, 232, 240, 0.9);
+    overflow: hidden;
+    max-width: 80vw;
+}
+
+.mobile-logo-divider {
+    width: 1px;
+    height: 16px;
+    background: rgba(0, 0, 0, 0.15);
+    flex-shrink: 0;
+}
+
+.mobile-menu-logos-top img {
+    height: auto;
+    object-fit: contain;
+    flex-shrink: 1;
+}
+
+.mobile-logo-cu {
+    max-height: 24px;
+    max-width: 65px;
+}
+
+.mobile-logo-adc {
+    max-height: 26px;
+    max-width: 100px;
+}
+
+.mobile-logo-gfg {
+    max-height: 28px;
+    max-width: 100px;
+}
+
+.mobile-menu-close-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    border: 1.5px solid rgba(226, 232, 240, 0.9);
+    color: #1E293B;
+    font-size: 1.2rem;
+    font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 16px;
-    background: #FFFFFF;
-    padding: 12px 24px;
-    border-radius: 999px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+    flex-shrink: 0;
 }
-.mobile-menu-logos-top img {
-    height: 28px;
-    width: auto;
-    max-width: 80px;
-    object-fit: contain;
+
+.mobile-menu-close-btn:hover {
+    background: #1E293B;
+    color: #FFFFFF;
 }
+
 .mobile-menu-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 22px;
     width: 100%;
 }
+
 .mobile-menu-content a {
     font-family: 'Epilogue', sans-serif;
-    font-size: 1.4rem;
+    font-size: 1.35rem;
     font-weight: 800;
     color: #0A192F;
     text-decoration: none;
     transition: color 0.2s ease;
 }
+
 .mobile-menu-content a:hover {
     color: #FF6B35;
 }
+
 .mobile-register-btn {
     margin-top: 14px;
     padding: 14px 36px;
@@ -216,8 +255,7 @@
     box-shadow: 0 8px 24px rgba(255, 107, 53, 0.3);
 }
 
-
-/* Mobile Header Bar Rules */
+/* ─── Mobile Header Bar Rules ─── */
 @media (max-width: 900px) {
     .desktop-only {
         display: none !important;
@@ -271,27 +309,30 @@
         transform: none !important;
         margin: 0 !important;
     }
+    
     .mobile-menu-logos-top {
-        gap: 20px !important;
+        gap: 8px !important;
+        padding: 8px 16px !important;
+        max-width: 76vw !important;
+        border-radius: 999px !important;
+        overflow: hidden !important;
+    }
+    .mobile-menu-logos-top img.mobile-logo-cu {
+        max-height: 22px !important;
+        max-width: 58px !important;
     }
     .mobile-menu-logos-top img.mobile-logo-adc {
-        height: 38px !important;
-        max-width: 35vw !important;
-        transform: none !important;
+        max-height: 22px !important;
+        max-width: 85px !important;
     }
     .mobile-menu-logos-top img.mobile-logo-gfg {
-        height: 44px !important;
-        max-width: 45vw !important;
-        transform: none !important;
+        max-height: 24px !important;
+        max-width: 85px !important;
     }
+    
     .navbar-pill__logo-divider {
         height: 16px;
         margin: 0 2px;
-    }
-    
-    /* Hide navigation text links on mobile */
-    .navbar-pill__links {
-        display: none !important;
     }
     
     /* 3-Bar Mobile Hamburger Toggle Button */
